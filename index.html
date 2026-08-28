@@ -628,6 +628,10 @@
       gap: 16px;
     }
 
+    .learn-card:last-child {
+      grid-column: 2;
+    }
+
     .learn-card {
       min-height: 150px;
       padding: 20px 16px;
@@ -849,6 +853,244 @@
       font-weight: 700;
     }
 
+    .content-page {
+      position: relative;
+      z-index: 1;
+      min-height: calc(100vh - 70px);
+      padding: 90px 6% 110px;
+      background: #f8f4fc;
+      color: #241344;
+      scroll-margin-top: 70px;
+      overflow: hidden;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 3;
+      max-width: 1180px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .page-heading h2 {
+      font-family: var(--font-title);
+      color: #2d1652;
+      font-size: 3.4rem;
+      margin-bottom: 8px;
+    }
+
+    .page-heading p {
+      color: #514663;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .page-wave {
+      opacity: 0.26;
+      z-index: 0;
+    }
+
+    .quiz-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 24px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .quiz-question,
+    .quiz-aside {
+      padding: 25px;
+      background: #ffffff;
+      border: 1px solid #ded4ee;
+      border-radius: 14px;
+      box-shadow: 0 10px 22px rgba(55, 27, 95, 0.08);
+    }
+
+    .quiz-question h3,
+    .quiz-aside h3 {
+      color: #39205f;
+      font-family: var(--font-title);
+      margin-bottom: 18px;
+    }
+
+    .quiz-question p,
+    .quiz-aside p {
+      color: #514663;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .quiz-option {
+      padding: 12px 14px;
+      border: 1px solid #ded4ee;
+      border-radius: 8px;
+      background: #faf8fd;
+      color: #39205f;
+      text-align: left;
+      font: 700 0.9rem var(--font-body);
+      cursor: pointer;
+    }
+
+    .quiz-option:hover,
+    .quiz-option.selected {
+      border-color: #8d4ed0;
+      background: #eee4fa;
+    }
+
+    .quiz-score {
+      color: #68419a;
+      font-family: var(--font-title);
+      font-size: 2rem;
+    }
+
+    .material-grid,
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .material-card,
+    .team-card {
+      padding: 22px 16px;
+      background: #ffffff;
+      border: 1px solid #ded4ee;
+      border-radius: 12px;
+      box-shadow: 0 8px 18px rgba(55, 27, 95, 0.08);
+    }
+
+    .material-card i,
+    .team-card i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: #e6dcf5;
+      color: #68419a;
+      font-size: 1.5rem;
+    }
+
+    .material-card h3,
+    .team-card h3 {
+      color: #39205f;
+      font-family: var(--font-title);
+      margin-bottom: 8px;
+    }
+
+    .material-card p,
+    .team-card p {
+      color: #5b506c;
+      font-size: 0.84rem;
+      line-height: 1.4;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .small-action {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 18px;
+      background: #68419a;
+      color: #ffffff;
+      font: 700 0.8rem var(--font-body);
+      text-decoration: none;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 30px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .contact-info,
+    .contact-form {
+      padding: 24px;
+      background: #ffffff;
+      border: 1px solid #ded4ee;
+      border-radius: 14px;
+      box-shadow: 0 10px 22px rgba(55, 27, 95, 0.08);
+    }
+
+    .contact-info h3 {
+      color: #39205f;
+      font-family: var(--font-title);
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-info p,
+    .contact-info li {
+      color: #514663;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .contact-info ul {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+      list-style: none;
+    }
+
+    .contact-info li i {
+      width: 24px;
+      color: #68419a;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-form label {
+      color: #39205f;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #d8cce9;
+      border-radius: 7px;
+      background: #faf8fd;
+      color: #39205f;
+      font: 600 0.9rem var(--font-body);
+    }
+
+    .contact-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .extras-footer {
+      position: relative;
+      z-index: 1;
+      padding: 34px 6% 28px;
+      background: #160d31;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .extras-footer p {
+      color: #d5c9e8;
+      font-weight: 600;
+    }
+
     /* Responsividade */
     @media (max-width: 992px) {
       header {
@@ -965,6 +1207,17 @@
       .learn-cards {
         grid-template-columns: repeat(2, 1fr);
       }
+      .learn-card:last-child {
+        grid-column: auto;
+      }
+      .quiz-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .material-grid,
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .game-section {
         padding: 70px 5% 80px;
       }
@@ -987,6 +1240,16 @@
         width: 26px;
         height: 26px;
         font-size: 0.7rem;
+      }
+      .content-page {
+        padding: 72px 5% 90px;
+      }
+      .page-heading h2 {
+        font-size: 2.6rem;
+      }
+      .material-grid,
+      .team-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -1234,11 +1497,6 @@
           <p>Conheça as diferentes identidades de gênero.</p>
         </article>
         <article class="learn-card">
-          <i class="fa-solid fa-rainbow"></i>
-          <h3>Orientação Sexual</h3>
-          <p>Entenda as diferentes orientações sexuais.</p>
-        </article>
-        <article class="learn-card">
           <i class="fa-solid fa-scale-balanced"></i>
           <h3>Direitos Humanos</h3>
           <p>Conheça seus direitos e sua importância para todos.</p>
@@ -1302,6 +1560,94 @@
       </svg>
     </div>
   </section>
+
+  <section class="content-page" id="quiz">
+    <div class="wave-bottom wave-top page-wave" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+    <div class="page-content">
+      <div class="page-heading">
+        <h2>Quiz</h2>
+        <p>Teste seus conhecimentos sobre diversidade e inclusão!</p>
+      </div>
+      <div class="quiz-layout">
+        <div class="quiz-question">
+          <h3>1. O que significa a sigla LGBTQIA+?</h3>
+          <p>Escolha a alternativa que melhor representa o significado da sigla.</p>
+          <div class="quiz-options">
+            <button class="quiz-option" type="button">A. Uma organização internacional.</button>
+            <button class="quiz-option" type="button">B. Diferentes orientações sexuais e identidades de gênero.</button>
+            <button class="quiz-option" type="button">C. Um tipo de movimento cultural.</button>
+            <button class="quiz-option" type="button">D. Uma sigla apenas de gênero masculino.</button>
+          </div>
+        </div>
+        <aside class="quiz-aside">
+          <h3>Pontuação</h3>
+          <div class="quiz-score" id="quizScore">0</div>
+          <p id="quizFeedback">Escolha uma alternativa para começar.</p>
+          <button class="game-button" id="nextQuestion" type="button">Próxima</button>
+        </aside>
+      </div>
+    </div>
+    <div class="wave-bottom page-wave" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+  </section>
+
+  <section class="content-page" id="materiais">
+    <div class="wave-bottom wave-top page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+    <div class="page-content">
+      <div class="page-heading">
+        <h2>Materiais Educativos</h2>
+        <p>Baixe materiais gratuitos para aprender, ensinar e transformar.</p>
+      </div>
+      <div class="material-grid">
+        <article class="material-card"><i class="fa-solid fa-book-open"></i><h3>Cartilhas</h3><p>Materiais informativos sobre diversidade e inclusão.</p><a class="small-action" href="#" download>Baixar</a></article>
+        <article class="material-card"><i class="fa-solid fa-chalkboard"></i><h3>Slides</h3><p>Apresentações para trabalhos e aulas.</p><a class="small-action" href="#" download>Baixar</a></article>
+        <article class="material-card"><i class="fa-solid fa-file-pen"></i><h3>Atividades</h3><p>Atividades dinâmicas para a sala de aula.</p><a class="small-action" href="#" download>Baixar</a></article>
+        <article class="material-card"><i class="fa-solid fa-apple-whole"></i><h3>Para Professores</h3><p>Materiais de apoio e planos de aula.</p><a class="small-action" href="#" download>Baixar</a></article>
+      </div>
+    </div>
+    <div class="wave-bottom page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+  </section>
+
+  <section class="content-page" id="equipe">
+    <div class="wave-bottom wave-top page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+    <div class="page-content">
+      <div class="page-heading"><h2>Nossa Equipe</h2><p>Conheça as pessoas que tornam o PSICOQUEER possível.</p></div>
+      <div class="team-grid">
+        <article class="team-card"><i class="fa-solid fa-user-pen"></i><h3>Integrante 1</h3><p>Designer</p></article>
+        <article class="team-card"><i class="fa-solid fa-user-graduate"></i><h3>Integrante 2</h3><p>Conteúdo</p></article>
+        <article class="team-card"><i class="fa-solid fa-code"></i><h3>Integrante 3</h3><p>Programador</p></article>
+        <article class="team-card"><i class="fa-solid fa-magnifying-glass"></i><h3>Integrante 4</h3><p>Pesquisa</p></article>
+        <article class="team-card"><i class="fa-solid fa-people-group"></i><h3>Integrante 5</h3><p>Social Media</p></article>
+        <article class="team-card"><i class="fa-solid fa-person-chalkboard"></i><h3>Orientador(a)</h3><p>Professor(a)</p></article>
+      </div>
+    </div>
+    <div class="wave-bottom page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+  </section>
+
+  <section class="content-page" id="contato">
+    <div class="wave-bottom wave-top page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+    <div class="page-content">
+      <div class="page-heading"><h2>Fale Conosco</h2><p>Tem dúvidas, sugestões ou quer participar do projeto?</p></div>
+      <div class="contact-layout">
+        <div class="contact-info"><h3>Entre em contato</h3><p>Será um prazer conversar com você sobre educação, respeito e inclusão.</p><ul><li><i class="fa-solid fa-envelope"></i> psicoqueer.contato@gmail.com</li><li><i class="fa-brands fa-instagram"></i> @psicoqueer.oficial</li><li><i class="fa-solid fa-location-dot"></i> Nossa escola / Comunidade</li></ul></div>
+        <form class="contact-form" id="contactForm"><label for="contactName">Nome</label><input id="contactName" type="text" required><label for="contactEmail">E-mail</label><input id="contactEmail" type="email" required><label for="contactSubject">Assunto</label><select id="contactSubject"><option>Dúvida</option><option>Sugestão</option><option>Parceria</option></select><label for="contactMessage">Mensagem</label><textarea id="contactMessage" required></textarea><button class="game-button" type="submit">Enviar mensagem</button><p class="game-status" id="contactStatus"></p></form>
+      </div>
+    </div>
+    <div class="wave-bottom page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+  </section>
+
+  <footer class="extras-footer"><p>Respeito não tem cor, não tem gênero, não tem limite.</p><p>© 2024 PSICOQUEER - Todos os direitos reservados.</p></footer>
 
   <!-- Grafismo Inferior: onda sutil inspirada na bandeira bissexual -->
   <div class="wave-bottom">
@@ -1397,6 +1743,42 @@
     function toggleHighContrast() {
       document.body.classList.toggle('high-contrast');
     }
+
+    const quizOptions = [...document.querySelectorAll('.quiz-option')];
+    const quizScore = document.getElementById('quizScore');
+    const quizFeedback = document.getElementById('quizFeedback');
+    const nextQuestionButton = document.getElementById('nextQuestion');
+    let quizAnswered = false;
+
+    quizOptions.forEach((option, optionIndex) => {
+      option.addEventListener('click', () => {
+        quizOptions.forEach((item) => item.classList.remove('selected'));
+        option.classList.add('selected');
+        quizAnswered = true;
+        quizFeedback.textContent = optionIndex === 1
+          ? 'Resposta correta! Diferentes orientações e identidades fazem parte da diversidade.'
+          : 'Quase! Tente refletir novamente sobre o significado da sigla.';
+        quizScore.textContent = optionIndex === 1 ? '150' : '0';
+      });
+    });
+
+    nextQuestionButton.addEventListener('click', () => {
+      if (!quizAnswered) {
+        quizFeedback.textContent = 'Escolha uma alternativa antes de continuar.';
+        return;
+      }
+      quizFeedback.textContent = 'Muito bem! Em breve, novas perguntas estarão disponíveis.';
+      nextQuestionButton.disabled = true;
+    });
+
+    const contactForm = document.getElementById('contactForm');
+    const contactStatus = document.getElementById('contactStatus');
+
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      contactStatus.textContent = 'Mensagem preparada! Obrigado por entrar em contato.';
+      contactForm.reset();
+    });
 
     const gameBoard = document.getElementById('gameBoard');
     const rollDiceButton = document.getElementById('rollDice');
