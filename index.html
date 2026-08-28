@@ -670,11 +670,23 @@
       background: #160d31;
       color: #ffffff;
       scroll-margin-top: 70px;
+      overflow: hidden;
+    }
+
+    .game-section .wave-bottom {
+      z-index: 0;
+      opacity: 0.42;
+    }
+
+    .game-section .wave-top {
+      opacity: 0.25;
     }
 
     .game-content {
       max-width: 1250px;
       margin: 0 auto;
+      position: relative;
+      z-index: 3;
     }
 
     .game-heading {
@@ -704,11 +716,11 @@
       display: grid;
       grid-template-columns: repeat(10, minmax(42px, 1fr));
       grid-template-rows: repeat(6, minmax(58px, 1fr));
-      gap: 7px;
-      padding: 18px;
-      background: #211344;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 15px;
+      gap: 8px;
+      padding: 20px;
+      background: linear-gradient(145deg, #2b1852, #1b1039);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.28);
     }
 
@@ -722,15 +734,30 @@
       color: #ffffff;
       font-family: var(--font-title);
       font-size: 1rem;
-      box-shadow: inset 0 -4px rgba(0, 0, 0, 0.16);
+      box-shadow: inset 0 -4px rgba(0, 0, 0, 0.16), 0 3px 8px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+      transition: filter 0.2s ease, transform 0.2s ease;
     }
 
-    .game-cell:nth-child(6n + 1) { background: #4054a8; }
-    .game-cell:nth-child(6n + 2) { background: #7544a5; }
-    .game-cell:nth-child(6n + 3) { background: #cf4778; }
-    .game-cell:nth-child(6n + 4) { background: #df704d; }
-    .game-cell:nth-child(6n + 5) { background: #e5a13e; }
-    .game-cell:nth-child(6n) { background: #759c52; }
+    .game-cell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 48%);
+      pointer-events: none;
+    }
+
+    .game-cell:nth-child(6n + 1) { background: linear-gradient(145deg, #596ed0, #35458f); }
+    .game-cell:nth-child(6n + 2) { background: linear-gradient(145deg, #9a61cc, #673b91); }
+    .game-cell:nth-child(6n + 3) { background: linear-gradient(145deg, #ed6796, #b43c6c); }
+    .game-cell:nth-child(6n + 4) { background: linear-gradient(145deg, #f18a68, #c85c43); }
+    .game-cell:nth-child(6n + 5) { background: linear-gradient(145deg, #f3bd59, #cf8d2d); }
+    .game-cell:nth-child(6n) { background: linear-gradient(145deg, #91bd68, #5d8a49); }
+
+    .game-cell:hover {
+      filter: brightness(1.12);
+      transform: translateY(-2px);
+    }
 
     .game-cell.is-player {
       outline: 3px solid #ffffff;
@@ -1238,6 +1265,13 @@
   </section>
 
   <section class="game-section" id="jogo">
+    <div class="wave-bottom wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
     <div class="game-content">
       <div class="game-heading">
         <h2>Jogo Interativo</h2>
@@ -1259,6 +1293,13 @@
           <p class="game-status" id="gameStatus" aria-live="polite">Você está na casa 1. Boa jornada!</p>
         </aside>
       </div>
+    </div>
+    <div class="wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
     </div>
   </section>
 
