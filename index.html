@@ -440,6 +440,9 @@
 
     .wave-first {
       z-index: 2;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
     }
 
     .wave-top {
@@ -463,9 +466,9 @@
     .about-decorations {
       position: absolute;
       inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
     }
 
     .about-decorations .star {
@@ -659,6 +662,166 @@
       font-weight: 600;
     }
 
+    .game-section {
+      position: relative;
+      z-index: 1;
+      min-height: calc(100vh - 70px);
+      padding: 82px 6% 100px;
+      background: #160d31;
+      color: #ffffff;
+      scroll-margin-top: 70px;
+    }
+
+    .game-content {
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    .game-heading {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .game-heading h2 {
+      font-family: var(--font-title);
+      font-size: 3.4rem;
+      margin-bottom: 7px;
+    }
+
+    .game-heading p {
+      color: #d5c9e8;
+      font-weight: 600;
+    }
+
+    .game-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(42px, 1fr));
+      grid-template-rows: repeat(6, minmax(58px, 1fr));
+      gap: 7px;
+      padding: 18px;
+      background: #211344;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.28);
+    }
+
+    .game-cell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      border-radius: 8px;
+      color: #ffffff;
+      font-family: var(--font-title);
+      font-size: 1rem;
+      box-shadow: inset 0 -4px rgba(0, 0, 0, 0.16);
+    }
+
+    .game-cell:nth-child(6n + 1) { background: #4054a8; }
+    .game-cell:nth-child(6n + 2) { background: #7544a5; }
+    .game-cell:nth-child(6n + 3) { background: #cf4778; }
+    .game-cell:nth-child(6n + 4) { background: #df704d; }
+    .game-cell:nth-child(6n + 5) { background: #e5a13e; }
+    .game-cell:nth-child(6n) { background: #759c52; }
+
+    .game-cell.is-player {
+      outline: 3px solid #ffffff;
+      outline-offset: -3px;
+    }
+
+    .player-token {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      background: #f4bd45;
+      color: #351a62;
+      font-size: 0.85rem;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .game-panel {
+      padding: 24px;
+      background: #211344;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 15px;
+    }
+
+    .game-panel h3 {
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      margin-bottom: 14px;
+    }
+
+    .game-panel p {
+      color: #d5c9e8;
+      line-height: 1.45;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    .dice-result {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .dice-value {
+      color: #ffc95c;
+      font-size: 1.5rem;
+    }
+
+    .game-button {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 11px 16px;
+      border: 0;
+      border-radius: 22px;
+      background: #8d4ed0;
+      color: #ffffff;
+      font: 700 1rem var(--font-title);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .game-button:hover {
+      background: #a764e3;
+      transform: translateY(-2px);
+    }
+
+    .game-button.secondary {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #d5c9e8;
+    }
+
+    .game-status {
+      min-height: 48px;
+      color: #ffc95c;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
     /* Responsividade */
     @media (max-width: 992px) {
       header {
@@ -774,6 +937,29 @@
       }
       .learn-cards {
         grid-template-columns: repeat(2, 1fr);
+      }
+      .game-section {
+        padding: 70px 5% 80px;
+      }
+      .game-heading h2 {
+        font-size: 2.6rem;
+      }
+      .game-layout {
+        grid-template-columns: 1fr;
+      }
+      .game-board {
+        grid-template-columns: repeat(10, minmax(25px, 1fr));
+        grid-template-rows: repeat(6, minmax(42px, 1fr));
+        gap: 4px;
+        padding: 10px;
+      }
+      .game-cell {
+        font-size: 0.75rem;
+      }
+      .player-token {
+        width: 26px;
+        height: 26px;
+        font-size: 0.7rem;
       }
     }
   </style>
@@ -1051,6 +1237,31 @@
     </div>
   </section>
 
+  <section class="game-section" id="jogo">
+    <div class="game-content">
+      <div class="game-heading">
+        <h2>Jogo Interativo</h2>
+        <p>Avance pelo tabuleiro, responda, aprenda e mostre que o respeito é o melhor caminho.</p>
+      </div>
+
+      <div class="game-layout">
+        <div class="game-board" id="gameBoard" aria-label="Tabuleiro do jogo"></div>
+
+        <aside class="game-panel">
+          <h3>Como jogar</h3>
+          <p>Role o dado, avance pelo tabuleiro e reflita sobre atitudes de respeito e inclusão.</p>
+          <div class="dice-result">
+            <span>Última jogada</span>
+            <strong class="dice-value" id="diceValue">-</strong>
+          </div>
+          <button class="game-button" id="rollDice" type="button">Jogar dado</button>
+          <button class="game-button secondary" id="resetGame" type="button">Reiniciar</button>
+          <p class="game-status" id="gameStatus" aria-live="polite">Você está na casa 1. Boa jornada!</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
   <!-- Grafismo Inferior: onda sutil inspirada na bandeira bissexual -->
   <div class="wave-bottom">
     <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
@@ -1145,6 +1356,85 @@
     function toggleHighContrast() {
       document.body.classList.toggle('high-contrast');
     }
+
+    const gameBoard = document.getElementById('gameBoard');
+    const rollDiceButton = document.getElementById('rollDice');
+    const resetGameButton = document.getElementById('resetGame');
+    const diceValue = document.getElementById('diceValue');
+    const gameStatus = document.getElementById('gameStatus');
+    const gameChallenges = [
+      'Qual atitude ajuda a tornar um ambiente mais inclusivo?',
+      'Como você pode demonstrar respeito às diferenças?',
+      'Lembre-se: ouvir com empatia também é uma forma de cuidado.',
+      'Toda pessoa merece segurança, respeito e espaço para ser quem é.',
+      'Compartilhe conhecimento e ajude a combater o preconceito.'
+    ];
+    let playerPosition = 1;
+
+    function buildGameBoard() {
+      gameBoard.innerHTML = '';
+      for (let position = 1; position <= 60; position += 1) {
+        const cell = document.createElement('div');
+        const rowFromBottom = Math.floor((position - 1) / 10);
+        const positionInRow = (position - 1) % 10;
+        const column = rowFromBottom % 2 === 0 ? positionInRow + 1 : 10 - positionInRow;
+
+        cell.className = 'game-cell';
+        cell.dataset.position = position;
+        cell.style.gridColumn = column;
+        cell.style.gridRow = 6 - rowFromBottom;
+        cell.textContent = position;
+        gameBoard.appendChild(cell);
+      }
+      updatePlayerToken();
+    }
+
+    function updatePlayerToken() {
+      document.querySelectorAll('.game-cell').forEach((cell) => {
+        cell.classList.remove('is-player');
+        cell.querySelector('.player-token')?.remove();
+      });
+
+      const playerCell = gameBoard.querySelector(`[data-position="${playerPosition}"]`);
+      if (!playerCell) return;
+
+      playerCell.classList.add('is-player');
+      const token = document.createElement('span');
+      token.className = 'player-token';
+      token.innerHTML = '<i class="fa-solid fa-person"></i>';
+      token.setAttribute('aria-label', 'Sua peça');
+      playerCell.appendChild(token);
+    }
+
+    function rollDice() {
+      if (playerPosition >= 60) return;
+
+      const rolledNumber = Math.floor(Math.random() * 6) + 1;
+      playerPosition = Math.min(playerPosition + rolledNumber, 60);
+      diceValue.textContent = rolledNumber;
+      updatePlayerToken();
+
+      if (playerPosition === 60) {
+        gameStatus.textContent = 'Você chegou ao final! Respeito é o melhor caminho.';
+        rollDiceButton.disabled = true;
+        return;
+      }
+
+      const challenge = gameChallenges[(playerPosition - 1) % gameChallenges.length];
+      gameStatus.textContent = `Casa ${playerPosition}: ${challenge}`;
+    }
+
+    function resetGame() {
+      playerPosition = 1;
+      diceValue.textContent = '-';
+      gameStatus.textContent = 'Você está na casa 1. Boa jornada!';
+      rollDiceButton.disabled = false;
+      updatePlayerToken();
+    }
+
+    rollDiceButton.addEventListener('click', rollDice);
+    resetGameButton.addEventListener('click', resetGame);
+    buildGameBoard();
   </script>
 </body>
 </html>
