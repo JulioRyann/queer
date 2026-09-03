@@ -1,0 +1,3710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PSICOQUEER - Página Inicial</title>
+  
+  <!-- Fontes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Ícones Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* Reset & Variáveis */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg-dark: #12092b;
+      --bg-header: #170d36;
+      --accent-purple: #7c3aed;
+      --accent-hover: #8b5cf6;
+      --text-white: #ffffff;
+      --text-muted: #c3b7e0;
+      --font-title: 'Fredoka', sans-serif;
+      --font-body: 'Nunito', sans-serif;
+      --base-scale: 1;
+      --page-accent: #f4a7c8;
+      --page-accent-strong: #e76ab3;
+      --page-accent-soft: #fdeaf4;
+      --page-bg-start: #f7f0fa;
+      --page-bg-end: #f3eefc;
+      --page-surface: rgba(255, 255, 255, 0.78);
+      --page-border: rgba(94, 73, 128, 0.12);
+    }
+
+    /* Modo Alto Contraste */
+    body.high-contrast {
+      --bg-dark: #000000;
+      --bg-header: #111111;
+      --text-white: #ffffff;
+      --text-muted: #ffffff;
+      --accent-purple: #ffff00;
+      --accent-hover: #e6e600;
+    }
+    body.high-contrast .btn-start {
+      color: #000000 !important;
+      font-weight: 800;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      font-size: calc(16px * var(--base-scale));
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: 70px;
+    }
+
+    /* Cabeçalho / Navbar */
+    header {
+      background-color: var(--bg-header);
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    header.header-scrolled {
+      background: linear-gradient(180deg, #261052 0%, var(--bg-header) 100%);
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    .logo-icon img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      filter: invert(1);
+    }
+
+    body.light-theme .logo-icon img {
+      filter: none;
+    }
+
+    .logo-text {
+      font-family: var(--font-title);
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-text .psico { color: #ffffff; }
+    .logo-text .q { color: #ff4b72; }
+    .logo-text .u { color: #ffb020; }
+    .logo-text .e1 { color: #00e676; }
+    .logo-text .e2 { color: #00b0ff; }
+    .logo-text .r { color: #a855f7; }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 22px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-white);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    nav a:hover, nav a.active {
+      color: #ffb020;
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .mobile-nav {
+      display: none;
+    }
+
+    /* Botão de Acessibilidade no Header */
+    .btn-accessibility {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-white);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-accessibility:hover {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple);
+      transform: scale(1.05);
+    }
+
+    /* Menu Painel de Acessibilidade Popup */
+    .accessibility-modal {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 5%;
+      background: #1e1140;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 15px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 1001;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 220px;
+    }
+
+    .accessibility-modal.active {
+      display: flex;
+    }
+
+    .accessibility-modal h4 {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .acc-btn-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .acc-btn {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: white;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .acc-btn:hover {
+      background: var(--accent-purple);
+    }
+
+    /* Seção Hero / Principal */
+    .hero-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 8% 140px 8%;
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      gap: 40px;
+      scroll-margin-top: 70px;
+      min-height: calc(100vh - 70px);
+    }
+
+    .hero-section::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 115px;
+      background: linear-gradient(180deg, transparent 0%, rgba(73, 39, 128, 0.5) 100%);
+      clip-path: ellipse(75% 75% at 50% 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Elementos de Fundo Espacial */
+    .bg-decorations {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.7rem;
+      filter: drop-shadow(0 0 5px rgba(255, 224, 138, 0.8));
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255, 118, 118, 0.4);
+      filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.65));
+      animation: float 5s infinite ease-in-out;
+    }
+
+    .heart.xs { font-size: 0.6rem; opacity: 0.4; }
+    .heart.sm { font-size: 0.8rem; opacity: 0.5; }
+    .heart.md { font-size: 1.1rem; opacity: 0.6; }
+
+    .rainbow {
+      position: absolute;
+      color: rgba(255, 179, 71, 0.55);
+      font-size: 1rem;
+      filter: drop-shadow(0 0 6px rgba(255, 179, 71, 0.75));
+      animation: float 6s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 0.9; transform: scale(1.2); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
+
+    /* Conteúdo da Esquerda */
+    .hero-content {
+      flex: 1;
+      z-index: 1;
+      max-width: 620px;
+    }
+
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: 4.8rem;
+      line-height: 1.05;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .hero-title .psico { color: #ffffff; }
+    .hero-title .q { color: #ff4b72; }
+    .hero-title .u { color: #ffb020; }
+    .hero-title .e1 { color: #00e676; }
+    .hero-title .e2 { color: #00b0ff; }
+    .hero-title .r { color: #a855f7; }
+
+    .hero-subtitle {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+
+    .hero-description {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 35px;
+      font-weight: 600;
+    }
+
+    .btn-start {
+      display: inline-block;
+      background: linear-gradient(135deg, #7c3aed, #9333ea);
+      color: #ffffff;
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      font-weight: 600;
+      padding: 14px 48px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 25px rgba(124, 58, 237, 0.45);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-start:hover {
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.6);
+    }
+
+    /* Container da Imagem PNG */
+    .hero-image-container {
+      flex: 1;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: translateY(-22px);
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: auto;
+      max-height: 540px;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+    }
+
+    /* Onda inferior discreta inspirada na bandeira bissexual */
+    .wave-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .wave-bottom svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 230px;
+      transform-origin: center bottom;
+      animation: wave-breathe 9s ease-in-out infinite alternate;
+    }
+
+    .wave-bottom path {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      animation: wave-flow 7s ease-in-out infinite alternate;
+      stroke-linejoin: round;
+      opacity: 0.35;
+    }
+
+    .wave-bottom path:nth-child(2) {
+      animation-delay: -2s;
+    }
+
+    .wave-bottom path:nth-child(3) {
+      animation-delay: -4s;
+    }
+
+    @keyframes wave-breathe {
+      from { transform: scaleY(0.96); }
+      to { transform: scaleY(1.04); }
+    }
+
+    @keyframes wave-flow {
+      from { transform: translateY(3px) scaleX(0.99); }
+      to { transform: translateY(-3px) scaleX(1.01); }
+    }
+
+    .wave-first {
+      z-index: 2;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
+    }
+
+    .wave-top {
+      top: 0;
+      bottom: auto;
+      transform: rotate(180deg);
+    }
+
+    /* Seção Sobre o Projeto */
+    .about-section {
+      position: relative;
+      z-index: 1;
+      min-height: calc(100vh - 70px);
+      padding: 100px 8% 90px;
+      background: linear-gradient(180deg, #241247 0, #eadff7 115px, #f3effb 220px);
+      color: #241344;
+      scroll-margin-top: 70px;
+      overflow: hidden;
+    }
+
+    .about-decorations {
+      position: absolute;
+      inset: 0;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .about-decorations .star {
+      color: rgba(107, 66, 155, 0.65);
+      filter: drop-shadow(0 0 5px rgba(150, 110, 210, 0.75));
+    }
+
+    .about-decorations .heart {
+      color: rgba(214, 41, 118, 0.5);
+      filter: drop-shadow(0 0 6px rgba(214, 41, 118, 0.55));
+    }
+
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      padding-bottom: 12px;
+    }
+
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 70px;
+      align-items: center;
+      margin-bottom: 55px;
+    }
+
+    .about-section h2 {
+      font-family: var(--font-title);
+      font-size: 3.4rem;
+      color: #2d1652;
+      margin-bottom: 22px;
+    }
+
+    .about-copy p {
+      max-width: 590px;
+      color: #453a59;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .about-visual {
+      min-height: 270px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-visual img {
+      width: 100%;
+      max-width: 520px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .about-card {
+      min-height: 170px;
+      padding: 24px 20px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(139, 104, 185, 0.12);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(55, 27, 95, 0.03);
+    }
+
+    .about-card i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: #e6dcf5;
+      color: #68419a;
+      font-size: 1.25rem;
+    }
+
+    .about-card h3 {
+      font-family: var(--font-title);
+      color: #39205f;
+      margin-bottom: 8px;
+    }
+
+    .about-card p {
+      color: #5b506c;
+      font-size: 0.88rem;
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    .learn-section {
+      position: relative;
+      z-index: 1;
+      min-height: calc(100vh - 70px);
+      padding: 90px 8% 120px;
+      background: #f8f4fc;
+      color: #241344;
+      scroll-margin-top: 70px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .learn-decorations {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .learn-decorations .star {
+      color: rgba(107, 66, 155, 0.62);
+    }
+
+    .learn-decorations .heart {
+      color: rgba(214, 41, 118, 0.48);
+    }
+
+    .learn-decorations .rainbow,
+    .about-decorations .rainbow {
+      color: rgba(120, 76, 166, 0.42);
+    }
+
+    .learn-content {
+      max-width: 1120px;
+      margin: 0 auto;
+      text-align: center;
+      transform: translateY(0);
+      width: 100%;
+    }
+
+    .learn-section h2 {
+      font-family: var(--font-title);
+      font-size: 3.4rem;
+      color: #2d1652;
+      margin-bottom: 8px;
+    }
+
+    .learn-subtitle {
+      max-width: 600px;
+      margin: 0 auto 28px;
+      color: #514663;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .learn-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: 16px;
+      justify-content: center;
+      max-width: 980px;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+
+    .learn-card:nth-child(4) {
+      grid-column: 1;
+      justify-self: center;
+      width: min(100%, 360px);
+    }
+
+    .learn-card:nth-child(5) {
+      grid-column: 3;
+      justify-self: center;
+      width: min(100%, 360px);
+    }
+
+    .learn-card {
+      min-height: 150px;
+      padding: 20px 16px;
+      background: #ffffff;
+      border: 1px solid #ded4ee;
+      border-radius: 11px;
+      box-shadow: 0 8px 18px rgba(55, 27, 95, 0.08);
+    }
+
+    .learn-card i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 10px;
+      color: #68419a;
+      font-size: 1.35rem;
+    }
+
+    .learn-card h3 {
+      font-family: var(--font-title);
+      color: #39205f;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .learn-card p {
+      color: #5b506c;
+      font-size: 0.78rem;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .game-section {
+      position: relative;
+      z-index: 1;
+      min-height: calc(100vh - 70px);
+      padding: 72px 6% 102px;
+      background: #160d31;
+      color: #ffffff;
+      scroll-margin-top: 70px;
+      overflow: hidden;
+    }
+
+    .game-section .wave-bottom {
+      z-index: 0;
+      opacity: 0.75;
+    }
+
+    .game-section .wave-top {
+      opacity: 0.55;
+    }
+
+    .game-content {
+      max-width: 1250px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 3;
+      transform: translateY(18px);
+    }
+
+    .game-heading {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .game-heading h2 {
+      font-family: var(--font-title);
+      font-size: 3.4rem;
+      margin-bottom: 7px;
+    }
+
+    .game-heading p {
+      color: #d5c9e8;
+      font-weight: 600;
+    }
+
+    .game-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(42px, 1fr));
+      grid-template-rows: repeat(6, minmax(58px, 1fr));
+      gap: 8px;
+      padding: 20px;
+      background: linear-gradient(145deg, #2b1852, #1b1039);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.28);
+    }
+
+    .game-cell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      border-radius: 8px;
+      color: #ffffff;
+      font-family: var(--font-title);
+      font-size: 1rem;
+      box-shadow: inset 0 -4px rgba(0, 0, 0, 0.16), 0 3px 8px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+      transition: filter 0.2s ease, transform 0.2s ease;
+    }
+
+    .game-cell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 48%);
+      pointer-events: none;
+    }
+
+    .game-cell:nth-child(6n + 1) { background: linear-gradient(145deg, #596ed0, #35458f); }
+    .game-cell:nth-child(6n + 2) { background: linear-gradient(145deg, #9a61cc, #673b91); }
+    .game-cell:nth-child(6n + 3) { background: linear-gradient(145deg, #ed6796, #b43c6c); }
+    .game-cell:nth-child(6n + 4) { background: linear-gradient(145deg, #f18a68, #c85c43); }
+    .game-cell:nth-child(6n + 5) { background: linear-gradient(145deg, #f3bd59, #cf8d2d); }
+    .game-cell:nth-child(6n) { background: linear-gradient(145deg, #91bd68, #5d8a49); }
+
+    .game-cell:hover {
+      filter: brightness(1.12);
+      transform: translateY(-2px);
+    }
+
+    .game-cell.is-player {
+      outline: 3px solid #ffffff;
+      outline-offset: -3px;
+    }
+
+    .player-token {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      background: #f4bd45;
+      color: #351a62;
+      font-size: 0.85rem;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .game-panel {
+      padding: 24px;
+      background: #211344;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 15px;
+    }
+
+    .game-panel h3 {
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      margin-bottom: 14px;
+    }
+
+    .game-panel p {
+      color: #d5c9e8;
+      line-height: 1.45;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    .dice-result {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .dice-value {
+      color: #ffc95c;
+      font-size: 1.5rem;
+    }
+
+    .game-button {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 11px 16px;
+      border: 0;
+      border-radius: 22px;
+      background: #8d4ed0;
+      color: #ffffff;
+      font: 700 1rem var(--font-title);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .game-button:hover {
+      background: #a764e3;
+      transform: translateY(-2px);
+    }
+
+    .game-button.secondary {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #d5c9e8;
+    }
+
+    .game-status {
+      min-height: 48px;
+      color: #ffc95c;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .content-page {
+      position: relative;
+      z-index: 1;
+      min-height: calc(100vh - 70px);
+      padding: 80px 6% 100px;
+      background: #f8f4fc;
+      color: #241344;
+      scroll-margin-top: 70px;
+      overflow: hidden;
+    }
+
+    .content-page#materiais {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 52px;
+      padding-bottom: 74px;
+    }
+
+    .content-page#equipe {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 58px;
+      padding-bottom: 80px;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 3;
+      max-width: 1180px;
+      margin: 0 auto;
+      text-align: center;
+      transform: translateY(18px);
+    }
+
+    .content-page#materiais .page-content,
+    .content-page#equipe .page-content {
+      transform: translateY(0);
+      width: 100%;
+    }
+
+    .page-heading h2 {
+      font-family: var(--font-title);
+      color: #2d1652;
+      font-size: 3.4rem;
+      margin-bottom: 8px;
+      margin-top: -20px;
+    }
+
+    .page-content#equipe .page-heading {
+      margin-bottom: 30px;
+    }
+
+    .page-heading p {
+      color: #514663;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .page-wave {
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    .lgbt-focus-section {
+      position: relative;
+      background: linear-gradient(180deg, #f7f0fa 0%, #f3eefc 100%);
+      padding: 80px 6% 40px;
+      overflow: hidden;
+      border-top: 1px solid rgba(139, 104, 185, 0.08);
+    }
+
+    .lgbt-focus-section .wave-bottom {
+      position: absolute;
+      top: -8px;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+      z-index: 0;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .lgbt-focus-section .wave-top {
+      transform: rotate(180deg);
+    }
+
+    .lgbt-focus-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .lgbt-focus-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .lgbt-focus-title {
+      font-family: var(--font-title);
+      font-size: clamp(2.4rem, 5vw, 6.2rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff5ca8 0%, #ff7f50 18%, #ffd166 33%, #6bd67c 50%, #66c7ff 67%, #ad7dff 82%, #ff79c6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 5px 18px rgba(255, 129, 194, 0.18);
+    }
+
+    .lgbt-focus-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 84px;
+      min-height: 84px;
+      padding: 8px 8px 6px;
+      border-radius: 18px;
+      background: #ffffff;
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(94, 73, 128, 0.14);
+      border: 2px solid rgba(255,255,255,0.65);
+      transform: translateY(-6px);
+      overflow: hidden;
+    }
+
+    .lgbt-focus-badge .sigla-badge-image {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .lgbt-focus-badge .sigla-badge-name {
+      display: block;
+      font-size: 0.52rem;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-align: center;
+      color: #472a62;
+    }
+
+    .lgbt-focus-subtitle {
+      max-width: 760px;
+      margin: 0 auto 24px;
+      color: #5d4a79;
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    .sigla-selector {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 0 auto 24px;
+      max-width: 960px;
+    }
+
+    .sigla-button {
+      min-width: 72px;
+      border: 1px solid rgba(94, 73, 128, 0.08);
+      border-radius: 14px;
+      padding: 10px 12px 8px;
+      font-family: var(--font-title);
+      font-weight: 700;
+      color: #472a62;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 4px 10px rgba(94, 73, 128, 0.08);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sigla-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(94, 73, 128, 0.12);
+    }
+
+    .sigla-button.active {
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.7), 0 10px 18px rgba(94,73,128,0.15);
+      transform: translateY(-2px) scale(1.02);
+      color: var(--page-accent);
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.8);
+    }
+
+    .sigla-button .sigla {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .sigla-button .name {
+      display: block;
+      font-size: 0.6rem;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    .sigla-display {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      background: var(--page-surface);
+      border: 1px solid var(--page-border);
+      border-radius: 18px;
+      box-shadow: 0 14px 26px rgba(116, 85, 153, 0.12);
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      text-align: left;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .sigla-display-icon {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      color: #ffffff;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.25);
+    }
+
+    .sigla-display-copy {
+      flex: 1;
+    }
+
+    .sigla-display-copy h3 {
+      margin: 0 0 6px;
+      font-family: var(--font-title);
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      color: #2d1652;
+    }
+
+    .sigla-display-copy p {
+      margin: 0;
+      color: #524368;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .lgbt-focus-section {
+        padding-top: 68px;
+      }
+
+      .sigla-button {
+        min-width: 60px;
+      }
+
+      .sigla-display {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .section-decorations,
+    .page-decorations {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.8;
+    }
+
+    .section-decorations .star,
+    .page-decorations .star {
+      position: absolute;
+      color: rgba(107, 66, 155, 0.28);
+      font-size: 1.5rem;
+      filter: drop-shadow(0 0 5px rgba(150, 110, 210, 0.25));
+    }
+
+    .section-decorations .heart,
+    .page-decorations .heart {
+      position: absolute;
+      color: rgba(214, 41, 118, 0.2);
+      font-size: 1.4rem;
+      filter: drop-shadow(0 0 5px rgba(214, 41, 118, 0.2));
+    }
+
+    .section-decorations .rainbow,
+    .page-decorations .rainbow {
+      position: absolute;
+      color: rgba(120, 76, 166, 0.18);
+      font-size: 1.8rem;
+      filter: drop-shadow(0 0 5px rgba(120, 76, 166, 0.18));
+    }
+
+    /* Seção de Pessoas LGBTQIA+ */
+    .lgbtq-people-section {
+      position: relative;
+      z-index: 1;
+      padding: 20px 6% 80px;
+      background: linear-gradient(180deg, #f3eefc 0%, #eadff7 100%);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .lgbtq-people-section .wave-bottom {
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .lgbtq-people-section .wave-top {
+      opacity: 0.4;
+    }
+
+    .people-decorations {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.75;
+    }
+
+    .people-decorations .star {
+      color: rgba(107, 66, 155, 0.22);
+      font-size: 1.6rem;
+      filter: drop-shadow(0 0 4px rgba(150, 110, 210, 0.35));
+    }
+
+    .people-decorations .heart {
+      color: rgba(214, 41, 118, 0.18);
+      filter: drop-shadow(0 0 4px rgba(214, 41, 118, 0.28));
+    }
+
+    .people-decorations .heart.sm {
+      font-size: 1.1rem;
+    }
+
+    .people-decorations .heart.md {
+      font-size: 1.7rem;
+    }
+
+    .people-decorations .heart.lg {
+      font-size: 2.2rem;
+    }
+
+    .people-decorations .rainbow {
+      color: rgba(120, 76, 166, 0.15);
+      font-size: 1.9rem;
+      filter: drop-shadow(0 0 4px rgba(120, 76, 166, 0.22));
+    }
+
+    .lgbtq-people-header {
+      margin-bottom: 35px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .lgbtq-people-header h2 {
+      font-family: var(--font-title);
+      font-size: 3rem;
+      color: #2d1652;
+      margin-bottom: 12px;
+    }
+
+    .lgbtq-people-header p {
+      color: #5d4a79;
+      font-weight: 700;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 36px;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .person-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(139, 104, 185, 0.12);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(55, 27, 95, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      opacity: 0.5;
+      visibility: visible;
+      display: flex;
+      flex-direction: column;
+      min-height: 520px;
+    }
+
+    .person-card.active {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 12px 28px color-mix(in srgb, var(--page-accent) 25%, rgba(55, 27, 95, 0.18));
+    }
+
+    .person-card:hover:not(.active) {
+      transform: translateY(-4px);
+      opacity: 0.7;
+    }
+
+    .person-avatar {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(55, 27, 95, 0.15);
+      border: 4px solid rgba(255, 255, 255, 0.6);
+      background: linear-gradient(135deg, var(--page-accent) 0%, var(--page-accent-strong) 100%);
+      overflow: hidden;
+      object-fit: cover;
+    }
+
+    .person-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .person-card:nth-child(1) .person-avatar {
+      background: linear-gradient(135deg, #f4a7c8, #ed6d9a);
+    }
+
+    .person-card:nth-child(2) .person-avatar {
+      background: linear-gradient(135deg, #7bc8ff, #3fa9ff);
+    }
+
+    .person-card:nth-child(3) .person-avatar {
+      background: linear-gradient(135deg, #8b6dff, #6b50d9);
+    }
+
+    .person-card:nth-child(4) .person-avatar {
+      background: linear-gradient(135deg, #ffc75f, #ffb020);
+    }
+
+    .person-card:nth-child(5) .person-avatar {
+      background: linear-gradient(135deg, #6ad998, #5bc88a);
+    }
+
+    .person-name {
+      font-family: var(--font-title);
+      font-size: 1.4rem;
+      color: #2d1652;
+      margin-bottom: 10px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .person-description {
+      color: #524368;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      font-weight: 600;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 992px) {
+      .people-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        padding-bottom: 30px;
+      }
+      .person-card {
+        min-height: 480px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .lgbtq-people-section {
+        padding: 50px 5% 60px;
+      }
+
+      .lgbtq-people-header h2 {
+        font-size: 2.2rem;
+      }
+
+      .people-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .person-card {
+        min-height: 420px;
+      }
+
+      .person-avatar {
+        width: 120px;
+        height: 120px;
+        font-size: 2.5rem;
+      }
+    }
+
+    .quiz-shell {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .quiz-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(180px, 260px);
+      gap: 24px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .quiz-question {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(139, 104, 185, 0.18);
+      border-radius: 20px;
+      padding: 28px 30px 22px;
+      backdrop-filter: blur(2px);
+      box-shadow: none;
+    }
+
+    .quiz-question h3 {
+      color: #39205f;
+      font-family: var(--font-title);
+      font-size: clamp(1.6rem, 2vw, 2.2rem);
+      margin: 0 0 10px;
+    }
+
+    .quiz-question h3 .question-number {
+      display: inline-block;
+      min-width: 2ch;
+      margin-right: 0.3rem;
+    }
+
+    .quiz-question > p {
+      color: #514663;
+      font-weight: 700;
+      line-height: 1.45;
+      margin: 0 0 18px;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quiz-option {
+      padding: 12px 14px;
+      border: 1px solid #ded4ee;
+      border-radius: 10px;
+      background: #faf8fd;
+      color: #39205f;
+      text-align: left;
+      font: 700 0.96rem var(--font-body);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-option:hover,
+    .quiz-option.selected {
+      border-color: #8d4ed0;
+      background: #eee4fa;
+      transform: translateY(-1px);
+    }
+
+    .quiz-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 250px;
+      padding: 20px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #e7d7f9 0%, #d9c8f2 100%);
+      overflow: hidden;
+      border: 1px solid rgba(139, 104, 185, 0.16);  
+    }
+
+    .quiz-visual::before,
+    .quiz-visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.26);
+    }
+
+    .quiz-visual::before {
+      width: 120px;
+      height: 120px;
+      top: 18px;
+      left: 24px;
+    }
+
+    .quiz-visual::after {
+      width: 90px;
+      height: 90px;
+      right: 18px;
+      bottom: 18px;
+    }
+
+    .quiz-visual img {
+      position: relative;
+      display: block;
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 22px rgba(68, 30, 109, 0.18));
+      z-index: 1;
+    }
+
+    .quiz-meta {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(139, 104, 185, 0.18);
+      border-radius: 20px;
+    }
+
+    .quiz-score-box,
+    .quiz-question-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #39205f;
+      font-weight: 800;
+      min-height: 62px;
+      text-align: center;
+    }
+
+    .quiz-score-box {
+      justify-content: flex-start;
+      padding-left: 8px;
+    }
+
+    .quiz-score-box strong {
+      display: inline-block;
+      color: #68419a;
+      font-family: var(--font-title);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .quiz-score-box span,
+    .quiz-question-number span {
+      display: inline-block;
+      font-size: 1.04rem;
+      color: #39205f;
+      font-weight: 800;
+    }
+
+    .quiz-score-box .score-star {
+      color: #ff9f43;
+      font-size: 1.5rem;
+    }
+
+    .quiz-meta .game-button {
+      width: auto;
+      margin-bottom: 0;
+      justify-self: end;
+      min-width: 150px;
+      font-size: 1rem;
+      padding: 14px 22px;
+    }
+
+    .quiz-feedback {
+      color: #514663;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin: 10px 0 0;
+      display: none;
+    }
+
+    .quiz-list {
+      display: grid;
+      gap: 18px;
+      position: relative;
+      z-index: 2;
+      margin-top: 10px;
+    }
+
+    .quiz-item {
+      padding: 22px 24px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(139, 104, 185, 0.18);
+      border-radius: 18px;
+      text-align: left;
+    }
+
+    .quiz-item h3 {
+      margin: 0 0 10px;
+      color: #39205f;
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+    }
+
+    .quiz-item p,
+    .quiz-item li {
+      color: #514663;
+      font-weight: 700;
+      line-height: 1.6;
+      margin: 0 0 4px;
+    }
+
+    .quiz-item ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    .quiz-item strong {
+      color: #2d1652;
+    }
+
+    .material-grid,
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      align-items: center;
+      justify-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-top: 20px;
+    }
+
+    .material-card {
+      padding: 22px 16px;
+      background: #ffffff;
+      border: 1px solid #ded4ee;
+      border-radius: 12px;
+      box-shadow: 0 8px 18px rgba(55, 27, 95, 0.08);
+    }
+
+    .team-card {
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      text-align: center;
+      width: 100%;
+      max-width: 240px;
+    }
+
+    .material-card i,
+    .team-card i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: #e6dcf5;
+      color: #68419a;
+      font-size: 1.5rem;
+    }
+
+    .team-card-image {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #e9e0f4 0%, #ded4ee 100%);
+      border-radius: 16px;
+      border: 2px solid rgba(110, 77, 167, 0.25);
+      box-shadow: 0 6px 16px rgba(55, 27, 95, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .team-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .material-card h3,
+    .team-card h3 {
+      color: #39205f;
+      font-family: var(--font-title);
+      margin-bottom: 8px;
+    }
+
+    .team-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      line-height: 1.1;
+    }
+
+    .material-card p,
+    .team-card p {
+      color: #5b506c;
+      font-size: 0.84rem;
+      line-height: 1.4;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .team-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      line-height: 1.3;
+    }
+
+    .small-action {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 18px;
+      background: #68419a;
+      color: #ffffff;
+      font: 700 0.8rem var(--font-body);
+      text-decoration: none;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 22px;
+      align-items: center;
+      text-align: left;
+      max-width: 1010px;
+      margin: 0 auto;
+    }
+
+    .contact-info,
+    .contact-form {
+      padding: 18px 20px;
+      background: #ffffff;
+      border: 1px solid #ded4ee;
+      border-radius: 14px;
+      box-shadow: 0 10px 22px rgba(55, 27, 95, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .contact-info h3 {
+      color: #39205f;
+      font-family: var(--font-title);
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-info p,
+    .contact-info li {
+      color: #514663;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .contact-info ul {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+      list-style: none;
+    }
+
+    .contact-info li i {
+      width: 24px;
+      color: #68419a;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-form label {
+      color: #39205f;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #d8cce9;
+      border-radius: 7px;
+      background: #faf8fd;
+      color: #39205f;
+      font: 600 0.9rem var(--font-body);
+    }
+
+    .contact-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .extras-footer {
+      position: relative;
+      z-index: 1;
+      padding: 26px 6% 18px;
+      background: #1a103d;
+      color: #ffffff;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
+      gap: 30px;
+      align-items: start;
+      padding-top: 12px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0;
+      background: transparent;
+      flex-shrink: 0;
+      transform: translateY(2px);
+    }
+
+    .brand-mark img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+    }
+
+    .brand-text .psico { color: #ffffff; }
+    .brand-text .q { color: #ff5e8a; }
+    .brand-text .u { color: #ffc857; }
+    .brand-text .e1 { color: #5ee7a5; }
+    .brand-text .e2 { color: #47b4ff; }
+    .brand-text .r { color: #b382ff; }
+
+    .footer-brand p {
+      margin: 18px 0 0;
+      max-width: 210px;
+      color: #efe2ff;
+      font-size: 1rem;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .footer-col {
+      min-width: 0;
+    }
+
+    .footer-col h3 {
+      margin: 0 0 18px;
+      color: #ffffff;
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .footer-nav {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-nav a {
+      color: #f1eafc;
+      text-decoration: none;
+      font-size: 0.96rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .social-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ff6d99, #8727ff);
+      box-shadow: 0 10px 18px rgba(145, 92, 255, 0.3);
+    }
+
+    .social-badge.youtube {
+      background: linear-gradient(135deg, #ff4747, #ff7e5f);
+    }
+
+    .social-badge.tiktok {
+      background: linear-gradient(135deg, #0f172a, #111827);
+    }
+
+    .accessibility-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .accessibility-button,
+    .contrast-toggle,
+    .toggle-switch {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      font: 800 0.96rem var(--font-body);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .accessibility-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 58px;
+      height: 34px;
+      border-radius: 999px;
+    }
+
+    .accessibility-button:hover,
+    .contrast-toggle:hover,
+    .toggle-switch:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .contrast-toggle {
+      width: auto;
+      padding: 0 18px;
+      height: 34px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .contrast-toggle.active,
+    .toggle-switch.active {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .toggle-switch {
+      width: 52px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.13);
+      position: relative;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .toggle-switch::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ffffff;
+      top: 2px;
+      right: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .toggle-switch.active::after {
+      right: auto;
+      left: 4px;
+    }
+
+    .footer-heart-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .lgbt-heart {
+      width: 118px;
+      height: 118px;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(255, 116, 150, 0.35));
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 18px auto 0;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: #d9c7ff;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Responsividade */
+    @media (max-width: 992px) {
+      header {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      nav ul {
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 30px;
+      }
+      .hero-title {
+        font-size: 3.8rem;
+      }
+      .hero-subtitle {
+        font-size: 1.6rem;
+      }
+      .hero-content {
+        max-width: 100%;
+      }
+      .hero-image-container {
+        transform: translateY(-12px);
+      }
+      .wave-bottom svg {
+        height: 150px;
+      }
+      .about-intro {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+      .about-visual {
+        min-height: 220px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding-top: 112px;
+      }
+      header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 36px;
+        gap: 7px 10px;
+        padding: 9px 4%;
+      }
+      .logo-container {
+        grid-column: 1 / -1;
+      }
+      .logo-icon {
+        width: 28px;
+        height: 31px;
+      }
+      .logo-icon img {
+        width: 26px;
+        height: 26px;
+      }
+      .logo-text {
+        font-size: 1.3rem;
+      }
+      .btn-accessibility {
+        grid-column: 2;
+        grid-row: 2;
+        width: 34px;
+        height: 34px;
+        font-size: 1rem;
+      }
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      .hero-subtitle {
+        font-size: 1.3rem;
+      }
+      nav {
+        display: none;
+      }
+      .mobile-nav {
+        display: block;
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+        min-width: 0;
+        height: 34px;
+        padding: 5px 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: #261052;
+        color: #ffffff;
+        font: 700 0.8rem var(--font-body);
+        cursor: pointer;
+      }
+      .mobile-nav:focus {
+        outline: 2px solid #ffb020;
+        outline-offset: 2px;
+      } 
+      .about-section {
+        padding: 80px 6% 60px;
+      }
+      .about-section h2 {
+        font-size: 2.6rem;
+      }
+      .about-cards {
+        grid-template-columns: 1fr;
+      }
+      .learn-section {
+        padding: 86px 6% 100px;
+      }
+      .learn-section h2 {
+        font-size: 2.6rem;
+      }
+      .learn-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .learn-card:last-child {
+        grid-column: auto;
+      }
+      .quiz-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .material-grid,
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .game-section {
+        padding: 70px 5% 80px;
+      }
+      .game-heading h2 {
+        font-size: 2.6rem;
+      }
+      .game-layout {
+        grid-template-columns: 1fr;
+      }
+      .game-board {
+        grid-template-columns: repeat(10, minmax(25px, 1fr));
+        grid-template-rows: repeat(6, minmax(42px, 1fr));
+        gap: 4px;
+        padding: 10px;
+      }
+      .game-cell {
+        font-size: 0.75rem;
+      }
+      .player-token {
+        width: 26px;
+        height: 26px;
+        font-size: 0.7rem;
+      }
+      .content-page {
+        padding: 72px 5% 90px;
+      }
+      .page-heading h2 {
+        font-size: 2.6rem;
+      }
+      .material-grid,
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 500px;
+      }
+
+      .team-card {
+        max-width: 100%;
+      }
+
+      .team-card-image {
+        height: 160px;
+      }
+
+      .page-heading h2 {
+        margin-top: -10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Decorações de Fundo -->
+  <div class="bg-decorations">
+    <i class="fa-solid fa-star star" style="top: 12%; left: 8%;"></i>
+    <i class="fa-solid fa-star star" style="top: 25%; left: 45%;"></i>
+    <i class="fa-solid fa-star star" style="top: 68%; left: 12%;"></i>
+    <i class="fa-solid fa-star star" style="top: 55%; left: 48%;"></i>
+    <i class="fa-solid fa-star star" style="top: 80%; left: 25%;"></i>
+
+    <i class="fa-solid fa-heart heart xs" style="top: 18%; left: 32%; animation-delay: 0s;"></i>
+    <i class="fa-solid fa-heart heart sm" style="top: 22%; left: 48%; animation-delay: 1s;"></i>
+    <i class="fa-solid fa-heart heart md" style="top: 15%; left: 85%; animation-delay: 2s;"></i>
+    <i class="fa-solid fa-heart heart xs" style="top: 40%; left: 10%; animation-delay: 0.5s;"></i>
+    <i class="fa-solid fa-heart heart sm" style="top: 58%; left: 5%; animation-delay: 1.5s;"></i>
+    <i class="fa-solid fa-heart heart md" style="top: 72%; left: 42%; animation-delay: 2.5s;"></i>
+    <i class="fa-solid fa-heart heart xs" style="top: 82%; left: 18%; animation-delay: 3s;"></i>
+    <i class="fa-solid fa-heart heart sm" style="top: 75%; left: 88%; animation-delay: 1.2s;"></i>
+    <i class="fa-solid fa-heart heart xs" style="top: 30%; left: 92%; animation-delay: 2.2s;"></i>
+    <i class="fa-solid fa-heart heart md" style="top: 50%; left: 52%; animation-delay: 0.8s;"></i>
+
+    <i class="fa-solid fa-star star" style="top: 26%; left: 67%; animation-delay: 1.2s;"></i>
+    <i class="fa-solid fa-star star" style="top: 44%; left: 73%; animation-delay: 2.4s;"></i>
+    <i class="fa-solid fa-star star" style="top: 62%; left: 82%; animation-delay: 0.4s;"></i>
+    <i class="fa-solid fa-heart heart sm" style="top: 31%; left: 75%; animation-delay: 0.7s;"></i>
+    <i class="fa-solid fa-heart heart md" style="top: 48%; left: 88%; animation-delay: 1.8s;"></i>
+    <i class="fa-solid fa-heart heart xs" style="top: 66%; left: 70%; animation-delay: 2.8s;"></i>
+    <i class="fa-solid fa-star star" style="top: 34%; left: 24%; animation-delay: 1.6s;"></i>
+    <i class="fa-solid fa-star star" style="top: 46%; left: 64%; animation-delay: 2.7s;"></i>
+    <i class="fa-solid fa-star star" style="top: 74%; left: 76%; animation-delay: 0.2s;"></i>
+    <i class="fa-solid fa-heart heart xs" style="top: 28%; left: 58%; animation-delay: 1.1s;"></i>
+    <i class="fa-solid fa-heart heart sm" style="top: 38%; left: 18%; animation-delay: 2.1s;"></i>
+    <i class="fa-solid fa-heart heart md" style="top: 58%; left: 78%; animation-delay: 0.6s;"></i>
+    <i class="fa-solid fa-heart heart sm" style="top: 80%; left: 62%; animation-delay: 1.9s;"></i>
+    <i class="fa-solid fa-rainbow rainbow" style="top: 20%; left: 61%; animation-delay: 1.2s;"></i>
+    <i class="fa-solid fa-rainbow rainbow" style="top: 64%; left: 34%; animation-delay: 2.3s;"></i>
+    <i class="fa-solid fa-star star" style="top: 16%; left: 74%; animation-delay: 0.6s;"></i>
+    <i class="fa-solid fa-star star" style="top: 58%; left: 22%; animation-delay: 1.9s;"></i>
+    <i class="fa-solid fa-star star" style="top: 86%; left: 92%; animation-delay: 2.5s;"></i>
+    <i class="fa-solid fa-heart heart xs" style="top: 12%; left: 55%; animation-delay: 1.3s;"></i>
+    <i class="fa-solid fa-heart heart sm" style="top: 46%; left: 6%; animation-delay: 2.6s;"></i>
+    <i class="fa-solid fa-heart heart md" style="top: 68%; left: 92%; animation-delay: 0.3s;"></i>
+    <i class="fa-solid fa-rainbow rainbow" style="top: 34%; left: 86%; animation-delay: 1.8s;"></i>
+  </div>
+
+  <!-- Cabeçalho -->
+  <header>
+    <a href="#" class="logo-container">
+      <div class="logo-icon">
+        <img src="Imagens/cerebro.png" alt="Cérebro">
+      </div>
+      <div class="logo-text">
+        <span class="psico">PSICO</span><span class="q">Q</span><span class="u">U</span><span class="e1">E</span><span class="e2">E</span><span class="r">R</span>
+      </div>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="#inicio" class="active">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#aprenda">Aprenda</a></li>
+        <li><a href="#lgbtqia">LGBTQIA+</a></li>
+        <li><a href="#pessoas-lgbtq">Pessoas</a></li>
+        <li><a href="#jogo">Jogo</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#materiais">Materiais</a></li>
+        <li><a href="#equipe">Equipe</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <select class="mobile-nav" aria-label="Selecionar página">
+      <option value="#inicio">Início</option>
+      <option value="#sobre">Sobre</option>
+      <option value="#aprenda">Aprenda</option>
+      <option value="#lgbtqia">LGBTQIA+</option>
+      <option value="#pessoas-lgbtq">Pessoas</option>
+      <option value="#jogo">Jogo</option>
+      <option value="#quiz">Quiz</option>
+      <option value="#materiais">Materiais</option>
+      <option value="#equipe">Equipe</option>
+      <option value="#contato">Contato</option>
+    </select>
+
+    <button class="btn-accessibility" id="accToggle" title="Recursos de Acessibilidade">
+      <i class="fa-solid fa-universal-access"></i>
+    </button>
+
+    <div class="accessibility-modal" id="accModal">
+      <h4>Tamanho da Fonte</h4>
+      <div class="acc-btn-group">
+        <button class="acc-btn" onclick="adjustFont(0.1)">A+</button>
+        <button class="acc-btn" onclick="adjustFont(-0.1)">A-</button>
+        <button class="acc-btn" onclick="resetFont()">Padrão</button>
+      </div>
+      <h4 style="margin-top: 10px;">Visualização</h4>
+      <button class="acc-btn" onclick="toggleHighContrast()">Alto Contraste</button>
+    </div>
+  </header>
+
+  <!-- === PÁGINA 01: INÍCIO / HOME === -->
+  <!-- Edite o conteúdo principal da primeira página aqui. -->
+  <main class="hero-section" id="inicio">
+    <div class="about-decorations section-decorations">
+      <i class="fa-solid fa-star star" style="top: 14%; left: 8%;"></i>
+      <i class="fa-solid fa-star star" style="top: 24%; left: 48%; animation-delay: 1s;"></i>
+      <i class="fa-solid fa-star star" style="top: 70%; left: 12%; animation-delay: 0.5s;"></i>
+      <i class="fa-solid fa-star star" style="top: 78%; left: 83%; animation-delay: 1.8s;"></i>
+      <i class="fa-solid fa-star star" style="top: 42%; left: 91%; animation-delay: 2.2s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 20%; left: 38%; animation-delay: 0.4s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 32%; left: 76%; animation-delay: 1.4s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 62%; left: 6%; animation-delay: 2.1s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 76%; left: 56%; animation-delay: 0.9s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 52%; left: 94%; animation-delay: 2.8s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 86%; left: 28%; animation-delay: 1.7s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 18%; left: 72%; animation-delay: 0.8s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 74%; left: 18%; animation-delay: 2.1s;"></i>
+      <i class="fa-solid fa-star star" style="top: 30%; left: 14%; animation-delay: 0.7s;"></i>
+      <i class="fa-solid fa-star star" style="top: 56%; left: 84%; animation-delay: 2.2s;"></i>
+      <i class="fa-solid fa-star star" style="top: 88%; left: 72%; animation-delay: 1.5s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 12%; left: 58%; animation-delay: 1.1s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 44%; left: 4%; animation-delay: 2.5s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 68%; left: 90%; animation-delay: 0.4s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 38%; left: 86%; animation-delay: 1.7s;"></i>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="psico">PSICO</span><span class="q">Q</span><span class="u">U</span><span class="e1">E</span><span class="e2">E</span><span class="r">R</span>
+      </h1>
+      
+      <h2 class="hero-subtitle">
+        Respeitar as diferenças<br>é aprender a conviver.
+      </h2>
+
+      <p class="hero-description">
+        Uma plataforma educativa para promover o respeito, a inclusão e a empatia por meio do conhecimento e da interação.
+      </p>
+
+      <a href="#sobre" class="btn-start">COMEÇAR</a>
+    </div>
+
+    <div class="hero-image-container">
+      <div class="hero-image-wrapper">
+        <img src="Imagens/bandeira.png" alt="Bandeira da diversidade e inclusão">
+      </div>
+    </div>
+
+    <div class="wave-bottom wave-first">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+  </main>
+
+  <!-- === PÁGINA 02: SOBRE O PROJETO === -->
+  <!-- Edite texto, imagem e cards desta página aqui. -->
+  <section class="about-section" id="sobre">
+    <div class="wave-bottom wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+    <div class="about-decorations section-decorations">
+      <i class="fa-solid fa-star star" style="top: 14%; left: 8%;"></i>
+      <i class="fa-solid fa-star star" style="top: 24%; left: 48%; animation-delay: 1s;"></i>
+      <i class="fa-solid fa-star star" style="top: 70%; left: 12%; animation-delay: 0.5s;"></i>
+      <i class="fa-solid fa-star star" style="top: 78%; left: 83%; animation-delay: 1.8s;"></i>
+      <i class="fa-solid fa-star star" style="top: 42%; left: 91%; animation-delay: 2.2s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 20%; left: 38%; animation-delay: 0.4s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 32%; left: 76%; animation-delay: 1.4s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 62%; left: 6%; animation-delay: 2.1s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 76%; left: 56%; animation-delay: 0.9s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 52%; left: 94%; animation-delay: 2.8s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 86%; left: 28%; animation-delay: 1.7s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 18%; left: 72%; animation-delay: 0.8s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 74%; left: 18%; animation-delay: 2.1s;"></i>
+      <i class="fa-solid fa-star star" style="top: 30%; left: 14%; animation-delay: 0.7s;"></i>
+      <i class="fa-solid fa-star star" style="top: 56%; left: 84%; animation-delay: 2.2s;"></i>
+      <i class="fa-solid fa-star star" style="top: 88%; left: 72%; animation-delay: 1.5s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 12%; left: 58%; animation-delay: 1.1s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 44%; left: 4%; animation-delay: 2.5s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 68%; left: 90%; animation-delay: 0.4s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 38%; left: 86%; animation-delay: 1.7s;"></i>
+    </div>
+    <div class="about-content">
+      <div class="about-intro">
+        <div class="about-copy">
+          <h2>Sobre o Projeto</h2>
+          <p>O PSICOQUEER nasceu com o objetivo de promover o respeito à diversidade e combater todas as formas de preconceito.</p>
+          <p>Acreditamos que a educação transforma realidades e que, juntos, podemos construir um mundo mais inclusivo, empático e justo para todos.</p>
+          <p>Nosso projeto reúne informação, interação e reflexão para que cada pessoa possa entender, respeitar e valorizar as diferenças.</p>
+        </div>
+
+        <div class="about-visual">
+          <img src="Imagens/logo_aba_2.png" alt="Cérebro colorido representando diversidade e empatia">
+        </div>
+      </div>
+
+      <div class="about-cards">
+        <article class="about-card">
+          <i class="fa-solid fa-heart"></i>
+          <h3>Missão</h3>
+          <p>Promover educação e conscientização sobre diversidade e inclusão.</p>
+        </article>
+        <article class="about-card">
+          <i class="fa-solid fa-sun"></i>
+          <h3>Visão</h3>
+          <p>Ser referência em educação inclusiva nas escolas e comunidades.</p>
+        </article>
+        <article class="about-card">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+          <h3>Valores</h3>
+          <p>Respeito, empatia, diversidade, inclusão e igualdade.</p>
+        </article>
+      </div>
+    </div>
+    <div class="wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- === PÁGINA 03: APRENDA === -->
+  <!-- Edite os cards de aprendizagem e os textos desta página aqui. -->
+  <section class="learn-section" id="aprenda">
+    <div class="wave-bottom wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+    <div class="learn-decorations section-decorations">
+      <i class="fa-solid fa-star star" style="top: 14%; left: 7%;"></i>
+      <i class="fa-solid fa-star star" style="top: 20%; left: 88%; animation-delay: 1s;"></i>
+      <i class="fa-solid fa-star star" style="top: 58%; left: 5%; animation-delay: 2s;"></i>
+      <i class="fa-solid fa-star star" style="top: 76%; left: 94%; animation-delay: 0.5s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 24%; left: 22%; animation-delay: 0.8s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 38%; left: 93%; animation-delay: 1.8s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 66%; left: 10%; animation-delay: 2.4s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 84%; left: 82%; animation-delay: 1.4s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 18%; left: 73%;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 70%; left: 29%; animation-delay: 2s;"></i>
+      <i class="fa-solid fa-star star" style="top: 28%; left: 16%; animation-delay: 1.2s;"></i>
+      <i class="fa-solid fa-star star" style="top: 48%; left: 80%; animation-delay: 2.3s;"></i>
+      <i class="fa-solid fa-star star" style="top: 82%; left: 52%; animation-delay: 0.5s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 16%; left: 42%; animation-delay: 1.8s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 52%; left: 6%; animation-delay: 0.6s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 78%; left: 94%; animation-delay: 2.7s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 32%; left: 90%; animation-delay: 1.4s;"></i>
+    </div>
+    <div class="learn-content">
+      <h2>Aprenda</h2>
+      <p class="learn-subtitle">Explore nossos conteúdos e amplie seus conhecimentos sobre diversidade, inclusão e respeito.</p>
+
+      <div class="learn-cards">
+        <article class="learn-card">
+          <i class="fa-solid fa-users"></i>
+          <h3>Diversidade</h3>
+          <p>Entenda o que é diversidade e sua importância.</p>
+        </article>
+        <article class="learn-card">
+          <i class="fa-solid fa-venus-mars"></i>
+          <h3>Identidade de Gênero</h3>
+          <p>Conheça as diferentes identidades de gênero.</p>
+        </article>
+        <article class="learn-card">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <h3>Direitos Humanos</h3>
+          <p>Conheça seus direitos e sua importância para todos.</p>
+        </article>
+        <article class="learn-card">
+          <i class="fa-solid fa-hand"></i>
+          <h3>Combate ao Preconceito & Saúde Mental</h3>
+          <p>Aprenda a identificar e combater o preconceito, e a importância do cuidado, respeito e empatia para o bem-estar de todos.</p>
+        </article>
+      </div>
+    </div>
+    <div class="wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- === PÁGINA 04: LGBTQIA+ EM FOCO === -->
+  <!-- Edite os botões, textos e destaque desta seção aqui. -->
+  <section class="lgbt-focus-section" id="lgbtqia">
+    <div class="wave-bottom wave-top page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+    <div class="section-decorations" aria-hidden="true">
+      <i class="fa-solid fa-star star" style="top: 18%; left: 9%;"></i>
+      <i class="fa-solid fa-star star" style="top: 28%; left: 82%; animation-delay: 0.8s;"></i>
+      <i class="fa-solid fa-heart heart" style="top: 22%; left: 26%; animation-delay: 0.4s;"></i>
+      <i class="fa-solid fa-heart heart" style="top: 52%; left: 14%; animation-delay: 1.2s;"></i>
+      <i class="fa-solid fa-heart heart" style="top: 64%; left: 80%; animation-delay: 1.8s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 30%; left: 65%; animation-delay: 0.6s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 72%; left: 33%; animation-delay: 1.5s;"></i>
+    </div>
+    <div class="lgbt-focus-inner">
+      <div class="lgbt-focus-header">
+        <h2 class="lgbt-focus-title">LGBTQIA+</h2>
+        <div class="lgbt-focus-badge" id="lgbtFocusBadge" aria-live="polite">
+          <img class="sigla-badge-image" id="siglaBadgeImage" src="Imagens/lesbicas.png" alt="Lésbicas">
+          <span class="sigla-badge-name" id="siglaBadgeName">Lésbicas</span>
+        </div>
+      </div>
+      <p class="lgbt-focus-subtitle">Explore histórias, vivências e conquistas que inspiram e fortalecem a diversidade, a inclusão e o respeito.</p>
+
+      <div class="sigla-selector" id="siglaSelector" aria-label="Seleção de siglas LGBTQIA+"></div>
+
+      <div class="sigla-display" id="siglaDisplay" aria-live="polite">
+        <div class="sigla-display-icon" id="siglaDisplayIcon">L</div>
+        <div class="sigla-display-copy">
+          <h3 id="siglaDisplayTitle">Lésbicas</h3>
+          <p id="siglaDisplayText">Mulheres que se atraem por outras mulheres, em suas diversas formas de expressão, identidade e relacionamento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === PÁGINA 04B: PESSOAS LGBTQIA+ === -->
+  <!-- Edite os nomes, descrições e avatares das pessoas desta seção aqui. -->
+  <section class="lgbtq-people-section" id="pessoas-lgbtq">
+    <div class="people-decorations" aria-hidden="true">
+      <i class="fa-solid fa-star star" style="top: 12%; left: 8%;"></i>
+      <i class="fa-solid fa-star star" style="top: 28%; left: 85%; animation-delay: 1s;"></i>
+      <i class="fa-solid fa-star star" style="top: 65%; left: 12%; animation-delay: 2.1s;"></i>
+      <i class="fa-solid fa-star star" style="top: 78%; left: 88%; animation-delay: 0.5s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 18%; left: 32%; animation-delay: 0s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 24%; left: 72%; animation-delay: 1.4s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 58%; left: 6%; animation-delay: 2.2s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 82%; left: 60%; animation-delay: 0.8s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 35%; left: 94%; animation-delay: 2.8s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 72%; left: 38%; animation-delay: 1.5s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 22%; left: 65%; animation-delay: 1.2s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 68%; left: 22%; animation-delay: 2.5s;"></i>
+      <i class="fa-solid fa-star star" style="top: 16%; left: 55%; animation-delay: 0.8s;"></i>
+      <i class="fa-solid fa-star star" style="top: 52%; left: 82%; animation-delay: 1.9s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 28%; left: 18%; animation-delay: 1.1s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 62%; left: 78%; animation-delay: 0.5s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 38%; left: 88%; animation-delay: 1.8s;"></i>
+    </div>
+
+    <div class="lgbtq-people-header">
+      <h2>Conheça pessoas inspiradoras de cada identidade.</h2>
+      <p>Clique em cada sigla para conhecer suas histórias.</p>
+    </div>
+
+    <div class="people-grid" id="peopleGrid"></div>
+
+    <div class="wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- === PÁGINA 05: JOGO INTERATIVO === -->
+  <!-- Edite a lógica e o conteúdo desta página aqui. -->
+  <section class="game-section" id="jogo">
+    <div class="wave-bottom wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+    <div class="section-decorations" aria-hidden="true">
+      <i class="fa-solid fa-star star" style="top: 12%; left: 8%;"></i>
+      <i class="fa-solid fa-star star" style="top: 20%; left: 82%; animation-delay: 1.5s;"></i>
+      <i class="fa-solid fa-star star" style="top: 62%; left: 10%; animation-delay: 2.4s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 28%; left: 18%; animation-delay: 0.8s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 42%; left: 90%; animation-delay: 1.4s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 74%; left: 22%; animation-delay: 2.2s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 16%; left: 58%; animation-delay: 0.4s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 68%; left: 72%; animation-delay: 1.8s;"></i>
+    </div>
+    <div class="game-content">
+      <div class="game-heading">
+        <h2>Jogo Interativo</h2>
+        <p>Avance pelo tabuleiro, responda, aprenda e mostre que o respeito é o melhor caminho.</p>
+      </div>
+
+      <div class="game-layout">
+        <div class="game-board" id="gameBoard" aria-label="Tabuleiro do jogo"></div>
+
+        <aside class="game-panel">
+          <h3>Como jogar</h3>
+          <p>Role o dado, avance pelo tabuleiro e reflita sobre atitudes de respeito e inclusão.</p>
+          <div class="dice-result">
+            <span>Última jogada</span>
+            <strong class="dice-value" id="diceValue">-</strong>
+          </div>
+          <button class="game-button" id="rollDice" type="button">Jogar dado</button>
+          <button class="game-button secondary" id="resetGame" type="button">Reiniciar</button>
+          <p class="game-status" id="gameStatus" aria-live="polite">Você está na casa 1. Boa jornada!</p>
+        </aside>
+      </div>
+    </div>
+    <div class="wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- === PÁGINA 05: QUIZ === -->
+  <!-- Edite as perguntas, opções e textos do quiz aqui. -->
+  <section class="content-page" id="quiz">
+    <div class="wave-bottom wave-top page-wave" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+    <div class="page-decorations" aria-hidden="true">
+      <i class="fa-solid fa-star star" style="top: 13%; left: 8%;"></i>
+      <i class="fa-solid fa-star star" style="top: 24%; left: 88%; animation-delay: 1.2s;"></i>
+      <i class="fa-solid fa-star star" style="top: 58%; left: 12%; animation-delay: 2.1s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 18%; left: 28%; animation-delay: 0.6s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 36%; left: 78%; animation-delay: 1.8s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 71%; left: 36%; animation-delay: 2.5s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 22%; left: 62%; animation-delay: 0.9s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 72%; left: 82%; animation-delay: 2.2s;"></i>
+    </div>
+    <div class="page-content">
+      <div class="page-heading">
+        <h2>Quiz</h2>
+        <p>Teste seus conhecimentos sobre diversidade e inclusão!</p>
+      </div>
+      <div class="quiz-shell">
+        <div class="quiz-layout">
+          <div class="quiz-question">
+            <h3 id="quizQuestionTitle"><span class="question-number">1.</span> O que significa a sigla LGBTQIA+?</h3>
+            <p id="quizQuestionPrompt">Escolha a alternativa que melhor representa o significado da sigla.</p>
+            <div class="quiz-options" id="quizOptions"></div>
+            <p class="quiz-feedback" id="quizFeedback" aria-live="polite"></p>
+          </div>
+          <div class="quiz-visual" aria-label="Ilustração do quiz">
+            <img src="Imagens/Quiz.png" alt="Ilustração do quiz de diversidade e inclusão">
+          </div>
+        </div>
+
+        <div class="quiz-meta">
+          <div class="quiz-score-box">
+            <span class="score-star">★</span>
+            <strong id="quizScore">0</strong>
+          </div>
+
+          <div class="quiz-question-number">
+            <span>Pergunta</span>
+            <strong id="quizQuestionCounter">1/10</strong>
+          </div>
+
+          <button class="game-button" id="nextQuestion" type="button">PRÓXIMA</button>
+        </div>
+      </div>
+    </div>
+    <div class="wave-bottom page-wave" aria-hidden="true">
+      <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+        <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+        <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- === PÁGINA 06: MATERIAIS === -->
+  <!-- Edite os materiais e os botões de download aqui. -->
+  <section class="content-page" id="materiais">
+    <div class="wave-bottom wave-top page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+    <div class="page-decorations" aria-hidden="true">
+      <i class="fa-solid fa-star star" style="top: 15%; left: 7%;"></i>
+      <i class="fa-solid fa-star star" style="top: 28%; left: 88%; animation-delay: 1s;"></i>
+      <i class="fa-solid fa-star star" style="top: 66%; left: 12%; animation-delay: 2.6s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 26%; left: 38%; animation-delay: 0.8s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 42%; left: 82%; animation-delay: 1.6s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 74%; left: 36%; animation-delay: 2.7s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 18%; left: 63%; animation-delay: 0.5s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 72%; left: 72%; animation-delay: 1.9s;"></i>
+    </div>
+    <div class="page-content">
+      <div class="page-heading">
+        <h2>Materiais Educativos</h2>
+        <p>Baixe materiais gratuitos para aprender, ensinar e transformar.</p>
+      </div>
+      <div class="material-grid">
+        <article class="material-card"><i class="fa-solid fa-book-open"></i><h3>Cartilhas</h3><p>Materiais informativos sobre diversidade e inclusão.</p><a class="small-action" href="#" download>Baixar</a></article>
+        <article class="material-card"><i class="fa-solid fa-chalkboard"></i><h3>Slides</h3><p>Apresentações para trabalhos e aulas.</p><a class="small-action" href="#" download>Baixar</a></article>
+        <article class="material-card"><i class="fa-solid fa-file-pen"></i><h3>Atividades</h3><p>Atividades dinâmicas para a sala de aula.</p><a class="small-action" href="#" download>Baixar</a></article>
+        <article class="material-card"><i class="fa-solid fa-apple-whole"></i><h3>Para Professores</h3><p>Materiais de apoio e planos de aula.</p><a class="small-action" href="#" download>Baixar</a></article>
+      </div>
+    </div>
+    <div class="wave-bottom page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+  </section>
+
+  <!-- === PÁGINA 07: NOSSA EQUIPE === -->
+  <!-- Edite nomes, cargos e avatares desta página aqui. -->
+  <section class="content-page" id="equipe">
+    <div class="wave-bottom wave-top page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+    <div class="page-decorations" aria-hidden="true">
+      <i class="fa-solid fa-star star" style="top: 18%; left: 11%;"></i>
+      <i class="fa-solid fa-star star" style="top: 20%; left: 82%; animation-delay: 1.4s;"></i>
+      <i class="fa-solid fa-star star" style="top: 68%; left: 9%; animation-delay: 2.5s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 24%; left: 32%; animation-delay: 0.6s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 41%; left: 90%; animation-delay: 1.8s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 76%; left: 34%; animation-delay: 2.9s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 22%; left: 58%; animation-delay: 0.7s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 77%; left: 76%; animation-delay: 2.1s;"></i>
+    </div>
+    <div class="page-content">
+      <div class="page-heading"><h2>Nossa Equipe</h2><p>Conheça as pessoas que tornam o PSICOQUEER possível.</p></div>
+      <div class="team-grid">
+        <article class="team-card">
+          <div class="team-card-image">
+            <img src="Imagens/Kahyra.jpg" alt="Kahyra Almeida da Silva">
+          </div>
+          <h3>Kahyra Almeida da Silva</h3>
+          <p></p>
+        </article>
+        <article class="team-card">
+          <div class="team-card-image">
+            <img src="Imagens/igor.jpg" alt="Ygor Marques Lima">
+          </div>
+          <h3>Ygor Marques Lima</h3>
+          <p></p>
+        </article>
+        <article class="team-card">
+          <div class="team-card-image">
+            <img src="Imagens/eleticie.jpg" alt="Eleticie Rayanny Marques Souza">
+          </div>
+          <h3>Eleticie Rayanny Marques Souza</h3>
+          <p></p>
+        </article>
+      </div>
+    </div>
+    <div class="wave-bottom page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+  </section>
+
+  <!-- === PÁGINA 09: CONTATO === -->
+  <!-- Edite os dados de contato, formulário e textos desta página aqui. -->
+  <section class="content-page" id="contato">
+    <div class="wave-bottom wave-top page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+    <div class="page-decorations" aria-hidden="true">
+      <i class="fa-solid fa-star star" style="top: 15%; left: 9%;"></i>
+      <i class="fa-solid fa-star star" style="top: 26%; left: 85%; animation-delay: 1.2s;"></i>
+      <i class="fa-solid fa-star star" style="top: 60%; left: 12%; animation-delay: 2.8s;"></i>
+      <i class="fa-solid fa-heart heart sm" style="top: 20%; left: 34%; animation-delay: 0.6s;"></i>
+      <i class="fa-solid fa-heart heart md" style="top: 42%; left: 79%; animation-delay: 1.9s;"></i>
+      <i class="fa-solid fa-heart heart xs" style="top: 72%; left: 38%; animation-delay: 2.4s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 18%; left: 60%; animation-delay: 0.8s;"></i>
+      <i class="fa-solid fa-rainbow rainbow" style="top: 76%; left: 75%; animation-delay: 2.1s;"></i>
+    </div>
+    <div class="page-content">
+      <div class="page-heading"><h2>Fale Conosco</h2><p>Tem dúvidas, sugestões ou quer participar do projeto?</p></div>
+      <div class="contact-layout">
+        <div class="contact-info"><h3>Entre em contato</h3><p>Será um prazer conversar com você sobre educação, respeito e inclusão.</p><ul><li><i class="fa-solid fa-envelope"></i> psicoqueer.contato@gmail.com</li><li><i class="fa-brands fa-instagram"></i> @psicoqueer.oficial</li><li><i class="fa-solid fa-location-dot"></i> Nossa escola / Comunidade</li></ul></div>
+        <form class="contact-form" id="contactForm"><label for="contactName">Nome</label><input id="contactName" type="text" required><label for="contactEmail">E-mail</label><input id="contactEmail" type="email" required><label for="contactSubject">Assunto</label><select id="contactSubject"><option>Dúvida</option><option>Sugestão</option><option>Parceria</option></select><label for="contactMessage">Mensagem</label><textarea id="contactMessage" required></textarea><button class="game-button" type="submit">Enviar mensagem</button><p class="game-status" id="contactStatus"></p></form>
+      </div>
+    </div>
+    <div class="wave-bottom page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
+  </section>
+
+  <!-- === RODAPÉ / FOOTER === -->
+  <!-- Edite o rodapé, navegação, redes sociais e acessibilidade aqui. -->
+  <footer class="extras-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-mark">
+          <img src="Imagens/cerebro.png" alt="Cérebro PSICOQUEER">
+        </div>
+        <div>
+          <div class="brand-text">
+            <span class="psico">PSICO</span><span class="q">Q</span><span class="u">U</span><span class="e1">E</span><span class="e2">E</span><span class="r">R</span>
+          </div>
+          <p>Respeito não tem cor, não tem gênero, não tem limite.</p>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Navegação</h3>
+        <ul class="footer-nav">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#aprenda">Aprenda</a></li>
+          <li><a href="#jogo">Jogo</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+          <li><a href="#materiais">Materiais</a></li>
+          <li><a href="#equipe">Equipe</a></li>
+          <li><a href="#pessoas-lgbtq">Pessoas</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Redes Sociais</h3>
+        <div class="social-row">
+          <span class="social-badge instagram"><i class="fa-brands fa-instagram"></i></span>
+          <span class="social-badge youtube"><i class="fa-brands fa-youtube"></i></span>
+          <span class="social-badge tiktok"><i class="fa-brands fa-tiktok"></i></span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Acessibilidade</h3>
+        <div class="accessibility-row">
+          <button type="button" class="accessibility-button" data-action="decrease" aria-label="Diminuir fonte">A-</button>
+          <button type="button" class="accessibility-button" data-action="reset" aria-label="Voltar ao tamanho padrão">A</button>
+          <button type="button" class="accessibility-button" data-action="increase" aria-label="Aumentar fonte">A+</button>
+          <button type="button" class="contrast-toggle" data-action="contrast" aria-label="Ativar alto contraste">Alto Contraste</button>
+          <button type="button" class="toggle-switch" data-action="toggle" aria-label="Ativar acessibilidade" title="Ativar acessibilidade"></button>
+        </div>
+        <div class="footer-heart-wrap">
+          <img class="lgbt-heart" src="Imagens/coração_lgbt.png" alt="Coração da bandeira LGBTQIA+">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2024 PSICOQUEER - Todos os direitos reservados.</div>
+  </footer>
+
+  <!-- Grafismo Inferior: onda sutil inspirada na bandeira bissexual -->
+  <div class="wave-bottom">
+    <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+      <!-- Faixa rosa -->
+      <path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path>
+
+      <!-- Faixa roxa -->
+      <path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path>
+
+      <!-- Faixa azul -->
+      <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
+    </svg>
+  </div>
+
+  <script>
+    const accToggle = document.getElementById('accToggle');
+    const accModal = document.getElementById('accModal');
+    const header = document.querySelector('header');
+    const navLinks = [...document.querySelectorAll('nav a')];
+    const mobileNav = document.querySelector('.mobile-nav');
+    const navigableSections = navLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    function setActiveLink(targetId) {
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute('href') === `#${targetId}`;
+        link.classList.toggle('active', isActive);
+        link.setAttribute('aria-current', isActive ? 'page' : 'false');
+      });
+      mobileNav.value = `#${targetId}`;
+    }
+
+    function updateActiveSection() {
+      const currentSection = navigableSections.reduce((closest, section) => {
+        const distance = Math.abs(section.getBoundingClientRect().top - 90);
+        return distance < closest.distance ? { section, distance } : closest;
+      }, { section: navigableSections[0], distance: Infinity });
+
+      if (currentSection.section) {
+        setActiveLink(currentSection.section.id);
+      }
+    }
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        setActiveLink(link.getAttribute('href').slice(1));
+      });
+    });
+
+    mobileNav.addEventListener('change', () => {
+      const target = mobileNav.value;
+      setActiveLink(target.slice(1));
+      window.location.hash = target.slice(1);
+    });
+
+    window.addEventListener('hashchange', () => {
+      setActiveLink(window.location.hash.slice(1) || 'inicio');
+    });
+
+    accToggle.addEventListener('click', () => {
+      accModal.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!accToggle.contains(e.target) && !accModal.contains(e.target)) {
+        accModal.classList.remove('active');
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('header-scrolled', window.scrollY > 12);
+      updateActiveSection();
+    });
+
+    setActiveLink(window.location.hash.slice(1) || 'inicio');
+
+    let currentScale = 1;
+
+    function adjustFont(delta) {
+      currentScale += delta;
+      if (currentScale < 0.8) currentScale = 0.8;
+      if (currentScale > 1.4) currentScale = 1.4;
+      document.documentElement.style.setProperty('--base-scale', currentScale);
+    }
+
+    function resetFont() {
+      currentScale = 1;
+      document.documentElement.style.setProperty('--base-scale', currentScale);
+    }
+
+    const contrastToggle = document.querySelector('.contrast-toggle');
+    const toggleSwitch = document.querySelector('.toggle-switch');
+
+    function syncAccessibilityState() {
+      const isActive = document.body.classList.contains('high-contrast');
+      contrastToggle?.classList.toggle('active', isActive);
+      toggleSwitch?.classList.toggle('active', isActive);
+      contrastToggle?.setAttribute('aria-pressed', String(isActive));
+      toggleSwitch?.setAttribute('aria-pressed', String(isActive));
+    }
+
+    function toggleHighContrast() {
+      document.body.classList.toggle('high-contrast');
+      syncAccessibilityState();
+    }
+
+    document.querySelectorAll('[data-action]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const action = button.dataset.action;
+
+        if (action === 'decrease') {
+          adjustFont(-0.05);
+        }
+
+        if (action === 'increase') {
+          adjustFont(0.05);
+        }
+
+        if (action === 'reset') {
+          resetFont();
+        }
+
+        if (action === 'contrast' || action === 'toggle') {
+          toggleHighContrast();
+        }
+      });
+    });
+
+    syncAccessibilityState();
+
+    const lgbtqiaData = {
+      L: {
+        label: 'Lésbicas',
+        color: '#f47621',
+        image: 'Imagens/lesbicas.png',
+        text: 'Mulheres que se atraem por outras mulheres, em suas diversas formas de expressão, identidade e relacionamento.'
+      },
+      G: {
+        label: 'Homossexuais',
+        color: '#26CEAA',
+        image: 'Imagens/gay.png',
+        text: 'Homens que se atraem por outros homens, em diferentes culturas, histórias e experiências de vida.'
+      },
+      B: {
+        label: 'Bissexuais',
+        color: '#983d90',
+        image: 'Imagens/bissexuais.png',
+        text: 'Pessoas que sentem atração por mais de um gênero, reconhecendo a pluralidade das relações humanas.'
+      },
+      T: {
+        label: 'Transgêneros',
+        color: '#5acffa',
+        image: 'Imagens/transgeneros.png',
+        text: 'Pessoas cuja identidade de gênero não corresponde ao sexo designado ao nascimento, com direito ao respeito e à dignidade.'
+      },
+      Q: {
+        label: 'Queer',
+        color: '#b57edc',
+        image: 'Imagens/queer.png',
+        text: 'Termo amplo para pessoas que não se encaixam em normas rígidas de gênero ou sexualidade, existindo além das categorias tradicionais.'
+      },
+      I: {
+        label: 'Intersexo',
+        color: '#f5d76e',
+        image: 'Imagens/intersexo.png',
+        text: 'Pessoas com variações biológicas que não se enquadram em uma definição binária tradicional de sexo.'
+      },
+      A: {
+        label: 'Asexuais',
+        color: '#c7c7c7',
+        image: 'Imagens/asexuais.png',
+        text: 'Pessoas que podem experimentar pouca ou nenhuma atração sexual, com diversidade de vivências afetivas e emocionais.'
+      },
+      '+': {
+        label: 'Mais',
+        color: '#ff8f5c',
+        image: 'Imagens/+.png',
+        text: 'Inclui outras identidades e experiências que ampliam o espectro da diversidade, como pansexualidade, non-binary e demais vivências.'
+      }
+    };
+
+    const peopleData = {
+      L: [
+          { 
+            name: 'Adriana Calcanhotto', 
+            avatar: '🎵', 
+            image: 'Imagens/lgbtq/Adriana Calcanhotto.jpg',
+            description: 'Cantora e compositora da MPB. Estreou em 1990 com o álbum "Enguiço" e teve momentos de grande projeção nacional, como no hit "Mentiras" (1992) e no aclamado projeto "Partimpim" (2004).' 
+          },
+          { 
+            name: 'Cassandra Rios', 
+            avatar: '📖', 
+            image: 'Imagens/lgbtq/Cassandra Rios.jpg',
+            description: 'Pioneira da literatura lésbica no Brasil. Teve seu marco inicial em 1948 com "A Volúpia do Pecado" e alcançou o topo de vendas entre as décadas de 60 e 70, tornando-se a primeira mulher a vender 1 milhão de livros no país.' 
+          },
+          { 
+            name: 'Cidinha da Silva', 
+            avatar: '✍️', 
+            image: 'Imagens/lgbtq/Cidinha da Silva.jpg',
+            description: 'Escritora, dramaturga e ativista. Teve grande projeção em 2006 com a publicação de "Cadatrançado" e consagrou-se na literatura contemporânea ao vencer o Prêmio Jabuti em 2019 com o livro "Um Exu em Nova York".' 
+          },    
+          { 
+            name: 'Maria Gadú', 
+            avatar: '🎸', 
+            image: 'Imagens/lgbtq/Maria Gadú.jpg',
+            description: 'Cantora e ativista socioambiental. Teve sua explosão nacional em 2009 com seu álbum de estreia homônimo e o estrondoso sucesso da música "Shimbalaiê", marcando a MPB nos anos 2010.' 
+          },
+          { 
+            name: 'Zélia Duncan', 
+            avatar: '🎙️', 
+            image: 'Imagens/lgbtq/Zelia Duncan.jpg',
+            description: 'Voz marcante da MPB e ativista. Teve seu grande momento de projeção em 1994 com o estrondoso sucesso do álbum "Zélia Duncan" e do clássico hit "Catedral", consolidando sua trajetória de conquistas e prêmios.' 
+          }
+      ],
+      G: [
+          { 
+            name: 'Arthur Nory', 
+            avatar: '🤸‍♂️', 
+            image: 'Imagens/lgbtq/Arthur Nory.jpg', 
+            description: 'Ginasta olímpico de destaque internacional. Conquistou a medalha de bronze no solo nos Jogos Olímpicos do Rio 2016 e consagrou-se campeão mundial na barra fixa em 2019, sendo uma referência de representatividade no esporte de alto rendimento.' 
+          },
+          { 
+            name: 'Lúcio Cardoso', 
+            avatar: '📖', 
+            image: 'Imagens/lgbtq/Lúcio Cardoso.jpg', 
+            description: 'Romancista, dramaturgo, poeta e pintor modernista. Teve seu ápice criativo e consagrador em 1959 com o lançamento da obra-prima "Crônica da Casa Assassinada", marco fundamental da prosa intimista e psicológica na literatura brasileira.' 
+          },
+          { 
+            name: 'Paulo Gustavo', 
+            avatar: '🎬', 
+            image: 'Imagens/lgbtq/Paulo Gustavo.jpg', 
+            description: 'Ator, humorista e roteirista. Fenômeno de popularidade, revolucionou a comédia nacional a partir de 2006 com a peça "Minha Mãe É uma Peça", transformando a personagem Dona Hermínia na maior bilheteria da história do cinema brasileiro.' 
+          },
+          { 
+            name: 'Lulu Santos', 
+            avatar: '🎸', 
+            image: 'Imagens/lgbtq/Lulu Santos.jpg', 
+            description: 'Cantor, compositor e guitarrista, um dos maiores ícones do pop rock brasileiro. Estourou nos anos 1980 com clássicos atemporais como "Tempos Modernos" (1982) e "Como Uma Onda" (1983), acumulando décadas de sucessos massivos e celebração ao amor livre.' 
+          },
+          { 
+            name: 'Marco Nanini', 
+            avatar: '🎭', 
+            image: 'Imagens/lgbtq/Marco Nanini.jpg', 
+            description: 'Ator fundamental do teatro, cinema e televisão brasileira. Consagrou-se nos palcos em peças históricas como "O Mistério de Irma Vap" (1986) e marcou gerações na TV ao interpretar o icônico Lineu Silva no seriado "A Grande Família" por 14 anos.' 
+          }
+      ],
+      B: [
+          { 
+            name: 'Anitta', 
+            avatar: '🎤', 
+            image: 'Imagens/lgbtq/Anitta.avif', 
+            description: 'Cantora, compositora e empresária de alcance global. Revolucionou a música pop e o funk brasileiro com sucessos massivos como "Show das Poderosas" (2013) e "Envolver" (2022), além de ser uma voz aberta e influente sobre bissexualidade.' 
+          },
+          { 
+            name: 'Jão', 
+            avatar: '🎤', 
+            image: 'Imagens/lgbtq/Jao.jpg', 
+            description: 'Cantor e compositor de destaque no pop nacional. Ganhou projeção com o álbum "Lobos" (2018) e consolidou seu sucesso estrondoso com "Pirata" (2021) e "Super" (2023), lotando estádios e explorando abertamente o amor e as vivências entre homens em suas canções.' 
+          },
+          { 
+            name: 'Renato Russo', 
+            avatar: '🎸', 
+            image: 'Imagens/lgbtq/Renato Russo.jpg', 
+            description: 'Poeta, cantor e líder da lendária banda Legião Urbana. Ícone definitivo do rock nacional dos anos 1980 e 1990, eternizou hinos geracionais como "Pais e Filhos" (1989) e explorou com sensibilidade a fluidez afetiva em suas composições.' 
+          },
+          { 
+            name: 'Rafaela Silva', 
+            avatar: '🥋', 
+            image: 'Imagens/lgbtq/Rafaela Silva.jpg', 
+            description: 'Judoca de elite e campeã mundial e olímpica. Conquistou a histórica medalha de ouro nos Jogos Olímpicos do Rio 2016 e é um ícone de resiliência, inspirando o esporte nacional ao falar abertamente sobre sua bissexualidade.' 
+          },
+          { 
+            name: 'Richarlyson', 
+            avatar: '⚽', 
+            image: 'Imagens/lgbtq/Richarlyson.jpg', 
+            description: 'Ex-jogador de futebol com passagens vitoriosas por grandes clubes como o São Paulo e campeão pela Seleção Brasileira. Fez história ao falar abertamente sobre sua bissexualidade, quebrando tabus em um dos ambientes mais desafiadores do esporte.' 
+          }
+      ],
+T: [
+          { 
+            name: 'João W. Nery', 
+            avatar: '📖', 
+            image: 'Imagens/lgbtq/Joao W Nery.jpg', 
+            description: 'Escritor, psicólogo e ativista. Reconhecido como o primeiro homem trans a realizar a cirurgia de redesignação sexual no Brasil nos anos 1970, tornou-se pioneiro fundamental na luta pelos direitos e pela memória trans com sua autobiografia "Viagem Solitária" (2011).' 
+          },
+          { 
+            name: 'Laerte Coutinho', 
+            avatar: '✏️', 
+            image: 'Imagens/lgbtq/Laerte Coutinho.jpg', 
+            description: 'Cartunista, chargista e roteirista seminal da cultura brasileira. Criadora de personagens marcantes como "Piratas do Tietê" e "Overman", assumiu sua identidade de gênero nos anos 2010, usando seus quadrinhos e voz pública para aprofundar discussões sobre gênero e sociedade.' 
+          },
+          { 
+            name: 'Liniker', 
+            avatar: '🎙️', 
+            image: 'Imagens/lgbtq/Liniker.jpg', 
+            description: 'Cantora, compositora e atriz. Conquistou projeção em 2015 com "Zero" e fez história ao se tornar a primeira artista trans brasileira a vencer um Grammy Latino em 2022 com o aclamado álbum "Indigo Borboleta Anil", consolidando-se na vanguarda da MPB contemporânea.' 
+          },
+          { 
+            name: 'Tarso Brant', 
+            avatar: '🎬', 
+            image: 'Imagens/lgbtq/Tarso Brant.jpg', 
+            description: 'Ator e modelo. Ganhou notoriedade ao compartilhar publicamente seu processo de transição de gênero na internet e foi pioneiro na teledramaturgia ao atuar e prestar consultoria para o desenvolvimento da temática trans na novela "A Força do Querer" (2017).' 
+          },
+          { 
+            name: 'Tiffany Abreu', 
+            avatar: '🏐', 
+            image: 'Imagens/lgbtq/Tiffany Abreu.jpg', 
+            description: 'Jogadora de voleibol profissional de alta performance. Fez história no esporte ao se tornar a primeira atleta trans a disputar a Superliga Brasileira de Voleibol Feminino em 2017, consolidando uma trajetória expressiva e abrindo caminhos para a inclusão no esporte.' 
+          }
+      ],
+      Q: [
+          { 
+            name: 'Castiel Vitorino Brasileiro', 
+            avatar: '🎨', 
+            image: 'Imagens/lgbtq/Castiel Vitorino Brasileiro.jpg', 
+            description: 'Artista visual, escritora e psicóloga clínica. Destacou-se no circuito de arte contemporânea internacional, incluindo a Bienal de São Paulo (2023), articulando memórias ancestrais, cura e dissidências de gênero e corpo.' 
+          },
+          { 
+            name: 'Gloria Groove', 
+            avatar: '👑', 
+            image: 'Imagens/lgbtq/Gloria Groove.jpg', 
+            description: 'Cantora, compositora, dubladora e drag queen. Tornou-se um dos maiores fenômenos da música pop e do hip-hop nacional com o aclamado álbum "Lady Leste" (2022) e o hit "Vermelho", redefinindo a versatilidade artística e a cultura drag no país.' 
+          },
+          { 
+            name: 'Cazuza', 
+            avatar: '🎙️', 
+            image: 'Imagens/lgbtq/Cazuza.jpg', 
+            description: 'Cantor e poeta seminal do rock brasileiro. Despontou nos anos 1980 com o Barão Vermelho e em carreira solo com clássicos como "Exagerado" (1985) e "Ideologia" (1988), tornando-se símbolo de contestação política, liberdade de expressão e afeto sem rótulos.' 
+          },
+          { 
+            name: 'Pabllo Vittar', 
+            avatar: '🌟', 
+            image: 'Imagens/lgbtq/Pabllo Vittar.jpg', 
+            description: 'Cantora, compositora e drag queen de alcance global. Conquistou projeção com o álbum "Vai Passar Mal" (2017) e sucessos como "K.O.", quebrando recordes mundiais e levando a arte drag brasileira aos principais festivais e paradas internacionais.' 
+          },
+          { 
+            name: 'Ney Matogrosso', 
+            avatar: '✨', 
+            image: 'Imagens/lgbtq/Ney Matogrosso.jpg', 
+            description: 'Cantor, performer e pioneiro da liberdade estética no Brasil. Estourou nos anos 1970 à frente do Secos & Molhados com sua voz de contratenor e presença cênica transgressora, desafiando normas de gênero e consolidando uma das carreiras mais ricas da MPB.' 
+          }
+      ],
+      I: [
+        { name: 'Iris Mendes', avatar: '✨', description: 'Ativista intersex. Trabalha na visibilidade e direitos de pessoas intersex.' },
+        { name: 'Alexandre Costa', avatar: '🏥', description: 'Médico(a) que defende a não-patologização de pessoas intersex e direitos corporais.' },
+        { name: 'Valentina Silva', avatar: '💪', description: 'Coordenadora de grupos de apoio intersex. Promove aceitação e auto-afirmação.' },
+        { name: 'Marcus Alves', avatar: '📢', description: 'Ativista de visibilidade intersex em campanhas públicas e educação comunitária.' },
+        { name: 'Nicole Ramos', avatar: '🌟', description: 'Pesquisadora em direitos intersex e políticas de saúde inclusiva.' }
+      ],
+      A: [
+          { 
+            name: 'Giovana Fagundes', 
+            avatar: '🎙️', 
+            image: 'Imagens/lgbtq/Giovana Fagundes.jpg', 
+            description: 'Humorista, atriz e comunicadora. Destaca-se no stand-up comedy e na criação de conteúdo digital, abordando com sarcasmo e inteligência temas como relacionamentos, sexualidade e bissexualidade.' 
+          },
+          { 
+            name: 'Iza', 
+            avatar: '👑', 
+            image: 'Imagens/lgbtq/Iza.jpg', 
+            description: 'Cantora, compositora e apresentadora de grande sucesso no pop e R&B nacional. Conquistou projeção com o álbum "Dona de Mim" (2018) e declarou-se publicamente como demissexual, trazendo visibilidade ao tema.' 
+          },
+          { 
+            name: 'Lucas Raniel', 
+            avatar: '🎗️', 
+            image: 'Imagens/lgbtq/Lucas Raniel.jpg', 
+            description: 'Ativista, comunicador e criador de conteúdo digital. Tornou-se uma das principais vozes da nova geração na desmistificação e educação sobre HIV/Aids, direitos sexuais e vivência da comunidade LGBTQIA+.' 
+          },
+          { 
+            name: 'Roberta Miranda', 
+            avatar: '🤠', 
+            image: 'Imagens/lgbtq/Roberta Miranda.jpg', 
+            description: 'Cantora e compositora, consagrada como a "Rainha do Sertanejo". Pioneira em abrir caminhos para mulheres no gênero com sucessos como "Majestade, o Sabiá", fala abertamente sobre sua atração por pessoas independentemente de gênero.' 
+          },
+          { 
+            name: 'Yasmin Stevam', 
+            avatar: '✨', 
+            image: 'Imagens/lgbtq/Yasmin Stevam.jpg', 
+            description: 'Criadora de conteúdo digital, modelo e comunicadora. Produz reflexões e conteúdos sobre moda, autocuidado, estilo de vida e vivências da comunidade LGBTQIA+, promovendo representatividade nas redes sociais.' 
+          }
+      ],
+      '+': [
+          { 
+            name: 'Bárbara Paz', 
+            avatar: '🎭', 
+            image: 'Imagens/lgbtq/Bárbara Paz.jpg', 
+            description: 'Atriz, diretora e produtora. Identifica-se como pessoa não-binária e bissexual. Venceu festivais internacionais de cinema com o documentário "Babenco" (2019) e construiu uma carreira aclamada na televisão e nos palcos brasileiros.' 
+          },
+          { 
+            name: 'Caio Fernando Abreu', 
+            avatar: '✍️', 
+            image: 'Imagens/lgbtq/Caio Fernando Abreu.jpg', 
+            description: 'Escritor, jornalista e dramaturgo bissexual. Uma das vozes mais intensas e líricas da literatura contemporânea brasileira, retratou com sensibilidade o amor entre homens, a solidão urbana e a crise do HIV em obras como "Morangos Mofados" (1982).' 
+          },
+          { 
+            name: 'Guimarães Rosa', 
+            avatar: '📖', 
+            image: 'Imagens/lgbtq/Guimarães Rosa.jpg', 
+            description: 'Escritor e diplomata cuja obra explora a fluidez e a homoafetividade. Autor do monumental "Grande Sertão: Veredas" (1956), imortalizou o pacto de amor e tensão lírica entre Riobaldo e Diadorim, marco sutil da diversidade na literatura clássica.' 
+          },
+          { 
+            name: 'Preta Gil', 
+            avatar: '🎤', 
+            image: 'Imagens/lgbtq/Preta Gil.jpg', 
+            description: 'Cantora, apresentadora e empresária abertamente bissexual e pansexual. Pioneira em defender a liberdade corporal e afetiva no entretenimento de massa, lidera o tradicional "Bloco da Preta" e consolidou uma carreira de celebração à diversidade.' 
+          },
+          { 
+            name: 'Reynaldo Gianecchini', 
+            avatar: '🎬', 
+            image: 'Imagens/lgbtq/Reynaldo Gianecchini.jpg', 
+            description: 'Ator de longa trajetória na TV, cinema e teatro. Declarou-se publicamente pansexual e com sexualidade fluida, tornando-se uma figura de grande relevância ao quebrar estereótipos em torno dos galãs da teledramaturgia nacional.' 
+          }
+      ]
+    };
+
+    const selector = document.getElementById('siglaSelector');
+    const displayIcon = document.getElementById('siglaDisplayIcon');
+    const displayTitle = document.getElementById('siglaDisplayTitle');
+    const displayText = document.getElementById('siglaDisplayText');
+    const displayCard = document.getElementById('siglaDisplay');
+    const peopleGrid = document.getElementById('peopleGrid');
+
+    const keys = Object.keys(lgbtqiaData);
+    let activeSigla = 'L';
+
+    function renderSiglaButtons() {
+      selector.innerHTML = keys.map((key) => {
+        const item = lgbtqiaData[key];
+        const isActive = key === activeSigla;
+        return `
+          <button
+            class="sigla-button ${isActive ? 'active' : ''}"
+            type="button"
+            data-sigla="${key}"
+            aria-label="Selecionar ${item.label}"
+            style="background: ${isActive ? 'rgba(255,255,255,0.82)' : 'rgba(255,255,255,0.78)'}; color: ${isActive ? item.color : '#472a62'}; border-color: ${isActive ? `${item.color}88` : 'rgba(94,73,128,0.08)'};"
+          >
+            <span class="sigla">${key}</span>
+            <span class="name">${item.label}</span>
+          </button>
+        `;
+      }).join('');
+
+      selector.querySelectorAll('.sigla-button').forEach((button) => {
+        button.addEventListener('click', () => {
+          activeSigla = button.dataset.sigla;
+          renderSiglaButtons();
+          updateSiglaDisplay();
+        });
+      });
+    }
+
+    function updateSiglaDisplay() {
+      const current = lgbtqiaData[activeSigla];
+      displayIcon.textContent = activeSigla;
+      displayIcon.style.background = current.color;
+      displayTitle.textContent = current.label;
+      displayTitle.style.color = current.color;
+      displayText.textContent = current.text;
+      displayCard.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.78), rgba(255,255,255,0.82))';
+      displayCard.style.borderColor = `${current.color}88`;
+
+      const badgeName = document.getElementById('siglaBadgeName');
+      const badgeImage = document.getElementById('siglaBadgeImage');
+      const badge = document.getElementById('lgbtFocusBadge');
+
+      badgeName.textContent = current.label;
+      badgeName.style.color = '#472a62';
+      badgeImage.src = current.image;
+      badgeImage.alt = current.label;
+      badge.style.background = '#ffffff';
+      badge.style.borderColor = 'rgba(94, 73, 128, 0.12)';
+
+      const title = document.querySelector('.lgbt-focus-title');
+      const paletteBySigla = {
+        L: 'linear-gradient(90deg, #d64b06 0%, #f47620 18%, #f8c28c 38%, #fcecf4 50%, #f0a8ea 62%, #d645d4 82%, #9f0080 100%)',
+        G: 'linear-gradient(90deg, #078E70 0%, #26CEAA 18%, #9AE8C1 38%, #fcecf4 50%, #7CACE4 62%, #5049CB 82%, #3D1A78 100%)',
+        B: 'linear-gradient(90deg, #D5016F 0%, #724F93 50%, #0039A4 100%)',
+        T: 'linear-gradient(90deg, #5ACFFA 0%, #EFAAB6 30%, #fcecf4 50%, #EFAAB6 70%, #5ACFFA 100%)',
+        Q: 'linear-gradient(90deg, #B57EDC 30%, #fcecf4 50%, #4A8123 70%)',
+        I: 'linear-gradient(90deg, #FFD801 15%, #7902AA 50%, #FFD801 85%)',
+        A: 'linear-gradient(90deg, #B57EDC 0%, #A4A4A4 45%, #FFFFFE 66%, #81007F 90%)',
+        '+': 'linear-gradient(90deg, #FF0413 0%, #f47620 18%, #FF7E00 38%, #FEF100 50%, #007026 62%, #0060CA 82%, #BA1BC6 100%)'
+      };
+
+      title.style.background = paletteBySigla[activeSigla] || paletteBySigla.L;
+      title.style.webkitBackgroundClip = 'text';
+      title.style.backgroundClip = 'text';
+
+      const root = document.documentElement;
+      root.style.setProperty('--page-accent', current.color);
+      root.style.setProperty('--page-accent-strong', current.color);
+      root.style.setProperty('--page-accent-soft', `${current.color}22`);
+      root.style.setProperty('--page-bg-start', '#f7f0fa');
+      root.style.setProperty('--page-bg-end', '#f3eefc');
+      root.style.setProperty('--page-surface', 'rgba(255,255,255,0.78)');
+      root.style.setProperty('--page-border', 'rgba(94, 73, 128, 0.12)');
+
+      updatePeopleCards(activeSigla);
+    }
+
+    function updatePeopleCards(sigla) {
+      const people = peopleData[sigla] || [];
+      
+      peopleGrid.innerHTML = people.map((person) => `
+        <article class="person-card active" data-sigla="${sigla}">
+          <div class="person-avatar">
+            ${person.image ? `<img src="${person.image}" alt="${person.name}" loading="lazy">` : person.avatar}
+          </div>
+          <h3 class="person-name">${person.name}</h3>
+          <p class="person-description">${person.description}</p>
+        </article>
+      `).join('');
+      
+      // Adicionar listeners aos novos cards
+      document.querySelectorAll('.person-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          activeSigla = card.dataset.sigla;
+          renderSiglaButtons();
+          updateSiglaDisplay();
+        });
+      });
+    }
+
+    // Adicionar listeners iniciais aos botões de sigla
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSiglaButtons();
+      updateSiglaDisplay();
+    });
+    updateSiglaDisplay();
+
+    const quizQuestions = [
+      {
+        question: 'Qual é a importância da promoção da diversidade no ambiente escolar?',
+        options: [
+          'A) Padronizar comportamentos e identidades.',
+          'B) Favorecer o respeito às diferenças e a convivência democrática.',
+          'C) Evitar discussões sobre questões sociais.',
+          'D) Estabelecer diferenças entre os estudantes.'
+        ],
+        correctIndex: 1,
+        explanation: 'A diversidade favorece o respeito, a convivência democrática e a inclusão.'
+      },
+      {
+        question: 'O que caracteriza uma prática discriminatória?',
+        options: [
+          'A) Reconhecer diferentes identidades e experiências.',
+          'B) Promover o diálogo entre diferentes grupos.',
+          'C) Tratar uma pessoa de maneira desigual ou injusta em razão de suas características ou identidade.',
+          'D) Incentivar a participação de todos.'
+        ],
+        correctIndex: 2,
+        explanation: 'Discriminação é o tratamento desigual ou injusto de uma pessoa por suas características ou identidade.'
+      },
+      {
+        question: 'Qual princípio está diretamente relacionado à inclusão escolar?',
+        options: [
+          'A) Segregação.',
+          'B) Igualdade de oportunidades e respeito às diferenças.',
+          'C) Padronização das identidades.',
+          'D) Exclusão de grupos minoritários.'
+        ],
+        correctIndex: 1,
+        explanation: 'A inclusão escolar se baseia na igualdade de oportunidades e no respeito às diferenças.'
+      },
+      {
+        question: 'Como a empatia pode contribuir para a convivência escolar?',
+        options: [
+          'A) Estimulando julgamentos sobre as experiências dos outros.',
+          'B) Promovendo a compreensão e o respeito às diferentes perspectivas.',
+          'C) Eliminando as diferenças entre os estudantes.',
+          'D) Evitando debates sobre diversidade.'
+        ],
+        correctIndex: 1,
+        explanation: 'A empatia ajuda a compreender e respeitar perspectivas diferentes.'
+      },
+      {
+        question: 'Qual é uma consequência possível do preconceito no ambiente escolar?',
+        options: [
+          'A) Fortalecimento da integração social.',
+          'B) Ampliação da participação estudantil.',
+          'C) Comprometimento do bem-estar e da convivência escolar.',
+          'D) Desenvolvimento de relações mais respeitosas.'
+        ],
+        correctIndex: 2,
+        explanation: 'O preconceito compromete o bem-estar e a convivência escolar.'
+      },
+      {
+        question: 'Qual atitude contribui para o enfrentamento da discriminação?',
+        options: [
+          'A) Naturalizar comportamentos preconceituosos.',
+          'B) Silenciar diante de situações discriminatórias.',
+          'C) Promover informação, diálogo, respeito e acolhimento.',
+          'D) Reforçar estereótipos sociais.'
+        ],
+        correctIndex: 2,
+        explanation: 'Informação, diálogo, respeito e acolhimento são atitudes fundamentais para combater a discriminação.'
+      },
+      {
+        question: 'Por que a educação para a diversidade é relevante para a formação dos estudantes?',
+        options: [
+          'A) Porque contribui para o desenvolvimento da cidadania, do respeito e da convivência democrática.',
+          'B) Porque elimina as diferenças individuais.',
+          'C) Porque determina comportamentos padronizados.',
+          'D) Porque restringe a liberdade de expressão.'
+        ],
+        correctIndex: 0,
+        explanation: 'A educação para a diversidade fortalece a cidadania, o respeito e a convivência democrática.'
+      },
+      {
+        question: 'Qual é a principal finalidade do PSICOQUEER?',
+        options: [
+          'A) Promover competição entre diferentes grupos escolares.',
+          'B) Desenvolver estratégias educativas de conscientização, inclusão e enfrentamento ao preconceito.',
+          'C) Classificar estudantes de acordo com suas identidades.',
+          'D) Substituir as práticas pedagógicas tradicionais.'
+        ],
+        correctIndex: 1,
+        explanation: 'O PSICOQUEER tem como foco a conscientização, a inclusão e o enfrentamento ao preconceito.'
+      },
+      {
+        question: 'De que maneira a ludicidade pode contribuir para a educação sobre diversidade?',
+        options: [
+          'A) Tornando a aprendizagem mais interativa e favorecendo a reflexão sobre situações sociais.',
+          'B) Eliminando a necessidade de reflexão crítica.',
+          'C) Simplificando questões sociais complexas sem discussão.',
+          'D) Incentivando a competição entre estudantes.'
+        ],
+        correctIndex: 0,
+        explanation: 'A ludicidade torna o aprendizado mais interativo e favorece a reflexão crítica sobre temas sociais.'
+      },
+      {
+        question: 'Qual princípio deve orientar uma escola comprometida com a diversidade?',
+        options: [
+          'A) Homogeneização.',
+          'B) Segregação.',
+          'C) Equidade, respeito e inclusão.',
+          'D) Exclusão.'
+        ],
+        correctIndex: 2,
+        explanation: 'Uma escola comprometida com a diversidade deve orientar-se pela equidade, pelo respeito e pela inclusão.'
+      }
+    ];
+
+    const quizTitle = document.getElementById('quizQuestionTitle');
+    const quizPrompt = document.getElementById('quizQuestionPrompt');
+    const quizOptionsContainer = document.getElementById('quizOptions');
+    const quizScore = document.getElementById('quizScore');
+    const quizQuestionCounter = document.getElementById('quizQuestionCounter');
+    const quizFeedback = document.getElementById('quizFeedback');
+    const nextQuestionButton = document.getElementById('nextQuestion');
+
+    let shuffledQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let selectedAnswerIndex = null;
+    let quizEnded = false;
+
+    function shuffleArray(items) {
+      const copy = [...items];
+      for (let index = copy.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [copy[index], copy[randomIndex]] = [copy[randomIndex], copy[index]];
+      }
+      return copy;
+    }
+
+    function showFeedback(message) {
+      if (!quizFeedback) return;
+      quizFeedback.textContent = message;
+      quizFeedback.style.display = 'block';
+    }
+
+    function renderQuestion() {
+      if (!quizTitle || !quizPrompt || !quizOptionsContainer || !quizQuestionCounter) return;
+
+      const currentQuestion = shuffledQuestions[currentQuestionIndex];
+
+      if (!currentQuestion) {
+        quizEnded = true;
+        quizTitle.innerHTML = '<span class="question-number">Fim.</span> Quiz concluído!';
+        quizPrompt.textContent = `Sua pontuação final foi ${score} pontos.`;
+        quizOptionsContainer.innerHTML = '';
+        quizQuestionCounter.textContent = `${shuffledQuestions.length}/${shuffledQuestions.length}`;
+        nextQuestionButton.textContent = 'REINICIAR';
+        if (quizFeedback) {
+          const correctAnswers = Math.round(score / 10);
+          quizFeedback.textContent = `Você acertou ${correctAnswers} de ${shuffledQuestions.length} perguntas.`;
+          quizFeedback.style.display = 'block';
+        }
+        return;
+      }
+
+      quizEnded = false;
+      selectedAnswerIndex = null;
+      const questionNumber = currentQuestionIndex + 1;
+      quizTitle.innerHTML = `<span class="question-number">${questionNumber}.</span> ${currentQuestion.question}`;
+      quizPrompt.textContent = 'Escolha a alternativa correta.';
+      quizOptionsContainer.innerHTML = '';
+      quizQuestionCounter.textContent = `${questionNumber}/${shuffledQuestions.length}`;
+      nextQuestionButton.textContent = currentQuestionIndex === shuffledQuestions.length - 1 ? 'FINALIZAR' : 'PRÓXIMA';
+
+      if (quizFeedback) {
+        quizFeedback.textContent = '';
+        quizFeedback.style.display = 'none';
+      }
+
+      currentQuestion.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'quiz-option';
+        button.textContent = option;
+        button.addEventListener('click', () => {
+          if (selectedAnswerIndex !== null) return;
+
+          selectedAnswerIndex = index;
+          const optionButtons = quizOptionsContainer.querySelectorAll('.quiz-option');
+          optionButtons.forEach((item, itemIndex) => {
+            item.classList.toggle('selected', itemIndex === index);
+          });
+
+          const isCorrect = index === currentQuestion.correctIndex;
+          if (isCorrect) {
+            score += 10;
+            quizScore.textContent = score;
+            showFeedback(`Resposta correta! ${currentQuestion.explanation}`);
+          } else {
+            showFeedback(`Resposta incorreta. A resposta correta é: ${currentQuestion.options[currentQuestion.correctIndex]}`);
+          }
+        });
+        quizOptionsContainer.appendChild(button);
+      });
+    }
+
+    function resetQuiz() {
+      shuffledQuestions = shuffleArray(quizQuestions);
+      currentQuestionIndex = 0;
+      score = 0;
+      selectedAnswerIndex = null;
+      if (quizScore) quizScore.textContent = '0';
+      nextQuestionButton.textContent = 'PRÓXIMA';
+      renderQuestion();
+    }
+
+    nextQuestionButton.addEventListener('click', () => {
+      if (quizEnded) {
+        resetQuiz();
+        return;
+      }
+
+      if (selectedAnswerIndex === null) {
+        showFeedback('Escolha uma alternativa antes de continuar.');
+        return;
+      }
+
+      currentQuestionIndex += 1;
+      if (currentQuestionIndex < shuffledQuestions.length) {
+        renderQuestion();
+      } else {
+        renderQuestion();
+      }
+    });
+
+    resetQuiz();
+
+    const contactForm = document.getElementById('contactForm');
+    const contactStatus = document.getElementById('contactStatus');
+
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      contactStatus.textContent = 'Mensagem preparada! Obrigado por entrar em contato.';
+      contactForm.reset();
+    });
+
+    const gameBoard = document.getElementById('gameBoard');
+    const rollDiceButton = document.getElementById('rollDice');
+    const resetGameButton = document.getElementById('resetGame');
+    const diceValue = document.getElementById('diceValue');
+    const gameStatus = document.getElementById('gameStatus');
+    const gameChallenges = [
+      'Qual atitude ajuda a tornar um ambiente mais inclusivo?',
+      'Como você pode demonstrar respeito às diferenças?',
+      'Lembre-se: ouvir com empatia também é uma forma de cuidado.',
+      'Toda pessoa merece segurança, respeito e espaço para ser quem é.',
+      'Compartilhe conhecimento e ajude a combater o preconceito.'
+    ];
+    let playerPosition = 1;
+
+    function buildGameBoard() {
+      gameBoard.innerHTML = '';
+      for (let position = 1; position <= 60; position += 1) {
+        const cell = document.createElement('div');
+        const rowFromBottom = Math.floor((position - 1) / 10);
+        const positionInRow = (position - 1) % 10;
+        const column = rowFromBottom % 2 === 0 ? positionInRow + 1 : 10 - positionInRow;
+
+        cell.className = 'game-cell';
+        cell.dataset.position = position;
+        cell.style.gridColumn = column;
+        cell.style.gridRow = 6 - rowFromBottom;
+        cell.textContent = position;
+        gameBoard.appendChild(cell);
+      }
+      updatePlayerToken();
+    }
+
+    function updatePlayerToken() {
+      document.querySelectorAll('.game-cell').forEach((cell) => {
+        cell.classList.remove('is-player');
+        cell.querySelector('.player-token')?.remove();
+      });
+
+      const playerCell = gameBoard.querySelector(`[data-position="${playerPosition}"]`);
+      if (!playerCell) return;
+
+      playerCell.classList.add('is-player');
+      const token = document.createElement('span');
+      token.className = 'player-token';
+      token.innerHTML = '<i class="fa-solid fa-person"></i>';
+      token.setAttribute('aria-label', 'Sua peça');
+      playerCell.appendChild(token);
+    }
+
+    function rollDice() {
+      if (playerPosition >= 60) return;
+
+      const rolledNumber = Math.floor(Math.random() * 6) + 1;
+      playerPosition = Math.min(playerPosition + rolledNumber, 60);
+      diceValue.textContent = rolledNumber;
+      updatePlayerToken();
+
+      if (playerPosition === 60) {
+        gameStatus.textContent = 'Você chegou ao final! Respeito é o melhor caminho.';
+        rollDiceButton.disabled = true;
+        return;
+      }
+
+      const challenge = gameChallenges[(playerPosition - 1) % gameChallenges.length];
+      gameStatus.textContent = `Casa ${playerPosition}: ${challenge}`;
+    }
+
+    function resetGame() {
+      playerPosition = 1;
+      diceValue.textContent = '-';
+      gameStatus.textContent = 'Você está na casa 1. Boa jornada!';
+      rollDiceButton.disabled = false;
+      updatePlayerToken();
+    }
+
+    rollDiceButton.addEventListener('click', rollDice);
+    resetGameButton.addEventListener('click', resetGame);
+    buildGameBoard();
+  </script>
+</body>
+</html>

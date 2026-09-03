@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^gh auth status; git status --short --branch$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
