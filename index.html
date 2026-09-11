@@ -8,7 +8,7 @@
   <!-- Fontes Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Ícones Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -165,7 +165,6 @@
       display: none;
     }
 
-    /* Botão de Acessibilidade no Header */
     .btn-accessibility {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -187,7 +186,6 @@
       transform: scale(1.05);
     }
 
-    /* Menu Painel de Acessibilidade Popup */
     .accessibility-modal {
       display: none;
       position: absolute;
@@ -267,7 +265,6 @@
       z-index: 2;
     }
 
-    /* Elementos de Fundo Espacial */
     .bg-decorations {
       position: absolute;
       top: 0;
@@ -316,7 +313,6 @@
       50% { transform: translateY(-10px) rotate(5deg); }
     }
 
-    /* Conteúdo da Esquerda */
     .hero-content {
       flex: 1;
       z-index: 1;
@@ -376,7 +372,6 @@
       box-shadow: 0 12px 30px rgba(139, 92, 246, 0.6);
     }
 
-    /* Container da Imagem PNG */
     .hero-image-container {
       flex: 1;
       z-index: 1;
@@ -402,7 +397,6 @@
       filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
     }
 
-    /* Onda inferior */
     .wave-bottom {
       position: absolute;
       bottom: 0;
@@ -700,7 +694,7 @@
     }
 
     /* ========================================================
-       SEÇÃO DO JOGO INTERATIVO & JANELA FLUTUANTE MODAL
+       SEÇÃO DO JOGO INTERATIVO
     ======================================================== */
     .game-section {
       position: relative;
@@ -744,92 +738,6 @@
 
     .game-section .wave-top {
       opacity: 0.55;
-    }
-
-    /* Eleva a seção do jogo para ficar sobre o header */
-    .game-section.game-started {
-      z-index: 2000;
-    }
-
-    /* ========================================================
-       JANELA FLUTUANTE MODAL COMPACTA (~30% OPACIDADE)
-    ======================================================== */
-    .game-section.game-started .game-content {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1);
-      width: min(1040px, 98vw);
-      max-height: 94vh;
-      z-index: 2100;
-      max-width: none;
-      margin: 0;
-      padding: 22px 24px 18px;
-      overflow-y: auto;
-      overflow-x: hidden;
-      border: 1.5px solid rgba(174, 125, 255, 0.35);
-      border-radius: 24px;
-      background: rgba(22, 11, 48, 0.3); /* 30% de opacidade */
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(124, 58, 237, 0.25);
-      animation: modal-smooth-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      scrollbar-width: thin;
-      scrollbar-color: #7c3aed rgba(255, 255, 255, 0.05);
-    }
-
-    @keyframes modal-smooth-in {
-      0% { transform: translate(-50%, -46%) scale(0.95); opacity: 0; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    }
-
-    .game-section.game-started .game-content::before {
-      content: "";
-      position: fixed;
-      inset: -100vw;
-      z-index: -1;
-      background: rgba(6, 3, 16, 0.78);
-      backdrop-filter: blur(8px);
-      animation: backdrop-fade-in 0.4s ease-out forwards;
-    }
-
-    @keyframes backdrop-fade-in {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    .game-close-button {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      font-size: 1.3rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-      z-index: 100;
-    }
-
-    .game-close-button:hover {
-      background: #7c3aed;
-      border-color: #ffd645;
-      transform: scale(1.08);
-    }
-
-    .game-embedded {
-      width: 100%;
-      height: calc(94vh - 60px);
-      display: block;
-      border: 0;
-      border-radius: 18px;
-      background: transparent;
     }
 
     .game-landing {
@@ -994,8 +902,641 @@
     .game-tip:nth-child(3) i { background: #f2b62b; color: #4b2374; }
     .game-tip:nth-child(4) i { background: #64c45d; }
 
-    .game-section.game-started .game-landing { display: none; }
-    .game-section:not(.game-started) .game-content { display: none; }
+    /* ========================================================
+       ESTILOS DA JANELA FLUTUANTE (AMPLIADA & MODERNA)
+    ======================================================== */
+    .modal-backdrop-jogo {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 3, 16, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 99999;
+    }
+
+    .modal-backdrop-jogo.active {
+      display: flex;
+    }
+
+    /* Janela ampliada para 1220px */
+    .janela-jogo-compacta {
+      position: relative;
+      width: min(1220px, 98vw);
+      max-height: 96vh;
+      background: rgba(22, 11, 48, 0.32);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1.5px solid rgba(174, 125, 255, 0.42);
+      border-radius: 28px;
+      padding: 24px 28px 20px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 45px rgba(124, 58, 237, 0.28);
+      display: flex;
+      flex-direction: column;
+      color: #ffffff;
+      font-family: 'Nunito', sans-serif;
+      animation: modal-smooth-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    @keyframes modal-smooth-in {
+      0% { transform: scale(0.94) translateY(18px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .btn-fechar-janela {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      font-size: 1.35rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      z-index: 100;
+    }
+
+    .btn-fechar-janela:hover {
+      background: #7c3aed;
+      border-color: #ffd645;
+      transform: scale(1.1);
+    }
+
+    .cabecalho-janela {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .cabecalho-janela h2 {
+      font-family: 'Fredoka', cursive;
+      font-size: 2.15rem;
+      color: #ffffff;
+      line-height: 1;
+      letter-spacing: 0.5px;
+    }
+
+    .cabecalho-janela p {
+      color: #c3b7e0;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 5px;
+    }
+
+    .grid-janela-jogo {
+      display: grid;
+      grid-template-columns: 260px 1fr 230px;
+      gap: 18px;
+      align-items: start;
+      width: 100%;
+    }
+
+    /* COLUNA 1: Baralho e Carta */
+    .col-carta-cena {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      perspective: 800px;
+      min-height: 380px;
+    }
+
+    .pilha-baralho-base {
+      position: absolute;
+      bottom: 0;
+      width: 190px;
+      height: 270px;
+      border-radius: 26px;
+      background: #481d80;
+      border: 3px solid #7c3aed;
+      box-shadow: 
+        0 3px 0 #db477e,
+        0 6px 0 #f6ab37,
+        0 9px 0 #20a34a,
+        0 12px 0 #168cff,
+        0 16px 24px rgba(0, 0, 0, 0.6);
+      transform: rotate(-10deg) skewX(-2deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .pilha-baralho-base i {
+      font-size: 42px;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .carta-ativa-container {
+      position: relative;
+      z-index: 3;
+      transform: translateY(-4px) rotate(1.5deg);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.65));
+    }
+
+    .carta-ativa-container.deal {
+      transform: translateY(-30px) scale(0.92) rotate(-5deg);
+      opacity: 0.2;
+    }
+
+    .carta-fina {
+      width: 245px;
+      padding: 14px 12px 12px;
+      border-radius: 24px;
+      border: 4px solid transparent;
+      background:
+        linear-gradient(#f4f4f2, #f4f4f2) padding-box,
+        linear-gradient(135deg, #5131d4, #e52d27, #ff9f00, #f4d03f, #20a34a, #168cff, #7135c5) border-box;
+    }
+
+    .carta-logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .carta-logo-wrap img {
+      max-width: 135px;
+      max-height: 46px;
+      object-fit: contain;
+    }
+
+    .carta-subtitulo {
+      font-size: 6px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #444;
+      white-space: nowrap;
+      margin-top: 3px;
+    }
+
+    .carta-pontos-box {
+      position: relative;
+      margin-top: 10px;
+      padding: 8px 6px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1.5px solid #d6c5e9;
+      border-radius: 22px;
+      background-color: #fdfdfc;
+      background-image: radial-gradient(circle, rgba(125, 69, 190, 0.12) 1.5px, transparent 2px);
+      background-size: 14px 14px;
+    }
+
+    .carta-qtd {
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 62px;
+      line-height: 0.85;
+      color: #7440bd;
+      transform: scaleX(0.85);
+      text-shadow: 2px 2px 0 #ffffff, 3px 3px 0 #191919;
+    }
+
+    .carta-titulo {
+      margin-top: 4px;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 38px;
+      line-height: 0.85;
+      color: #faf8f1;
+      -webkit-text-stroke: 1.5px #171717;
+      text-shadow: 3px 3px 0 #159fe5;
+      transform: scaleX(0.8);
+      white-space: nowrap;
+    }
+
+    .carta-circulo-icone {
+      position: absolute;
+      bottom: -22px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #7440bd;
+      border: 2.5px solid #171717;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 19px;
+      z-index: 10;
+    }
+
+    .carta-texto-desc {
+      margin-top: 16px;
+      padding: 16px 12px 10px;
+      text-align: center;
+      border: 1.5px solid #7440bd;
+      border-radius: 18px;
+      background-color: #fdfdfc;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carta-texto-desc p {
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-size: 14.5px;
+      line-height: 1.3;
+      color: #1e1e1e;
+      font-weight: 500;
+    }
+
+    /* COLUNA 2: Tabuleiro */
+    .col-tabuleiro-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .caixa-tabuleiro {
+      background: linear-gradient(165deg, rgba(34, 18, 71, 0.78) 0%, rgba(17, 9, 39, 0.88) 100%);
+      padding: 14px;
+      border-radius: 20px;
+      border: 1.5px solid rgba(139, 92, 246, 0.4);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    .grid-casas {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 7px;
+    }
+
+    .casa {
+      aspect-ratio: 1.15;
+      border-radius: 11px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #ffffff;
+      position: relative;
+      user-select: none;
+      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease;
+    }
+
+    .casa::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      height: 38%;
+      border-radius: 9px 9px 4px 4px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.04) 100%);
+      pointer-events: none;
+    }
+
+    .casa.vazia {
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+    }
+    .casa.vazia::before { display: none; }
+
+    .bg-verde   { background: linear-gradient(180deg, #4ed35c, #309e3a); border: 1px solid #6bee79; }
+    .bg-amarelo { background: linear-gradient(180deg, #ffbb3d, #e08e16); border: 1px solid #ffcf6e; }
+    .bg-laranja { background: linear-gradient(180deg, #ff7259, #d94225); border: 1px solid #ff927d; }
+    .bg-rosa    { background: linear-gradient(180deg, #f55593, #c42462); border: 1px solid #ff7eb1; }
+    .bg-roxo    { background: linear-gradient(180deg, #9b61e2, #6830af); border: 1px solid #b787f3; }
+    .bg-azul    { background: linear-gradient(180deg, #449ef5, #1f6ec0); border: 1px solid #73b8fc; }
+
+    .casa.casa-inicio { border: 2px solid #ffffff; }
+    .casa.casa-inicio::after {
+      content: "INÍCIO";
+      position: absolute;
+      bottom: 2px;
+      font-size: 6.5px;
+      font-weight: 900;
+    }
+
+    .casa.casa-meta {
+      background: linear-gradient(180deg, #ffe066 0%, #f59e0b 60%, #b45309 100%) !important;
+      border: 2px solid #fff5cc !important;
+      color: #451a03 !important;
+      box-shadow: 0 4px 0 #78350f, 0 0 20px rgba(245, 158, 11, 0.9) !important;
+      animation: pulse-meta 1.5s infinite alternate;
+    }
+
+    @keyframes pulse-meta {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.06); }
+    }
+
+    .casa.casa-meta::after {
+      content: "CHEGADA";
+      position: absolute;
+      bottom: 2px;
+      font-size: 6.5px;
+      font-weight: 900;
+    }
+
+    .peao-jogador {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #ffffff;
+      border: 2px solid #ffd645;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .peao-jogador-inner {
+      width: 16px;
+      height: 16px;
+      background: #7c3aed;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 8.5px;
+    }
+
+    .faixa-cartas-especiais {
+      background: rgba(28, 17, 59, 0.75);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      border-radius: 16px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .info-faixa {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .info-faixa i {
+      font-size: 20px;
+      color: #ffd645;
+    }
+
+    .info-faixa h4 {
+      font-size: 13.5px;
+      font-weight: 800;
+    }
+
+    .info-faixa p {
+      font-size: 11px;
+      color: #c3b7e0;
+    }
+
+    .btn-ver-cartas {
+      background: #2b1752;
+      border: 1px solid #4a2b85;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 11.5px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-ver-cartas:hover {
+      background: #3f2178;
+    }
+
+    /* COLUNA 3: Controles */
+    .col-controles-painel {
+      background: rgba(28, 17, 59, 0.75);
+      border: 1.5px solid rgba(139, 92, 246, 0.35);
+      border-radius: 20px;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .col-controles-painel h3 {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.25rem;
+    }
+
+    .col-controles-painel p {
+      color: #c3b7e0;
+      font-size: 11.5px;
+      line-height: 1.4;
+    }
+
+    .box-dado-valor {
+      background: rgba(20, 11, 43, 0.88);
+      border: 1px solid #2f1d5e;
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .box-dado-valor strong {
+      font-size: 19px;
+      color: #ffd645;
+    }
+
+    .btn-jogar-dado {
+      background: linear-gradient(135deg, #a04bf8, #7124d7);
+      border: none;
+      color: white;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(124, 58, 237, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-jogar-dado:hover:not(:disabled) {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .btn-jogar-dado:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-reiniciar-jogo {
+      background: #25164a;
+      border: 1px solid #3d2275;
+      color: #c9bdeb;
+      padding: 8px;
+      border-radius: 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn-reiniciar-jogo:hover {
+      background: #361f68;
+    }
+
+    .status-jogada-texto {
+      font-size: 11px;
+      font-weight: 600;
+      color: #ffc95c;
+      text-align: center;
+      min-height: 34px;
+      line-height: 1.35;
+    }
+
+    /* ========================================================
+       MODAL DE VITÓRIA / COMEMORAÇÃO CASA 51
+    ======================================================== */
+    .vitoria-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(14, 7, 34, 0.94);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+      overflow: hidden;
+      animation: vitoria-fade 0.4s ease forwards;
+    }
+
+    .vitoria-overlay.active {
+      display: flex;
+    }
+
+    @keyframes vitoria-fade {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .vitoria-card {
+      text-align: center;
+      max-width: 520px;
+      z-index: 10;
+      position: relative;
+    }
+
+    .vitoria-icone {
+      font-size: 5rem;
+      color: #ffd645;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 25px rgba(255, 214, 69, 0.8));
+      animation: trophy-bounce 1s infinite alternate ease-in-out;
+    }
+
+    @keyframes trophy-bounce {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(-10px) scale(1.08); }
+    }
+
+    .vitoria-titulo {
+      font-family: 'Fredoka', cursive;
+      font-size: 2.8rem;
+      line-height: 1.1;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ff5ca8, #ffd166, #18e2a1, #25a9ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .vitoria-desc {
+      font-size: 1.15rem;
+      line-height: 1.5;
+      color: #e5daf7;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .vitoria-destaque {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(124, 58, 237, 0.35);
+      border: 1px solid rgba(174, 125, 255, 0.4);
+      border-radius: 999px;
+      color: #ffd645;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .btn-jogar-novamente {
+      background: linear-gradient(135deg, #ff318b, #7c3aed);
+      border: 0;
+      color: #ffffff;
+      padding: 14px 34px;
+      border-radius: 50px;
+      font: 700 1.2rem 'Fredoka', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(255, 49, 139, 0.45);
+      transition: all 0.25s ease;
+    }
+
+    .btn-jogar-novamente:hover {
+      transform: scale(1.06);
+      filter: brightness(1.1);
+    }
+
+    /* Chuva de confetes animados */
+    .confete {
+      position: absolute;
+      top: -20px;
+      width: 12px;
+      height: 16px;
+      opacity: 0.9;
+      pointer-events: none;
+      animation: confete-fall 3.2s linear infinite;
+    }
+
+    @keyframes confete-fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(900px) rotate(720deg); opacity: 0; }
+    }
+
+    @media (max-width: 992px) {
+      .grid-janela-jogo {
+        grid-template-columns: 1fr;
+      }
+      .col-carta-cena {
+        min-height: 290px;
+      }
+      .janela-jogo-compacta {
+        padding: 18px;
+      }
+    }
 
     /* Outras Seções (Quiz, Pessoas, Contato) */
     .content-page {
@@ -1306,17 +1847,9 @@
       filter: drop-shadow(0 0 4px rgba(214, 41, 118, 0.28));
     }
 
-    .people-decorations .heart.sm {
-      font-size: 1.1rem;
-    }
-
-    .people-decorations .heart.md {
-      font-size: 1.7rem;
-    }
-
-    .people-decorations .heart.lg {
-      font-size: 2.2rem;
-    }
+    .people-decorations .heart.sm { font-size: 1.1rem; }
+    .people-decorations .heart.md { font-size: 1.7rem; }
+    .people-decorations .heart.lg { font-size: 2.2rem; }
 
     .people-decorations .rainbow {
       color: rgba(120, 76, 166, 0.15);
@@ -1405,25 +1938,11 @@
       object-fit: cover;
     }
 
-    .person-card:nth-child(1) .person-avatar {
-      background: linear-gradient(135deg, #f4a7c8, #ed6d9a);
-    }
-
-    .person-card:nth-child(2) .person-avatar {
-      background: linear-gradient(135deg, #7bc8ff, #3fa9ff);
-    }
-
-    .person-card:nth-child(3) .person-avatar {
-      background: linear-gradient(135deg, #8b6dff, #6b50d9);
-    }
-
-    .person-card:nth-child(4) .person-avatar {
-      background: linear-gradient(135deg, #ffc75f, #ffb020);
-    }
-
-    .person-card:nth-child(5) .person-avatar {
-      background: linear-gradient(135deg, #6ad998, #5bc88a);
-    }
+    .person-card:nth-child(1) .person-avatar { background: linear-gradient(135deg, #f4a7c8, #ed6d9a); }
+    .person-card:nth-child(2) .person-avatar { background: linear-gradient(135deg, #7bc8ff, #3fa9ff); }
+    .person-card:nth-child(3) .person-avatar { background: linear-gradient(135deg, #8b6dff, #6b50d9); }
+    .person-card:nth-child(4) .person-avatar { background: linear-gradient(135deg, #ffc75f, #ffb020); }
+    .person-card:nth-child(5) .person-avatar { background: linear-gradient(135deg, #6ad998, #5bc88a); }
 
     .person-name {
       font-family: var(--font-title);
@@ -1564,60 +2083,23 @@
     }
 
     @media (max-width: 600px) {
-      .person-modal {
-        padding: 14px;
-      }
-
-      .person-modal-panel {
-        grid-template-columns: 1fr;
-        max-height: 92vh;
-      }
-
-      .person-modal-photo,
-      .person-modal-photo img {
-        min-height: 230px;
-        height: 230px;
-      }
-
-      .person-modal-copy {
-        padding: 34px 24px 28px;
-      }
+      .person-modal { padding: 14px; }
+      .person-modal-panel { grid-template-columns: 1fr; max-height: 92vh; }
+      .person-modal-photo, .person-modal-photo img { min-height: 230px; height: 230px; }
+      .person-modal-copy { padding: 34px 24px 28px; }
     }
 
     @media (max-width: 992px) {
-      .people-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        padding-bottom: 30px;
-      }
-      .person-card {
-        min-height: 360px;
-      }
+      .people-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; padding-bottom: 30px; }
+      .person-card { min-height: 360px; }
     }
 
     @media (max-width: 600px) {
-      .lgbtq-people-section {
-        padding: 50px 5% 60px;
-      }
-
-      .lgbtq-people-header h2 {
-        font-size: 2.2rem;
-      }
-
-      .people-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-
-      .person-card {
-        min-height: 350px;
-      }
-
-      .person-avatar {
-        width: 130px;
-        height: 130px;
-        font-size: 2.5rem;
-      }
+      .lgbtq-people-section { padding: 50px 5% 60px; }
+      .lgbtq-people-header h2 { font-size: 2.2rem; }
+      .people-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .person-card { min-height: 350px; }
+      .person-avatar { width: 130px; height: 130px; font-size: 2.5rem; }
     }
 
     .quiz-shell {
@@ -1800,46 +2282,6 @@
       font-size: 0.85rem;
       margin: 10px 0 0;
       display: none;
-    }
-
-    .quiz-list {
-      display: grid;
-      gap: 18px;
-      position: relative;
-      z-index: 2;
-      margin-top: 10px;
-    }
-
-    .quiz-item {
-      padding: 22px 24px;
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid rgba(139, 104, 185, 0.18);
-      border-radius: 18px;
-      text-align: left;
-    }
-
-    .quiz-item h3 {
-      margin: 0 0 10px;
-      color: #39205f;
-      font-family: var(--font-title);
-      font-size: 1.5rem;
-    }
-
-    .quiz-item p,
-    .quiz-item li {
-      color: #514663;
-      font-weight: 700;
-      line-height: 1.6;
-      margin: 0 0 4px;
-    }
-
-    .quiz-item ul {
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
-
-    .quiz-item strong {
-      color: #2d1652;
     }
 
     .material-grid,
@@ -2114,41 +2556,12 @@
       font-weight: 700;
     }
 
-    .footer-col {
-      min-width: 0;
-    }
+    .footer-col { min-width: 0; }
+    .footer-col h3 { margin: 0 0 18px; color: #ffffff; font-family: var(--font-title); font-size: 1.1rem; font-weight: 700; }
+    .footer-nav { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .footer-nav a { color: #f1eafc; text-decoration: none; font-size: 0.96rem; font-weight: 600; opacity: 0.9; }
 
-    .footer-col h3 {
-      margin: 0 0 18px;
-      color: #ffffff;
-      font-family: var(--font-title);
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-
-    .footer-nav {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 8px;
-    }
-
-    .footer-nav a {
-      color: #f1eafc;
-      text-decoration: none;
-      font-size: 0.96rem;
-      font-weight: 600;
-      opacity: 0.9;
-    }
-
-    .social-row {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
+    .social-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
     .social-badge {
       width: 42px;
       height: 42px;
@@ -2161,26 +2574,11 @@
       background: linear-gradient(135deg, #ff6d99, #8727ff);
       box-shadow: 0 10px 18px rgba(145, 92, 255, 0.3);
     }
+    .social-badge.youtube { background: linear-gradient(135deg, #ff4747, #ff7e5f); }
+    .social-badge.tiktok { background: linear-gradient(135deg, #0f172a, #111827); }
 
-    .social-badge.youtube {
-      background: linear-gradient(135deg, #ff4747, #ff7e5f);
-    }
-
-    .social-badge.tiktok {
-      background: linear-gradient(135deg, #0f172a, #111827);
-    }
-
-    .accessibility-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .accessibility-button,
-    .contrast-toggle,
-    .toggle-switch {
+    .accessibility-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+    .accessibility-button, .contrast-toggle, .toggle-switch {
       border: 1px solid rgba(255, 255, 255, 0.2);
       background: rgba(255, 255, 255, 0.06);
       color: #ffffff;
@@ -2188,37 +2586,10 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-
-    .accessibility-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 58px;
-      height: 34px;
-      border-radius: 999px;
-    }
-
-    .accessibility-button:hover,
-    .contrast-toggle:hover,
-    .toggle-switch:hover {
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateY(-1px);
-    }
-
-    .contrast-toggle {
-      width: auto;
-      padding: 0 18px;
-      height: 34px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .contrast-toggle.active,
-    .toggle-switch.active {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.35);
-    }
-
+    .accessibility-button { display: inline-flex; align-items: center; justify-content: center; min-width: 58px; height: 34px; border-radius: 999px; }
+    .accessibility-button:hover, .contrast-toggle:hover, .toggle-switch:hover { background: rgba(255, 255, 255, 0.12); transform: translateY(-1px); }
+    .contrast-toggle { width: auto; padding: 0 18px; height: 34px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); }
+    .contrast-toggle.active, .toggle-switch.active { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.35); }
     .toggle-switch {
       width: 52px;
       height: 26px;
@@ -2230,7 +2601,6 @@
       align-items: center;
       justify-content: flex-end;
     }
-
     .toggle-switch::after {
       content: "";
       position: absolute;
@@ -2243,38 +2613,10 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       transition: all 0.2s ease;
     }
-
-    .toggle-switch.active::after {
-      right: auto;
-      left: 4px;
-    }
-
-    .footer-heart-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      margin-top: 8px;
-    }
-
-    .lgbt-heart {
-      width: 118px;
-      height: 118px;
-      display: block;
-      object-fit: contain;
-      filter: drop-shadow(0 12px 24px rgba(255, 116, 150, 0.35));
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 18px auto 0;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      color: #d9c7ff;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
+    .toggle-switch.active::after { right: auto; left: 4px; }
+    .footer-heart-wrap { display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 8px; }
+    .lgbt-heart { width: 118px; height: 118px; display: block; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(255, 116, 150, 0.35)); }
+    .footer-bottom { max-width: 1200px; margin: 18px auto 0; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.12); color: #d9c7ff; text-align: center; font-size: 0.9rem; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -2705,10 +3047,112 @@
       </div>
     </div>
 
-    <!-- JANELA FLUTUANTE MODAL COMPACTA (~30% OPACIDADE) -->
-    <div class="game-content">
-      <button class="game-close-button" id="closeGame" type="button" aria-label="Fechar jogo">&times;</button>
-      <iframe class="game-embedded" id="embeddedGame" src="jogo.html" title="Jogo Interativo PSICOQUEER"></iframe>
+    <!-- ========================================================
+         JANELA FLUTUANTE MODAL (AMPLIADA & MODERNA)
+    ======================================================== -->
+    <div class="modal-backdrop-jogo" id="modalJogoFlutuante">
+      <div class="janela-jogo-compacta">
+        
+        <button class="btn-fechar-janela" id="closeGameModalBtn" type="button" aria-label="Fechar janela do jogo">&times;</button>
+
+        <div class="cabecalho-janela">
+          <h2>Jogo Interativo</h2>
+          <p>Avance pelo tabuleiro, responda, aprenda e mostre que o respeito é o melhor caminho.</p>
+        </div>
+
+        <div class="grid-janela-jogo">
+
+          <!-- COLUNA 1: PILHA + CARTA -->
+          <div class="col-carta-cena">
+            <div class="pilha-baralho-base">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+
+            <div class="carta-ativa-container" id="cardContainer">
+              <div class="carta-fina">
+                <div class="carta-logo-wrap">
+                  <img src="Imagens/cerebrolgbt.png" alt="Logo PsicoQueer+">
+                  <div class="carta-subtitulo">• SAÚDE MENTAL, DIVERSIDADE E INCLUSÃO •</div>
+                </div>
+
+                <div class="carta-pontos-box">
+                  <div class="carta-qtd" id="cardValue">+1</div>
+                  <div class="carta-titulo" id="cardTitle">PONTOS</div>
+                  <div class="carta-circulo-icone" id="cardIcon">
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                </div>
+
+                <div class="carta-texto-desc">
+                  <p id="cardText">Fez atividade<br>artística e se<br>expressou.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUNA 2: TABULEIRO -->
+          <div class="col-tabuleiro-wrap">
+            <div class="caixa-tabuleiro">
+              <div class="grid-casas" id="boardGrid"></div>
+            </div>
+
+            <div class="faixa-cartas-especiais">
+              <div class="info-faixa">
+                <i class="fa-solid fa-layer-group"></i>
+                <div>
+                  <h4>Cartas Especiais</h4>
+                  <p>Em cada jogada, uma carta de reflexão, apoio ou desafio é retirada do monte.</p>
+                </div>
+              </div>
+              <button class="btn-ver-cartas" onclick="alert('Cartas especiais carregadas no baralho!')">
+                <i class="fa-regular fa-clone"></i> Ver cartas
+              </button>
+            </div>
+          </div>
+
+          <!-- COLUNA 3: CONTROLES -->
+          <div class="col-controles-painel">
+            <h3>Como jogar</h3>
+            <p>Role o dado, avance pelo tabuleiro até alcançar a casa 51 e reflita sobre as atitudes de acolhimento.</p>
+
+            <div class="box-dado-valor">
+              <span>Última jogada</span>
+              <strong id="diceValue">-</strong>
+            </div>
+
+            <button class="btn-jogar-dado" id="btnRollDice" onclick="playTurn()">
+              <i class="fa-solid fa-dice"></i> Jogar dado
+            </button>
+
+            <button class="btn-reiniciar-jogo" onclick="restartGame()">
+              Reiniciar
+            </button>
+
+            <p class="status-jogada-texto" id="statusMessage">
+              Você está na casa 1. Boa jornada até a casa 51!
+            </p>
+          </div>
+
+        </div>
+
+        <!-- TELA DE VITÓRIA E CELEBRAÇÃO (CASA 51) -->
+        <div class="vitoria-overlay" id="vitoriaOverlay">
+          <div class="vitoria-card">
+            <div class="vitoria-icone">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <span class="vitoria-destaque">🌟 JORNADA COMPLETA! 🌟</span>
+            <h2 class="vitoria-titulo" id="vitoriaNome">Parabéns!</h2>
+            <p class="vitoria-desc" id="vitoriaDesc">
+              Você alcançou a casa 51! Sua jornada reforçou a importância do respeito, da inclusão e do acolhimento a todas as pessoas.
+            </p>
+            <button class="btn-jogar-novamente" type="button" onclick="restartGame()">
+              <i class="fa-solid fa-rotate-right"></i> Jogar Novamente
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="wave-bottom" aria-hidden="true">
@@ -2867,7 +3311,7 @@
     <div class="page-content">
       <div class="page-heading"><h2>Fale Conosco</h2><p>Tem dúvidas, sugestões ou quer participar do projeto?</p></div>
       <div class="contact-layout">
-        <div class="contact-info"><h3>Entre em contato</h3><p>Será um prazer conversar com você sobre educação, respeito e inclusão.</p><ul><li><i class="fa-solid fa-envelope"></i> psicoqueer.contato@gmail.com</li><li><i class="fa-brands fa-instagram"></i> @psicoqueer.oficial</li><li><i class="fa-solid fa-location-dot"></i> Nossa escola / Comunidade</li></ul></div>
+        <div class="contact-info"><h3>Entre em contato</h3><p>Será um prazer conversar com você sobre educação, respeito e inclusão.</p><ul><li><i class="fa-solid fa-envelope"></i> psicoqueer03@gmail.com</li><li><i class="fa-brands fa-instagram"></i> @psicoqueer.oficial</li><li><i class="fa-solid fa-location-dot"></i> Nossa escola / Comunidade</li></ul></div>
         <form class="contact-form" id="contactForm"><label for="contactName">Nome</label><input id="contactName" type="text" required><label for="contactEmail">E-mail</label><input id="contactEmail" type="email" required><label for="contactSubject">Assunto</label><select id="contactSubject"><option>Dúvida</option><option>Sugestão</option><option>Parceria</option></select><label for="contactMessage">Mensagem</label><textarea id="contactMessage" required></textarea><button class="game-button" type="submit">Enviar mensagem</button><p class="game-status" id="contactStatus"></p></form>
       </div>
     </div>
@@ -3101,164 +3545,39 @@
 
     const peopleData = {
       L: [
-          { 
-            name: 'Adriana Calcanhotto', 
-            avatar: '🎵', 
-            image: 'Imagens/lgbtq/Adriana Calcanhotto.jpg',
-            description: 'Cantora e compositora da MPB. Estreou em 1990 com o álbum "Enguiço" e teve momentos de grande projeção nacional, como no hit "Mentiras" (1992) e no aclamado projeto "Partimpim" (2004).' 
-          },
-          { 
-            name: 'Cassandra Rios', 
-            avatar: '📖', 
-            image: 'Imagens/lgbtq/Cassandra Rios.jpg',
-            description: 'Pioneira da literatura lésbica no Brasil. Teve seu marco inicial em 1948 com "A Volúpia do Pecado" e alcançou o topo de vendas entre as décadas de 60 e 70, tornando-se a primeira mulher a vender 1 milhão de livros no país.' 
-          },
-          { 
-            name: 'Cidinha da Silva', 
-            avatar: '✍️', 
-            image: 'Imagens/lgbtq/Cidinha da Silva.jpg',
-            description: 'Escritora, dramaturga e ativista. Teve grande projeção em 2006 com a publicação de "Cadatrançado" e consagrou-se na literatura contemporânea ao vencer o Prêmio Jabuti em 2019 com o livro "Um Exu em Nova York".' 
-          },    
-          { 
-            name: 'Maria Gadú', 
-            avatar: '🎸', 
-            image: 'Imagens/lgbtq/Maria Gadú.jpg',
-            description: 'Cantora e ativista socioambiental. Teve sua explosão nacional em 2009 com seu álbum de estreia homônimo e o estrondoso sucesso da música "Shimbalaiê", marcando a MPB nos anos 2010.' 
-          },
-          { 
-            name: 'Zélia Duncan', 
-            avatar: '🎙️', 
-            image: 'Imagens/lgbtq/Zelia Duncan.jpg',
-            description: 'Voz marcante da MPB e ativista. Teve seu grande momento de projeção em 1994 com o estrondoso sucesso do álbum "Zélia Duncan" e do clássico hit "Catedral", consolidando sua trajetória de conquistas e prêmios.' 
-          }
+          { name: 'Adriana Calcanhotto', avatar: '🎵', image: 'Imagens/lgbtq/Adriana Calcanhotto.jpg', description: 'Cantora e compositora da MPB. Estreou em 1990 com o álbum "Enguiço" e teve momentos de grande projeção nacional, como no hit "Mentiras" (1992) e no aclamado projeto "Partimpim" (2004).' },
+          { name: 'Cassandra Rios', avatar: '📖', image: 'Imagens/lgbtq/Cassandra Rios.jpg', description: 'Pioneira da literatura lésbica no Brasil. Teve seu marco inicial em 1948 com "A Volúpia do Pecado" e alcançou o topo de vendas entre as décadas de 60 e 70, tornando-se a primeira mulher a vender 1 milhão de livros no país.' },
+          { name: 'Cidinha da Silva', avatar: '✍️', image: 'Imagens/lgbtq/Cidinha da Silva.jpg', description: 'Escritora, dramaturga e ativista. Teve grande projeção em 2006 com a publicação de "Cadatrançado" e consagrou-se na literatura contemporânea ao vencer o Prêmio Jabuti em 2019 com o livro "Um Exu em Nova York".' },    
+          { name: 'Maria Gadú', avatar: '🎸', image: 'Imagens/lgbtq/Maria Gadú.jpg', description: 'Cantora e ativista socioambiental. Teve sua explosão nacional em 2009 com seu álbum de estreia homônimo e o estrondoso sucesso da música "Shimbalaiê", marcando a MPB nos anos 2010.' },
+          { name: 'Zélia Duncan', avatar: '🎙️', image: 'Imagens/lgbtq/Zelia Duncan.jpg', description: 'Voz marcante da MPB e ativista. Teve seu grande momento de projeção em 1994 com o estrondoso sucesso do álbum "Zélia Duncan" e do clássico hit "Catedral", consolidando sua trajetória de conquistas e prêmios.' }
       ],
       G: [
-          { 
-            name: 'Arthur Nory', 
-            avatar: '🤸‍♂️', 
-            image: 'Imagens/lgbtq/Arthur Nory.jpg', 
-            description: 'Ginasta olímpico de destaque internacional. Conquistou a medalha de bronze no solo nos Jogos Olímpicos do Rio 2016 e consagrou-se campeão mundial na barra fixa em 2019, sendo uma referência de representatividade no esporte de alto rendimento.' 
-          },
-          { 
-            name: 'Lúcio Cardoso', 
-            avatar: '📖', 
-            image: 'Imagens/lgbtq/Lúcio Cardoso.jpg', 
-            description: 'Romancista, dramaturgo, poeta e pintor modernista. Teve seu ápice criativo e consagrador em 1959 com o lançamento da obra-prima "Crônica da Casa Assassinada", marco fundamental da prosa intimista e psicológica na literatura brasileira.' 
-          },
-          { 
-            name: 'Paulo Gustavo', 
-            avatar: '🎬', 
-            image: 'Imagens/lgbtq/Paulo Gustavo.jpg', 
-            description: 'Ator, humorista e roteirista. Fenômeno de popularidade, revolucionou a comédia nacional a partir de 2006 com a peça "Minha Mãe É uma Peça", transformando a personagem Dona Hermínia na maior bilheteria da história do cinema brasileiro.' 
-          },
-          { 
-            name: 'Lulu Santos', 
-            avatar: '🎸', 
-            image: 'Imagens/lgbtq/Lulu Santos.jpg', 
-            description: 'Cantor, compositor e guitarrista, um dos maiores ícones do pop rock brasileiro. Estourou nos anos 1980 com clássicos atemporais como "Tempos Modernos" (1982) e "Como Uma Onda" (1983), acumulando décadas de sucessos massivos e celebração ao amor livre.' 
-          },
-          { 
-            name: 'Marco Nanini', 
-            avatar: '🎭', 
-            image: 'Imagens/lgbtq/Marco Nanini.jpg', 
-            description: 'Ator fundamental do teatro, cinema e televisão brasileira. Consagrou-se nos palcos em peças históricas como "O Mistério de Irma Vap" (1986) e marcou gerações na TV ao interpretar o icônico Lineu Silva no seriado "A Grande Família" por 14 anos.' 
-          }
+          { name: 'Arthur Nory', avatar: '🤸‍♂️', image: 'Imagens/lgbtq/Arthur Nory.jpg', description: 'Ginasta olímpico de destaque internacional. Conquistou a medalha de bronze no solo nos Jogos Olímpicos do Rio 2016 e consagrou-se campeão mundial na barra fixa em 2019, sendo uma referência de representatividade no esporte de alto rendimento.' },
+          { name: 'Lúcio Cardoso', avatar: '📖', image: 'Imagens/lgbtq/Lúcio Cardoso.jpg', description: 'Romancista, dramaturgo, poeta e pintor modernista. Teve seu ápice criativo e consagrador em 1959 com o lançamento da obra-prima "Crônica da Casa Assassinada", marco fundamental da prosa intimista e psicológica na literatura brasileira.' },
+          { name: 'Paulo Gustavo', avatar: '🎬', image: 'Imagens/lgbtq/Paulo Gustavo.jpg', description: 'Ator, humorista e roteirista. Fenômeno de popularidade, revolucionou a comédia nacional a partir de 2006 com a peça "Minha Mãe É uma Peça", transformando a personagem Dona Hermínia na maior bilheteria da história do cinema brasileiro.' },
+          { name: 'Lulu Santos', avatar: '🎸', image: 'Imagens/lgbtq/Lulu Santos.jpg', description: 'Cantor, compositor e guitarrista, um dos maiores ícones do pop rock brasileiro. Estourou nos anos 1980 com clássicos atemporais como "Tempos Modernos" (1982) e "Como Uma Onda" (1983), acumulando décadas de sucessos massivos e celebração ao amor livre.' },
+          { name: 'Marco Nanini', avatar: '🎭', image: 'Imagens/lgbtq/Marco Nanini.jpg', description: 'Ator fundamental do teatro, cinema e televisão brasileira. Consagrou-se nos palcos em peças históricas como "O Mistério de Irma Vap" (1986) e marcou gerações na TV ao interpretar o icônico Lineu Silva no seriado "A Grande Família" por 14 anos.' }
       ],
       B: [
-          { 
-            name: 'Anitta', 
-            avatar: '🎤', 
-            image: 'Imagens/lgbtq/Anitta.avif', 
-            description: 'Cantora, compositora e empresária de alcance global. Revolucionou a música pop e o funk brasileiro com sucessos massivos como "Show das Poderosas" (2013) e "Envolver" (2022), além de ser uma voz aberta e influente sobre bissexualidade.' 
-          },
-          { 
-            name: 'Jão', 
-            avatar: '🎤', 
-            image: 'Imagens/lgbtq/Jao.jpg', 
-            description: 'Cantor e compositor de destaque no pop nacional. Ganhou projeção com o álbum "Lobos" (2018) e consolidou seu sucesso estrondoso com "Pirata" (2021) e "Super" (2023), lotando estádios e explorando abertamente o amor e as vivências entre homens em suas canções.' 
-          },
-          { 
-            name: 'Renato Russo', 
-            avatar: '🎸', 
-            image: 'Imagens/lgbtq/Renato Russo.jpg', 
-            description: 'Poeta, cantor e líder da lendária banda Legião Urbana. Ícone definitivo do rock nacional dos anos 1980 e 1990, eternizou hinos geracionais como "Pais e Filhos" (1989) e explorou com sensibilidade a fluidez afetiva em suas composições.' 
-          },
-          { 
-            name: 'Rafaela Silva', 
-            avatar: '🥋', 
-            image: 'Imagens/lgbtq/Rafaela Silva.jpg', 
-            description: 'Judoca de elite e campeã mundial e olímpica. Conquistou a histórica medalha de ouro nos Jogos Olímpicos do Rio 2016 e é um ícone de resiliência, inspirando o esporte nacional ao falar abertamente sobre sua bissexualidade.' 
-          },
-          { 
-            name: 'Richarlyson', 
-            avatar: '⚽', 
-            image: 'Imagens/lgbtq/Richarlyson.jpg', 
-            description: 'Ex-jogador de futebol com passagens vitoriosas por grandes clubes como o São Paulo e campeão pela Seleção Brasileira. Fez história ao falar abertamente sobre sua bissexualidade, quebrando tabus em um dos ambientes mais desafiadores do esporte.' 
-          }
+          { name: 'Anitta', avatar: '🎤', image: 'Imagens/lgbtq/Anitta.avif', description: 'Cantora, compositora e empresária de alcance global. Revolucionou a música pop e o funk brasileiro com sucessos massivos como "Show das Poderosas" (2013) e "Envolver" (2022), além de ser uma voz aberta e influente sobre bissexualidade.' },
+          { name: 'Jão', avatar: '🎤', image: 'Imagens/lgbtq/Jao.jpg', description: 'Cantor e compositor de destaque no pop nacional. Ganhou projeção com o álbum "Lobos" (2018) e consolidou seu sucesso estrondoso com "Pirata" (2021) e "Super" (2023), lotando estádios e explorando abertamente o amor e as vivências entre homens em suas canções.' },
+          { name: 'Renato Russo', avatar: '🎸', image: 'Imagens/lgbtq/Renato Russo.jpg', description: 'Poeta, cantor e líder da lendária banda Legião Urbana. Ícone definitivo do rock nacional dos anos 1980 e 1990, eternizou hinos geracionais como "Pais e Filhos" (1989) e explorou com sensibilidade a fluidez afetiva em suas composições.' },
+          { name: 'Rafaela Silva', avatar: '🥋', image: 'Imagens/lgbtq/Rafaela Silva.jpg', description: 'Judoca de elite e campeã mundial e olímpica. Conquistou a histórica medalha de ouro nos Jogos Olímpicos do Rio 2016 e é um ícone de resiliência, inspirando o esporte nacional ao falar abertamente sobre sua bissexualidade.' },
+          { name: 'Richarlyson', avatar: '⚽', image: 'Imagens/lgbtq/Richarlyson.jpg', description: 'Ex-jogador de futebol com passagens vitoriosas por grandes clubes como o São Paulo e campeão pela Seleção Brasileira. Fez história ao falar abertamente sobre sua bissexualidade, quebrando tabus em um dos ambientes mais desafiadores do esporte.' }
       ],
       T: [
-          { 
-            name: 'João W. Nery', 
-            avatar: '📖', 
-            image: 'Imagens/lgbtq/Joao W Nery.jpg', 
-            description: 'Escritor, psicólogo e ativista. Reconhecido como o primeiro homem trans a realizar a cirurgia de redesignação sexual no Brasil nos anos 1970, tornou-se pioneiro fundamental na luta pelos direitos e pela memória trans com sua autobiografia "Viagem Solitária" (2011).' 
-          },
-          { 
-            name: 'Laerte Coutinho', 
-            avatar: '✏️', 
-            image: 'Imagens/lgbtq/Laerte Coutinho.jpg', 
-            description: 'Cartunista, chargista e roteirista seminal da cultura brasileira. Criadora de personagens marcantes como "Piratas do Tietê" e "Overman", assumiu sua identidade de gênero nos anos 2010, usando seus quadrinhos e voz pública para aprofundar discussões sobre gênero e sociedade.' 
-          },
-          { 
-            name: 'Liniker', 
-            avatar: '🎙️', 
-            image: 'Imagens/lgbtq/Liniker.jpg', 
-            description: 'Cantora, compositora e atriz. Conquistou projeção em 2015 com "Zero" e fez história ao se tornar a primeira artista trans brasileira a vencer um Grammy Latino em 2022 com o aclamado álbum "Indigo Borboleta Anil", consolidando-se na vanguarda da MPB contemporânea.' 
-          },
-          { 
-            name: 'Tarso Brant', 
-            avatar: '🎬', 
-            image: 'Imagens/lgbtq/Tarso Brant.jpg', 
-            description: 'Ator e modelo. Ganhou notoriedade ao compartilhar publicamente seu processo de transição de gênero na internet e foi pioneiro na teledramaturgia ao atuar e prestar consultoria para o desenvolvimento da temática trans na novela "A Força do Querer" (2017).' 
-          },
-          { 
-            name: 'Tiffany Abreu', 
-            avatar: '🏐', 
-            image: 'Imagens/lgbtq/Tiffany Abreu.jpg', 
-            description: 'Jogadora de voleibol profissional de alta performance. Fez história no esporte ao se tornar a primeira atleta trans a disputar a Superliga Brasileira de Voleibol Feminino em 2017, consolidando uma trajetória expressiva e abrindo caminhos para a inclusão no esporte.' 
-          }
+          { name: 'João W. Nery', avatar: '📖', image: 'Imagens/lgbtq/Joao W Nery.jpg', description: 'Escritor, psicólogo e ativista. Reconhecido como o primeiro homem trans a realizar a cirurgia de redesignação sexual no Brasil nos anos 1970, tornou-se pioneiro fundamental na luta pelos direitos e pela memória trans com sua autobiografia "Viagem Solitária" (2011).' },
+          { name: 'Laerte Coutinho', avatar: '✏️', image: 'Imagens/lgbtq/Laerte Coutinho.jpg', description: 'Cartunista, chargista e roteirista seminal da cultura brasileira. Criadora de personagens marcantes como "Piratas do Tietê" e "Overman", assumiu sua identidade de gênero nos anos 2010, usando seus quadrinhos e voz pública para aprofundar discussões sobre gênero e sociedade.' },
+          { name: 'Liniker', avatar: '🎙️', image: 'Imagens/lgbtq/Liniker.jpg', description: 'Cantora, compositora e atriz. Conquistou projeção em 2015 com "Zero" e fez história ao se tornar a primeira artista trans brasileira a vencer um Grammy Latino em 2022 com o aclamado álbum "Indigo Borboleta Anil", consolidando-se na vanguarda da MPB contemporânea.' },
+          { name: 'Tarso Brant', avatar: '🎬', image: 'Imagens/lgbtq/Tarso Brant.jpg', description: 'Ator e modelo. Ganhou notoriedade ao compartilhar publicamente seu processo de transição de gênero na internet e foi pioneiro na teledramaturgia ao atuar e prestar consultoria para o desenvolvimento da temática trans na novela "A Força do Querer" (2017).' },
+          { name: 'Tiffany Abreu', avatar: '🏐', image: 'Imagens/lgbtq/Tiffany Abreu.jpg', description: 'Jogadora de voleibol profissional de alta performance. Fez história no esporte ao se tornar a primeira atleta trans a disputar a Superliga Brasileira de Voleibol Feminino em 2017, consolidando uma trajetória expressiva e abrindo caminhos para a inclusão no esporte.' }
       ],
       Q: [
-          { 
-            name: 'Castiel Vitorino Brasileiro', 
-            avatar: '🎨', 
-            image: 'Imagens/lgbtq/Castiel Vitorino Brasileiro.jpg', 
-            description: 'Artista visual, escritora e psicóloga clínica. Destacou-se no circuito de arte contemporânea internacional, incluindo a Bienal de São Paulo (2023), articulando memórias ancestrais, cura e dissidências de gênero e corpo.' 
-          },
-          { 
-            name: 'Gloria Groove', 
-            avatar: '👑', 
-            image: 'Imagens/lgbtq/Gloria Groove.jpg', 
-            description: 'Cantora, compositora, dubladora e drag queen. Tornou-se um dos maiores fenômenos da música pop e do hip-hop nacional com o aclamado álbum "Lady Leste" (2022) e o hit "Vermelho", redefinindo a versatilidade artística e a cultura drag no país.' 
-          },
-          { 
-            name: 'Cazuza', 
-            avatar: '🎙️', 
-            image: 'Imagens/lgbtq/Cazuza.jpg', 
-            description: 'Cantor e poeta seminal do rock brasileiro. Despontou nos anos 1980 com o Barão Vermelho e em carreira solo com clássicos como "Exagerado" (1985) e "Ideologia" (1988), tornando-se símbolo de contestação política, liberdade de expressão e afeto sem rótulos.' 
-          },
-          { 
-            name: 'Pabllo Vittar', 
-            avatar: '🌟', 
-            image: 'Imagens/lgbtq/Pabllo Vittar.jpg', 
-            description: 'Cantora, compositora e drag queen de alcance global. Conquistou projeção com o álbum "Vai Passar Mal" (2017) e sucessos como "K.O.", quebrando recordes mundiais e levando a arte drag brasileira aos principais festivais e paradas internacionais.' 
-          },
-          { 
-            name: 'Ney Matogrosso', 
-            avatar: '✨', 
-            image: 'Imagens/lgbtq/Ney Matogrosso.jpg', 
-            description: 'Cantor, performer e pioneiro da liberdade estética no Brasil. Estourou nos anos 1970 à frente do Secos & Molhados com sua voz de contratenor e presença cênica transgressora, desafiando normas de gênero e consolidando uma das carreiras mais ricas da MPB.' 
-          }
+          { name: 'Castiel Vitorino Brasileiro', avatar: '🎨', image: 'Imagens/lgbtq/Castiel Vitorino Brasileiro.jpg', description: 'Artista visual, escritora e psicóloga clínica. Destacou-se no circuito de arte contemporânea internacional, incluindo a Bienal de São Paulo (2023), articulando memórias ancestrais, cura e dissidências de gênero e corpo.' },
+          { name: 'Gloria Groove', avatar: '👑', image: 'Imagens/lgbtq/Gloria Groove.jpg', description: 'Cantora, compositora, dubladora e drag queen. Tornou-se um dos maiores fenômenos da música pop e do hip-hop nacional com o aclamado álbum "Lady Leste" (2022) e o hit "Vermelho", redefinindo a versatilidade artística e a cultura drag no país.' },
+          { name: 'Cazuza', avatar: '🎙️', image: 'Imagens/lgbtq/Cazuza.jpg', description: 'Cantor e poeta seminal do rock brasileiro. Despontou nos anos 1980 com o Barão Vermelho e em carreira solo com clássicos como "Exagerado" (1985) e "Ideologia" (1988), tornando-se símbolo de contestação política, liberdade de expressão e afeto sem rótulos.' },
+          { name: 'Pabllo Vittar', avatar: '🌟', image: 'Imagens/lgbtq/Pabllo Vittar.jpg', description: 'Cantora, compositora e drag queen de alcance global. Conquistou projeção com o álbum "Vai Passar Mal" (2017) e sucessos como "K.O.", quebrando recordes mundiais e levando a arte drag brasileira aos principais festivais e paradas internacionais.' },
+          { name: 'Ney Matogrosso', avatar: '✨', image: 'Imagens/lgbtq/Ney Matogrosso.jpg', description: 'Cantor, performer e pioneiro da liberdade estética no Brasil. Estourou nos anos 1970 à frente do Secos & Molhados com sua voz de contratenor e presença cênica transgressora, desafiando normas de gênero e consolidando uma das carreiras mais ricas da MPB.' }
       ],
       I: [
         { name: 'Iris Mendes', avatar: '✨', description: 'Ativista intersex. Trabalha na visibilidade e direitos de pessoas intersex.' },
@@ -3268,68 +3587,18 @@
         { name: 'Nicole Ramos', avatar: '🌟', description: 'Pesquisadora em direitos intersex e políticas de saúde inclusiva.' }
       ],
       A: [
-          { 
-            name: 'Giovana Fagundes', 
-            avatar: '🎙️', 
-            image: 'Imagens/lgbtq/Giovana Fagundes.jpg', 
-            description: 'Humorista, atriz e comunicadora. Destaca-se no stand-up comedy e na criação de conteúdo digital, abordando com sarcasmo e inteligência temas como relacionamentos, sexualidade e bissexualidade.' 
-          },
-          { 
-            name: 'Iza', 
-            avatar: '👑', 
-            image: 'Imagens/lgbtq/Iza.jpg', 
-            description: 'Cantora, compositora e apresentadora de grande sucesso no pop e R&B nacional. Conquistou projeção com o álbum "Dona de Mim" (2018) e declarou-se publicamente como demissexual, trazendo visibilidade ao tema.' 
-          },
-          { 
-            name: 'Lucas Raniel', 
-            avatar: '🎗️', 
-            image: 'Imagens/lgbtq/Lucas Raniel.jpg', 
-            description: 'Ativista, comunicador e criador de conteúdo digital. Tornou-se uma das principais vozes da nova geração na desmistificação e educação sobre HIV/Aids, direitos sexuais e vivência da comunidade LGBTQIA+.' 
-          },
-          { 
-            name: 'Roberta Miranda', 
-            avatar: '🤠', 
-            image: 'Imagens/lgbtq/Roberta Miranda.jpg', 
-            description: 'Cantora e compositora, consagrada como a "Rainha do Sertanejo". Pioneira em abrir caminhos para mulheres no gênero com sucessos como "Majestade, o Sabiá", fala abertamente sobre sua atração por pessoas independentemente de gênero.' 
-          },
-          { 
-            name: 'Yasmin Stevam', 
-            avatar: '✨', 
-            image: 'Imagens/lgbtq/Yasmin Stevam.jpg', 
-            description: 'Criadora de conteúdo digital, modelo e comunicadora. Produz reflexões e conteúdos sobre moda, autocuidado, estilo de vida e vivências da comunidade LGBTQIA+, promovendo representatividade nas redes sociais.' 
-          }
+          { name: 'Giovana Fagundes', avatar: '🎙️', image: 'Imagens/lgbtq/Giovana Fagundes.jpg', description: 'Humorista, atriz e comunicadora. Destaca-se no stand-up comedy e na criação de conteúdo digital, abordando com sarcasmo e inteligência temas como relacionamentos, sexualidade e bissexualidade.' },
+          { name: 'Iza', avatar: '👑', image: 'Imagens/lgbtq/Iza.jpg', description: 'Cantora, compositora e apresentadora de grande sucesso no pop e R&B nacional. Conquistou projeção com o álbum "Dona de Mim" (2018) e declarou-se publicamente como demissexual, trazendo visibilidade ao tema.' },
+          { name: 'Lucas Raniel', avatar: '🎗️', image: 'Imagens/lgbtq/Lucas Raniel.jpg', description: 'Ativista, comunicador e criador de conteúdo digital. Tornou-se uma das principais vozes da nova geração na desmistificação e educação sobre HIV/Aids, direitos sexuais e vivência da comunidade LGBTQIA+.' },
+          { name: 'Roberta Miranda', avatar: '🤠', image: 'Imagens/lgbtq/Roberta Miranda.jpg', description: 'Cantora e compositora, consagrada como a "Rainha do Sertanejo". Pioneira em abrir caminhos para mulheres no gênero com sucessos como "Majestade, o Sabiá", fala abertamente sobre sua atração por pessoas independentemente de gênero.' },
+          { name: 'Yasmin Stevam', avatar: '✨', image: 'Imagens/lgbtq/Yasmin Stevam.jpg', description: 'Criadora de conteúdo digital, modelo e comunicadora. Produz reflexões e conteúdos sobre moda, autocuidado, estilo de vida e vivências da comunidade LGBTQIA+, promovendo representatividade nas redes sociais.' }
       ],
       '+': [
-          { 
-            name: 'Bárbara Paz', 
-            avatar: '🎭', 
-            image: 'Imagens/lgbtq/Bárbara Paz.jpg', 
-            description: 'Atriz, diretora e produtora. Identifica-se como pessoa não-binária e bissexual. Venceu festivais internacionais de cinema com o documentário "Babenco" (2019) e construiu uma carreira aclamada na televisão e nos palcos brasileiros.' 
-          },
-          { 
-            name: 'Caio Fernando Abreu', 
-            avatar: '✍️', 
-            image: 'Imagens/lgbtq/Caio Fernando Abreu.jpg', 
-            description: 'Escritor, jornalista e dramaturgo bissexual. Uma das vozes mais intensas e líricas da literatura contemporânea brasileira, retratou com sensibilidade o amor entre homens, a solidão urbana e a crise do HIV em obras como "Morangos Mofados" (1982).' 
-          },
-          { 
-            name: 'Guimarães Rosa', 
-            avatar: '📖', 
-            image: 'Imagens/lgbtq/Guimarães Rosa.jpg', 
-            description: 'Escritor e diplomata cuja obra explora a fluidez e a homoafetividade. Autor do monumental "Grande Sertão: Veredas" (1956), imortalizou o pacto de amor e tensão lírica entre Riobaldo e Diadorim, marco sutil da diversidade na literatura clássica.' 
-          },
-          { 
-            name: 'Preta Gil', 
-            avatar: '🎤', 
-            image: 'Imagens/lgbtq/Preta Gil.jpg', 
-            description: 'Cantora, apresentadora e empresária abertamente bissexual e pansexual. Pioneira em defender a liberdade corporal e afetiva no entretenimento de massa, lidera o tradicional "Bloco da Preta" e consolidou uma carreira de celebração à diversidade.' 
-          },
-          { 
-            name: 'Reynaldo Gianecchini', 
-            avatar: '🎬', 
-            image: 'Imagens/lgbtq/Reynaldo Gianecchini.jpg', 
-            description: 'Ator de longa trajetória na TV, cinema e teatro. Declarou-se publicamente pansexual e com sexualidade fluida, tornando-se uma figura de grande relevância ao quebrar estereótipos em torno dos galãs da teledramaturgia nacional.' 
-          }
+          { name: 'Bárbara Paz', avatar: '🎭', image: 'Imagens/lgbtq/Bárbara Paz.jpg', description: 'Atriz, diretora e produtora. Identifica-se como pessoa não-binária e bissexual. Venceu festivais internacionais de cinema com o documentário "Babenco" (2019) e construiu uma carreira aclamada na televisão e nos palcos brasileiros.' },
+          { name: 'Caio Fernando Abreu', avatar: '✍️', image: 'Imagens/lgbtq/Caio Fernando Abreu.jpg', description: 'Escritor, jornalista e dramaturgo bissexual. Uma das vozes mais intensas e líricas da literatura contemporânea brasileira, retratou com sensibilidade o amor entre homens, a solidão urbana e a crise do HIV em obras como "Morangos Mofados" (1982).' },
+          { name: 'Guimarães Rosa', avatar: '📖', image: 'Imagens/lgbtq/Guimarães Rosa.jpg', description: 'Escritor e diplomata cuja obra explora a fluidez e a homoafetividade. Autor do monumental "Grande Sertão: Veredas" (1956), imortalizou o pacto de amor e tensão lírica entre Riobaldo e Diadorim, marco sutil da diversidade na literatura clássica.' },
+          { name: 'Preta Gil', avatar: '🎤', image: 'Imagens/lgbtq/Preta Gil.jpg', description: 'Cantora, apresentadora e empresária abertamente bissexual e pansexual. Pioneira em defender a liberdade corporal e afetiva no entretenimento de massa, lidera o tradicional "Bloco da Preta" e consolidou uma carreira de celebração à diversidade.' },
+          { name: 'Reynaldo Gianecchini', avatar: '🎬', image: 'Imagens/lgbtq/Reynaldo Gianecchini.jpg', description: 'Ator de longa trajetória na TV, cinema e teatro. Declarou-se publicamente pansexual e com sexualidade fluida, tornando-se uma figura de grande relevância ao quebrar estereótipos em torno dos galãs da teledramaturgia nacional.' }
       ]
     };
 
@@ -3496,6 +3765,7 @@
     });
     updateSiglaDisplay();
 
+    /* QUIZ SCRIPT */
     const quizQuestions = [
       {
         question: 'Qual é a importância da promoção da diversidade no ambiente escolar?',
@@ -3739,32 +4009,238 @@
       contactForm.reset();
     });
 
-    const gameSection = document.getElementById('jogo');
-    const startGameButton = document.getElementById('startGame');
-    const closeGameButton = document.getElementById('closeGame');
-    const playerNameInput = document.getElementById('playerName');
+    /* ========================================================
+       LÓGICA DO JOGO INTERATIVO (COM CELEBRAÇÃO NA CASA 51)
+    ======================================================== */
+    const cartasData = [
+      { type: 'apoio', value: '+1', title: 'PONTOS', text: 'Tirou tempo para si mesmo.', icon: 'fa-heart' },
+      { type: 'apoio', value: '+1', title: 'PONTOS', text: 'Fez atividade artística e se expressou.', icon: 'fa-star' },
+      { type: 'apoio', value: '+2', title: 'PONTOS', text: 'Conversou com alguém de confiança.', icon: 'fa-comment-dots' },
+      { type: 'apoio', value: '+2', title: 'PONTOS', text: 'Colega te defendeu de preconceito.', icon: 'fa-shield-halved' },
+      { type: 'apoio', value: '+2', title: 'PONTOS', text: 'Ajudou alguém e se sentiu valorizado.', icon: 'fa-hand-holding-heart' },
+      { type: 'apoio', value: '+2', title: 'PONTOS', text: 'Amigos te apoiaram em momento difícil.', icon: 'fa-user-group' },
+      { type: 'apoio', value: 'AVANCE', title: '1 CASA', text: 'Professor reconheceu seu esforço.', icon: 'fa-award' },
+      { type: 'apoio', value: 'AVANCE', title: '1 CASA', text: 'Participou de roda de conversa sobre respeito.', icon: 'fa-comments' },
+      { type: 'apoio', value: 'AVANCE', title: '1 CASA', text: 'Recebeu apoio da família.', icon: 'fa-house-heart' },
+      { type: 'apoio', value: 'AVANCE', title: '1 CASA', text: 'Participou de projeto inclusivo.', icon: 'fa-puzzle-piece' },
 
-    function closeGameModal() {
-      gameSection.classList.remove('game-started');
-      document.body.classList.remove('game-modal-open');
+      { type: 'desafio', value: '-1', title: 'PONTOS', text: 'Não respeitaram seu nome/pronome.', icon: 'fa-triangle-exclamation' },
+      { type: 'desafio', value: '-1', title: 'PONTOS', text: 'Sentiu desconforto ao usar o banheiro.', icon: 'fa-door-closed' },
+      { type: 'desafio', value: '-2', title: 'PONTOS', text: 'Foi excluído em atividades por sua orientação sexual.', icon: 'fa-ban' },
+      { type: 'desafio', value: '-2', title: 'PONTOS', text: 'Sofreu piadas preconceituosas.', icon: 'fa-face-frown' },
+      { type: 'desafio', value: '-3', title: 'PONTOS', text: 'Sofreu agressão verbal.', icon: 'fa-bullhorn' },
+      { type: 'desafio', value: '-3', title: 'PONTOS', text: 'Sofreu assédio sexual.', icon: 'fa-hand' },
+      { type: 'desafio', value: 'VOLTE', title: '1 CASA', text: 'Vítima de injustiça social.', icon: 'fa-arrow-rotate-left' },
+      { type: 'desafio', value: 'VOLTE', title: '1 CASA', text: 'Escola negligenciou casos de preconceito.', icon: 'fa-building-circle-exclamation' },
+      { type: 'desafio', value: 'VOLTE', title: '2 CASAS', text: 'Sofreu agressão física.', icon: 'fa-heart-crack' },
+      { type: 'desafio', value: 'VOLTE', title: '2 CASAS', text: 'Discriminação de professores.', icon: 'fa-user-xmark' },
+
+      { type: 'reflexao', value: '?', title: 'REFLEXÃO', text: 'Já presenciou preconceito na escola? O que fez?', icon: 'fa-lightbulb' },
+      { type: 'reflexao', value: '?', title: 'REFLEXÃO', text: 'Como pequenas atitudes tornam a escola mais acolhedora?', icon: 'fa-hands-holding-circle' },
+      { type: 'reflexao', value: '?', title: 'REFLEXÃO', text: 'Se pudesse criar uma regra de respeito, qual seria?', icon: 'fa-scale-balanced' },
+      { type: 'reflexao', value: '?', title: 'REFLEXÃO', text: 'Já deixou de falar por medo de julgamento? Como se sentiu?', icon: 'fa-comment-slash' },
+      { type: 'reflexao', value: '?', title: 'REFLEXÃO', text: 'Qual foi a atitude mais acolhedora que já viu ou recebeu?', icon: 'fa-face-smile-beam' },
+      { type: 'reflexao', value: '?', title: 'REFLEXÃO', text: 'Como o apoio de colegas ajuda estudantes LGBTQIAPN+?', icon: 'fa-handshake-angle' },
+      { type: 'reflexao', value: '?', title: 'REFLEXÃO', text: 'O que faria se um amigo sofresse bullying?', icon: 'fa-user-shield' },
+      { type: 'reflexao', value: '?', title: 'REFLEXÃO', text: 'O que significa sentir-se seguro na escola?', icon: 'fa-shield-heart' },
+      { type: 'reflexao', value: '?', title: 'REFLEXÃO', text: 'Que mensagem sobre respeito deixaria para todos os alunos?', icon: 'fa-envelope-open-text' },
+      { type: 'reflexao', value: '?', title: 'REFLEXÃO', text: 'Como o diálogo entre estudantes e professores ajuda no combate ao preconceito?', icon: 'fa-graduation-cap' }
+    ];
+
+    const cellColorClasses = ['bg-verde', 'bg-amarelo', 'bg-laranja', 'bg-rosa', 'bg-roxo', 'bg-azul'];
+    let playerPosition = 1;
+    const GOAL_POSITION = 51;
+    const boardGrid = document.getElementById('boardGrid');
+    const modalJogoFlutuante = document.getElementById('modalJogoFlutuante');
+    const closeGameModalBtn = document.getElementById('closeGameModalBtn');
+    const startGameButton = document.getElementById('startGame');
+    const playerNameInput = document.getElementById('playerName');
+    const vitoriaOverlay = document.getElementById('vitoriaOverlay');
+
+    const boardLayout = [
+      [null, null, null, null, null, null, null, null, null, 51],
+      [41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+      [40, 39, 38, 37, 36, 35, 34, 33, 32, 31],
+      [21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+      [20, 19, 18, 17, 16, 15, 14, 13, 12, 11],
+      [1,  2,  3,  4,  5,  6,  7,  8,  9,  10]
+    ];
+
+    function createBoard() {
+      if (!boardGrid) return;
+      boardGrid.innerHTML = '';
+      boardLayout.forEach(row => {
+        row.forEach(cellNum => {
+          const cell = document.createElement('div');
+          if (cellNum === null) {
+            cell.className = 'casa vazia';
+          } else {
+            const colorClass = cellColorClasses[(cellNum - 1) % cellColorClasses.length];
+            const isGoal = cellNum === GOAL_POSITION;
+            const isStart = cellNum === 1;
+
+            cell.className = `casa ${colorClass} ${isGoal ? 'casa-meta' : ''} ${isStart ? 'casa-inicio' : ''}`;
+            cell.id = `cell-${cellNum}`;
+            cell.innerText = cellNum;
+
+            if (cellNum === playerPosition) {
+              renderPlayerToken(cell);
+            }
+          }
+          boardGrid.appendChild(cell);
+        });
+      });
     }
 
-    startGameButton.addEventListener('click', () => {
-      const playerName = playerNameInput.value.trim();
-      gameSection.classList.add('game-started');
-      document.body.classList.add('game-modal-open');
-      if (playerName) {
-        playerNameInput.dataset.playerName = playerName;
+    function renderPlayerToken(container) {
+      const token = document.createElement('div');
+      token.className = 'peao-jogador';
+      token.innerHTML = `<div class="peao-jogador-inner"><i class="fa-solid fa-person"></i></div>`;
+      container.appendChild(token);
+    }
+
+    function updateToken() {
+      document.querySelectorAll('.peao-jogador').forEach(el => el.remove());
+      const targetCell = document.getElementById(`cell-${playerPosition}`);
+      if (targetCell) {
+        renderPlayerToken(targetCell);
+      }
+    }
+
+    function displayCardWithAnimation(card) {
+      const cardContainer = document.getElementById('cardContainer');
+      const valEl = document.getElementById('cardValue');
+      const titleEl = document.getElementById('cardTitle');
+      const textEl = document.getElementById('cardText');
+      const iconEl = document.getElementById('cardIcon');
+
+      if (!cardContainer) return;
+
+      cardContainer.classList.add('deal');
+
+      setTimeout(() => {
+        valEl.innerText = card.value;
+        titleEl.innerText = card.title;
+        textEl.innerHTML = card.text.replace(/\\n/g, '<br>');
+        iconEl.innerHTML = `<i class="fa-solid ${card.icon}"></i>`;
+
+        if (card.type === 'desafio') {
+          valEl.style.color = '#e52d27';
+          iconEl.style.background = '#e52d27';
+        } else if (card.type === 'reflexao') {
+          valEl.style.color = '#f7a835';
+          iconEl.style.background = '#f7a835';
+        } else {
+          valEl.style.color = '#7440bd';
+          iconEl.style.background = '#7440bd';
+        }
+
+        cardContainer.classList.remove('deal');
+      }, 180);
+    }
+
+    /* Chuva de confetes coloridos */
+    function lancarConfetes() {
+      const cores = ['#ff318b', '#ffdd25', '#18e2a1', '#25a9ff', '#a55cff', '#ffffff'];
+      for (let i = 0; i < 48; i++) {
+        const confete = document.createElement('div');
+        confete.className = 'confete';
+        confete.style.left = Math.random() * 100 + '%';
+        confete.style.background = cores[Math.floor(Math.random() * cores.length)];
+        confete.style.animationDelay = Math.random() * 2 + 's';
+        confete.style.animationDuration = (2.2 + Math.random() * 2) + 's';
+        confete.style.borderRadius = Math.random() > 0.5 ? '50%' : '3px';
+        confete.style.width = (8 + Math.random() * 10) + 'px';
+        confete.style.height = (10 + Math.random() * 12) + 'px';
+        vitoriaOverlay.appendChild(confete);
+      }
+    }
+
+    function comemorarVitoria() {
+      const name = playerNameInput.value.trim() || 'Jogador(a)';
+      document.getElementById('vitoriaNome').textContent = `Sensacional, ${name}!`;
+      document.getElementById('vitoriaDesc').innerHTML = `
+        Você percorreu todas as 51 casas aprendendo, superando desafios e espalhando acolhimento e respeito!<br>
+        <strong>Você faz a diferença na construção de uma comunidade mais segura e inclusiva!</strong>
+      `;
+      
+      vitoriaOverlay.querySelectorAll('.confete').forEach(c => c.remove());
+      lancarConfetes();
+      vitoriaOverlay.classList.add('active');
+    }
+
+    function playTurn() {
+      const btn = document.getElementById('btnRollDice');
+      btn.disabled = true;
+
+      const roll = Math.floor(Math.random() * 6) + 1;
+      document.getElementById('diceValue').innerText = roll;
+
+      playerPosition = Math.min(GOAL_POSITION, playerPosition + roll);
+      updateToken();
+
+      const randomCard = cartasData[Math.floor(Math.random() * cartasData.length)];
+      displayCardWithAnimation(randomCard);
+
+      const statusEl = document.getElementById('statusMessage');
+      const name = playerNameInput.value.trim() || 'Jogador(a)';
+
+      if (playerPosition >= GOAL_POSITION) {
+        statusEl.innerHTML = `🎉 <strong>Sensacional, ${name}!</strong> Você alcançou a casa ${GOAL_POSITION}!`;
+        setTimeout(() => {
+          comemorarVitoria();
+        }, 500);
+      } else {
+        statusEl.innerHTML = `${name} tirou <strong>${roll}</strong> e avançou para a casa <strong>${playerPosition}</strong>!`;
+        setTimeout(() => {
+          btn.disabled = false;
+        }, 280);
+      }
+    }
+
+    function restartGame() {
+      playerPosition = 1;
+      updateToken();
+      vitoriaOverlay.classList.remove('active');
+      vitoriaOverlay.querySelectorAll('.confete').forEach(c => c.remove());
+      document.getElementById('diceValue').innerText = '-';
+      document.getElementById('btnRollDice').disabled = false;
+      document.getElementById('statusMessage').innerText = `Você está na casa 1. Boa jornada até a casa ${GOAL_POSITION}!`;
+      displayCardWithAnimation(cartasData[1]);
+    }
+
+    function fecharJanelaJogo() {
+      if (modalJogoFlutuante) {
+        modalJogoFlutuante.classList.remove('active');
+        document.body.classList.remove('modal-open');
+      }
+    }
+
+    function abrirJanelaJogo() {
+      if (modalJogoFlutuante) {
+        createBoard();
+        updateToken();
+        modalJogoFlutuante.classList.add('active');
+        document.body.classList.add('modal-open');
+      }
+    }
+
+    startGameButton?.addEventListener('click', abrirJanelaJogo);
+    closeGameModalBtn?.addEventListener('click', fecharJanelaJogo);
+
+    modalJogoFlutuante?.addEventListener('click', (e) => {
+      if (e.target === modalJogoFlutuante) {
+        fecharJanelaJogo();
       }
     });
 
-    closeGameButton.addEventListener('click', closeGameModal);
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && gameSection.classList.contains('game-started')) {
-        closeGameModal();
+      if (event.key === 'Escape' && modalJogoFlutuante?.classList.contains('active')) {
+        fecharJanelaJogo();
       }
     });
 
+    createBoard();
   </script>
 </body>
 </html>
