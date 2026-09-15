@@ -877,7 +877,7 @@
       padding: 10px 16px 10px 10px;
       border: 1px solid rgba(159, 94, 255, 0.7);
       border-radius: 44px;
-      background: rgba(25, 12, 71, 0.74);
+      background: rgba(255, 255, 255, 0.05);
       color: #ddd4ff;
       font-weight: 700;
       line-height: 1.25;
@@ -2252,6 +2252,10 @@
       border: 1px solid #ded4ee;
       border-radius: 12px;
       box-shadow: 0 8px 18px rgba(55, 27, 95, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
     .team-card {
@@ -2320,6 +2324,7 @@
       line-height: 1.4;
       font-weight: 600;
       margin-bottom: 15px;
+      flex-grow: 1;
     }
 
     .team-card p {
@@ -2329,13 +2334,24 @@
     }
 
     .small-action {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
       padding: 8px 18px;
       border-radius: 18px;
       background: #68419a;
       color: #ffffff;
       font: 700 0.8rem var(--font-body);
       text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .small-action:hover {
+      background: #8b5cf6;
+      transform: translateY(-2px);
     }
 
     .contact-layout {
@@ -2569,6 +2585,216 @@
     .footer-heart-wrap { display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 8px; }
     .lgbt-heart { width: 118px; height: 118px; display: block; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(255, 116, 150, 0.35)); }
     .footer-bottom { max-width: 1200px; margin: 18px auto 0; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.12); color: #d9c7ff; text-align: center; font-size: 0.9rem; font-weight: 600; }
+
+    /* ========================================================
+       MODAL FLUTUANTE DE PRÉ-VISUALIZAÇÃO DE MATERIAIS / PDF
+    ======================================================== */
+    .material-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 4, 22, 0.86);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100000;
+    }
+
+    .material-modal-backdrop.active {
+      display: flex;
+    }
+
+    .material-modal-window {
+      position: relative;
+      width: min(1180px, 96vw);
+      height: min(88vh, 820px);
+      background: #1a0f35;
+      border: 2px solid rgba(168, 85, 247, 0.45);
+      border-radius: 22px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 40px rgba(124, 58, 237, 0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modal-smooth-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .btn-fechar-material {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      z-index: 10;
+    }
+
+    .btn-fechar-material:hover {
+      background: #ff4b72;
+      transform: scale(1.1);
+    }
+
+    /* ÁREA AMARELA (Representação da Pasta e Seleção de Arquivos) */
+    .material-folder-bar {
+      background: linear-gradient(135deg, rgba(42, 22, 84, 0.95), rgba(28, 14, 58, 0.95));
+      border-bottom: 2px solid rgba(255, 176, 32, 0.4);
+      padding: 16px 60px 14px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .material-path-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .material-path-tag {
+      background: rgba(255, 176, 32, 0.18);
+      color: #ffc247;
+      border: 1px solid rgba(255, 176, 32, 0.45);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .material-path-tag i {
+      color: #ffc247;
+    }
+
+    .material-files-list {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .material-file-tab {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e5daf7;
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .material-file-tab:hover {
+      background: rgba(124, 58, 237, 0.3);
+      border-color: rgba(168, 85, 247, 0.5);
+    }
+
+    .material-file-tab.active {
+      background: #7c3aed;
+      border-color: #a855f7;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+    }
+
+    .material-file-tab i {
+      color: #ff4b72;
+    }
+
+    .material-file-tab.active i {
+      color: #ffffff;
+    }
+
+    .material-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .material-current-name {
+      font-size: 0.95rem;
+      color: #ffffff;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-download-pdf-modal {
+      background: linear-gradient(135deg, #00e676, #00b0ff);
+      color: #0b0829;
+      padding: 7px 18px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s;
+    }
+
+    .btn-download-pdf-modal:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    /* ÁREA VERMELHA (Pré-visualização do PDF) */
+    .material-preview-container {
+      flex: 1;
+      position: relative;
+      background: #0f0a21;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .material-pdf-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: #2b2b2b;
+    }
+
+    .material-pdf-fallback {
+      position: absolute;
+      text-align: center;
+      padding: 24px;
+      color: #d1c5ea;
+      max-width: 460px;
+      display: none;
+    }
+
+    .material-pdf-fallback i {
+      font-size: 3.5rem;
+      color: #ff4b72;
+      margin-bottom: 12px;
+    }
+
+    .material-pdf-fallback p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
 
     /* ========================================================
        REGRAS EXCLUSIVAS PARA TABLETS E CELULARES (RESPONSIVIDADE)
@@ -3192,7 +3418,7 @@
 
         <div class="cabecalho-janela">
           <h2>Jogo Interativo</h2>
-          <p>Avance pelo tabuleiro, responda, aprenda e mostre que o respeito é o melhor caminho.[cite: 2]</p>
+          <p>Avance pelo tabuleiro, responda, aprenda e mostre que o respeito é o melhor caminho.</p>
         </div>
 
         <div class="grid-janela-jogo">
@@ -3219,7 +3445,7 @@
                 </div>
 
                 <div class="carta-texto-desc">
-                  <p id="cardText">Fez atividade<br>artística e se<br>expressou.[cite: 2]</p>
+                  <p id="cardText">Fez atividade<br>artística e se<br>expressou.</p>
                 </div>
               </div>
             </div>
@@ -3236,7 +3462,7 @@
                 <i class="fa-solid fa-layer-group"></i>
                 <div>
                   <h4>Cartas Especiais</h4>
-                  <p>Em cada jogada, uma carta de reflexão, apoio ou desafio é retirada do monte.[cite: 2]</p>
+                  <p>Em cada jogada, uma carta de reflexão, apoio ou desafio é retirada do monte.</p>
                 </div>
               </div>
               <button class="btn-ver-cartas" onclick="alert('Cartas especiais carregadas no baralho!')">
@@ -3248,7 +3474,7 @@
           <!-- COLUNA 3: CONTROLES -->
           <div class="col-controles-painel">
             <h3>Como jogar</h3>
-            <p>Role o dado, avance pelo tabuleiro até alcançar a casa 51 e reflita sobre as atitudes de acolhimento.[cite: 2]</p>
+            <p>Role o dado, avance pelo tabuleiro até alcançar a casa 51 e reflita sobre as atitudes de acolhimento.</p>
 
             <div class="box-dado-valor">
               <span>Última jogada</span>
@@ -3264,7 +3490,7 @@
             </button>
 
             <p class="status-jogada-texto" id="statusMessage">
-              Você está na casa 1. Boa jornada até a casa 51![cite: 2]
+              Você está na casa 1. Boa jornada até a casa 51!
             </p>
           </div>
 
@@ -3379,14 +3605,87 @@
         <p>Baixe materiais gratuitos para aprender, ensinar e transformar.</p>
       </div>
       <div class="material-grid">
-        <article class="material-card"><i class="fa-solid fa-book-open"></i><h3>Cartilhas</h3><p>Materiais informativos sobre diversidade e inclusão.</p><a class="small-action" href="#" download>Baixar</a></article>
-        <article class="material-card"><i class="fa-solid fa-chalkboard"></i><h3>Slides</h3><p>Apresentações para trabalhos e aulas.</p><a class="small-action" href="#" download>Baixar</a></article>
-        <article class="material-card"><i class="fa-solid fa-file-pen"></i><h3>Atividades</h3><p>Atividades dinâmicas para a sala de aula.</p><a class="small-action" href="#" download>Baixar</a></article>
-        <article class="material-card"><i class="fa-solid fa-apple-whole"></i><h3>Para Professores</h3><p>Materiais de apoio e planos de aula.</p><a class="small-action" href="#" download>Baixar</a></article>
+        <article class="material-card">
+          <i class="fa-solid fa-book-open"></i>
+          <h3>Cartilhas</h3>
+          <p>Materiais informativos sobre diversidade e inclusão.</p>
+          <button class="small-action" type="button" onclick="abrirModalMateriais('Cartilha')">
+            <i class="fa-regular fa-folder-open"></i> Abrir Pasta
+          </button>
+        </article>
+
+        <article class="material-card">
+          <i class="fa-solid fa-chalkboard"></i>
+          <h3>Slides</h3>
+          <p>Apresentações para trabalhos e aulas.</p>
+          <button class="small-action" type="button" onclick="abrirModalMateriais('Slides')">
+            <i class="fa-regular fa-folder-open"></i> Abrir Pasta
+          </button>
+        </article>
+
+        <article class="material-card">
+          <i class="fa-solid fa-file-pen"></i>
+          <h3>Atividades</h3>
+          <p>Atividades dinâmicas para a sala de aula.</p>
+          <button class="small-action" type="button" onclick="abrirModalMateriais('Atividades')">
+            <i class="fa-regular fa-folder-open"></i> Abrir Pasta
+          </button>
+        </article>
+
+        <article class="material-card">
+          <i class="fa-solid fa-apple-whole"></i>
+          <h3>Para Professores</h3>
+          <p>Materiais de apoio e planos de aula.</p>
+          <button class="small-action" type="button" onclick="abrirModalMateriais('Para Professores')">
+            <i class="fa-regular fa-folder-open"></i> Abrir Pasta
+          </button>
+        </article>
       </div>
     </div>
     <div class="wave-bottom page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
   </section>
+
+  <!-- MODAL FLUTUANTE DE PRÉ-VISUALIZAÇÃO DE MATERIAIS / PDF -->
+  <div class="material-modal-backdrop" id="materialModalBackdrop">
+    <div class="material-modal-window">
+      <button class="btn-fechar-material" id="closeMaterialModalBtn" type="button" title="Fechar">&times;</button>
+
+      <!-- RETÂNGULO AMARELO DO ESQUEMA (PASTA + LISTA DE ARQUIVOS) -->
+      <div class="material-folder-bar">
+        <div class="material-actions-bar">
+          <div class="material-path-info">
+            <span class="material-path-tag">
+              <i class="fa-solid fa-folder-open"></i>
+              <span id="folderPathText">PDF/Cartilha/</span>
+            </span>
+            <span class="material-current-name" id="currentPdfName">
+              <i class="fa-regular fa-file-pdf"></i> Nome do Arquivo.pdf
+            </span>
+          </div>
+
+          <a href="#" class="btn-download-pdf-modal" id="modalDownloadPdfBtn" download>
+            <i class="fa-solid fa-download"></i> Baixar Arquivo
+          </a>
+        </div>
+
+        <!-- Abas com os arquivos contidos na pasta -->
+        <div class="material-files-list" id="materialFilesList">
+          <!-- Gerado via JavaScript -->
+        </div>
+      </div>
+
+      <!-- RETÂNGULO VERMELHO DO ESQUEMA (PREVIEW DO PDF) -->
+      <div class="material-preview-container">
+        <iframe id="pdfPreviewIframe" class="material-pdf-iframe" src="" title="Pré-visualização do PDF"></iframe>
+        
+        <div class="material-pdf-fallback" id="pdfFallbackMessage">
+          <i class="fa-solid fa-file-circle-question"></i>
+          <h4>Arquivo em carregamento ou não encontrado</h4>
+          <p>Se o navegador não exibir o arquivo diretamente, você pode baixá-lo pelo botão no topo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- === PÁGINA 07: NOSSA EQUIPE === -->
   <section class="content-page" id="equipe">
@@ -3450,7 +3749,7 @@
           <h3>Entre em contato</h3>
           <p>Será um prazer conversar com você sobre educação, respeito e inclusão.</p>
           <ul>
-            <li><i class="fa-solid fa-envelope"></i> psicoqueer.contato@gmail.com</li>
+            <li><i class="fa-solid fa-envelope"></i> psicoqueer03@gmail.com</li>
             <li>
               <a href="https://www.instagram.com/psicoqueer__" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
                 <i class="fa-brands fa-instagram"></i> @psicoqueer__
@@ -4366,7 +4665,7 @@
       vitoriaOverlay.querySelectorAll('.confete').forEach(c => c.remove());
       document.getElementById('diceValue').innerText = '-';
       document.getElementById('btnRollDice').disabled = false;
-      document.getElementById('statusMessage').innerText = `Você está na casa 1. Boa jornada até a casa ${GOAL_POSITION}![cite: 2]`;
+      document.getElementById('statusMessage').innerText = `Você está na casa 1. Boa jornada até a casa ${GOAL_POSITION}!`;
       displayCardWithAnimation(cartasData[1]);
     }
 
@@ -4398,6 +4697,109 @@
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && modalJogoFlutuante?.classList.contains('active')) {
         fecharJanelaJogo();
+      }
+    });
+
+    /* ========================================================
+       GERENCIAMENTO DO MODAL DE MATERIAIS / PASTAS / PDF
+    ======================================================== */
+    const bancoMateriais = {
+      'Cartilha': {
+        pasta: 'PDF/Cartilha/',
+        arquivos: [
+          { nome: 'Cartilha_Diversidade_e_Inclusao.pdf', caminho: 'PDF/Cartilha/Cartilha_Diversidade_e_Inclusao.pdf' },
+          { nome: 'Guia_Pratico_Acolhimento.pdf', caminho: 'PDF/Cartilha/Guia_Pratico_Acolhimento.pdf' }
+        ]
+      },
+      'Slides': {
+        pasta: 'PDF/Slides/',
+        arquivos: [
+          { nome: 'Apresentacao_Escolar_PsicoQueer.pdf', caminho: 'PDF/Slides/Apresentacao_Escolar_PsicoQueer.pdf' },
+          { nome: 'Oficina_Convivencia_Respeito.pdf', caminho: 'PDF/Slides/Oficina_Convivencia_Respeito.pdf' }
+        ]
+      },
+      'Atividades': {
+        pasta: 'PDF/Atividades/',
+        arquivos: [
+          { nome: 'Tabuleiro.pdf', caminho: 'PDF/Atividades/Tabuleiro.pdf' },
+          { nome: 'Cartas.pdf', caminho: 'PDF/Atividades/Cartas.pdf' }
+        ]
+      },
+      'Para Professores': {
+        pasta: 'PDF/Para Professores/',
+        arquivos: [
+          { nome: 'Plano_Pedagogico_Diversidade.pdf', caminho: 'PDF/Para Professores/Plano_Pedagogico_Diversidade.pdf' },
+          { nome: 'Material_Apoio_Docente.pdf', caminho: 'PDF/Para Professores/Material_Apoio_Docente.pdf' }
+        ]
+      }
+    };
+
+    const materialModalBackdrop = document.getElementById('materialModalBackdrop');
+    const closeMaterialModalBtn = document.getElementById('closeMaterialModalBtn');
+    const folderPathText = document.getElementById('folderPathText');
+    const currentPdfName = document.getElementById('currentPdfName');
+    const materialFilesList = document.getElementById('materialFilesList');
+    const modalDownloadPdfBtn = document.getElementById('modalDownloadPdfBtn');
+    const pdfPreviewIframe = document.getElementById('pdfPreviewIframe');
+
+    function selecionarArquivoPdf(arquivo) {
+      currentPdfName.innerHTML = `<i class="fa-regular fa-file-pdf"></i> ${arquivo.nome}`;
+      modalDownloadPdfBtn.href = arquivo.caminho;
+      modalDownloadPdfBtn.setAttribute('download', arquivo.nome);
+
+      // Carrega o arquivo no iframe da área de pré-visualização
+      pdfPreviewIframe.src = arquivo.caminho;
+
+      // Destaca a aba ativa
+      document.querySelectorAll('.material-file-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.nome === arquivo.nome);
+      });
+    }
+
+    function abrirModalMateriais(categoria) {
+      const dadosCategoria = bancoMateriais[categoria];
+      if (!dadosCategoria) return;
+
+      folderPathText.textContent = dadosCategoria.pasta;
+      materialFilesList.innerHTML = '';
+
+      // Cria as abas/botões para os arquivos da pasta
+      dadosCategoria.arquivos.forEach((arq, index) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `material-file-tab ${index === 0 ? 'active' : ''}`;
+        btn.dataset.nome = arq.nome;
+        btn.innerHTML = `<i class="fa-solid fa-file-pdf"></i> ${arq.nome}`;
+        btn.addEventListener('click', () => selecionarArquivoPdf(arq));
+        materialFilesList.appendChild(btn);
+      });
+
+      // Seleciona o primeiro arquivo por padrão
+      if (dadosCategoria.arquivos.length > 0) {
+        selecionarArquivoPdf(dadosCategoria.arquivos[0]);
+      }
+
+      materialModalBackdrop.classList.add('active');
+      document.body.classList.add('modal-open');
+    }
+
+    function fecharModalMateriais() {
+      materialModalBackdrop.classList.remove('active');
+      pdfPreviewIframe.src = ''; // Limpa o iframe para liberar memória
+      document.body.classList.remove('modal-open');
+    }
+
+    closeMaterialModalBtn?.addEventListener('click', fecharModalMateriais);
+
+    materialModalBackdrop?.addEventListener('click', (e) => {
+      if (e.target === materialModalBackdrop) {
+        fecharModalMateriais();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && materialModalBackdrop?.classList.contains('active')) {
+        fecharModalMateriais();
       }
     });
 
