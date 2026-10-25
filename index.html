@@ -4716,7 +4716,7 @@
       'Cartilha': {
         pasta: 'PDF/Cartilha/',
         arquivos: [
-          { nome: 'Floral Watercolor Prayer Journal Book Cover.pdf', caminho: 'https://media.githubusercontent.com/media/JulioRyann/queer/main/PDF/Cartilha/Floral%20Watercolor%20Prayer%20Journal%20Book%20Cover.pdf' },
+          { nome: 'Floral Watercolor Prayer Journal Book Cover.pdf', caminho: 'PDF/Cartilha/Floral Watercolor Prayer Journal Book Cover.pdf' },
           { nome: 'Folder Novembro Azul ilustrado branco e azul.pdf', caminho: 'PDF/Cartilha/Folder Novembro Azul ilustrado branco e azul.pdf' }
         ]
       },
@@ -4752,25 +4752,12 @@
     const modalDownloadPdfBtn = document.getElementById('modalDownloadPdfBtn');
     const pdfPreviewIframe = document.getElementById('pdfPreviewIframe');
 
-    function obterUrlPublicaPdf(caminho) {
-      const caminhoRepositorio = caminho.startsWith('PDF/')
-        ? caminho
-        : `PDF/${caminho}`;
-      const caminhoCodificado = caminhoRepositorio.split('/').map(encodeURIComponent).join('/');
-      return `https://media.githubusercontent.com/media/JulioRyann/queer/main/${caminhoCodificado}`;
-    }
-
-    function obterUrlPreviewPdf(urlPublica) {
-      return `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(urlPublica)}`;
-    }
-
     function selecionarArquivoPdf(arquivo) {
-      const urlPublica = obterUrlPublicaPdf(arquivo.caminho);
       currentPdfName.innerHTML = `<i class="fa-regular fa-file-pdf"></i> ${arquivo.nome}`;
-      modalDownloadPdfBtn.href = urlPublica;
+      modalDownloadPdfBtn.href = arquivo.caminho;
       modalDownloadPdfBtn.setAttribute('download', arquivo.nome);
 
-      pdfPreviewIframe.src = obterUrlPreviewPdf(urlPublica);
+      pdfPreviewIframe.src = arquivo.caminho;
 
       // Destaca a aba ativa
       document.querySelectorAll('.material-file-tab').forEach(tab => {
