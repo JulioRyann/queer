@@ -4046,9 +4046,9 @@
       ],
       Q: [
           { name: 'Castiel Vitorino Brasileiro', avatar: '🎨', image: 'Imagens/lgbtq/Castiel Vitorino Brasileiro.jpg', description: 'Artista visual, escritora e psicóloga clínica. Destacou-se no circuito de arte contemporânea internacional, incluindo a Bienal de São Paulo (2023), articulando memórias ancestrais, cura e dissidências de gênero e corpo.' },
-          { name: 'Gloria Groove', avatar: '👑', image: 'Imagens/lgbtq/Gloria Groove.jpg', description: 'Cantora, compositora, dubladora e drag queen. Tornou-se um dos maiores fenômenos da música pop e do hip-hop nacional com o aclamado álbum "Lady Leste" (2022) e o hit "Vermelho", redefinindo a versatilidade artística e a cultura drag no país.' },
-          { name: 'Cazuza', avatar: '🎙️', image: 'Imagens/lgbtq/Cazuza.jpg', description: 'Cantor e poeta seminal do rock brasileiro. Despontou nos anos 1980 com o Barão Vermelho e em carreira solo com clássicos como "Exagerado" (1985) e "Ideologia" (1988), tornando-se símbolo de contestação política, liberdade de expressão e afeto sem rótulos.' },
-          { name: 'Pabllo Vittar', avatar: '🌟', image: 'Imagens/lgbtq/Pabllo Vittar.jpg', description: 'Cantora, compositora e drag queen de alcance global. Conquistou projeção com o álbum "Vai Passar Mal" (2017) e sucessos como "K.O.", quebrando recordes mundiais e levando a arte drag brasileira aos principais festivais e paradas internacionais.' },
+          { name: 'Gloria Groove', avatar: '👑', image: 'Imagens/lgbtq/gloria groove.jpg', description: 'Cantora, compositora, dubladora e drag queen. Tornou-se um dos maiores fenômenos da música pop e do hip-hop nacional com o aclamado álbum "Lady Leste" (2022) e o hit "Vermelho", redefinindo a versatilidade artística e a cultura drag no país.' },
+          { name: 'Cazuza', avatar: '🎙️', image: 'Imagens/lgbtq/cazuza.jpg', description: 'Cantor e poeta seminal do rock brasileiro. Despontou nos anos 1980 com o Barão Vermelho e em carreira solo com clássicos como "Exagerado" (1985) e "Ideologia" (1988), tornando-se símbolo de contestação política, liberdade de expressão e afeto sem rótulos.' },
+          { name: 'Pabllo Vittar', avatar: '🌟', image: 'Imagens/lgbtq/pabllo vittar.jpg', description: 'Cantora, compositora e drag queen de alcance global. Conquistou projeção com o álbum "Vai Passar Mal" (2017) e sucessos como "K.O.", quebrando recordes mundiais e levando a arte drag brasileira aos principais festivais e paradas internacionais.' },
           { name: 'Ney Matogrosso', avatar: '✨', image: 'Imagens/lgbtq/Ney Matogrosso.jpg', description: 'Cantor, performer e pioneiro da liberdade estética no Brasil. Estourou nos anos 1970 à frente do Secos & Molhados com sua voz de contratenor e presença cênica transgressora, desafiando normas de gênero e consolidando uma das carreiras mais ricas da MPB.' }
       ],
       I: [
@@ -4220,7 +4220,7 @@
       peopleGrid.innerHTML = people.map((person, personIndex) => `
         <article class="person-card active" data-sigla="${sigla}">
           <div class="person-avatar">
-            ${person.avatar}
+            ${person.image ? `<img src="${person.image}" alt="${person.name}" loading="lazy">` : person.avatar}
           </div>
           <h3 class="person-name">${person.name}</h3>
           <p class="person-description">${getShortDescription(person.description)}</p>
