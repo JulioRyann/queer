@@ -4052,11 +4052,36 @@
           { name: 'Ney Matogrosso', avatar: '✨', image: 'Imagens/lgbtq/Ney Matogrosso.jpg', description: 'Cantor, performer e pioneiro da liberdade estética no Brasil. Estourou nos anos 1970 à frente do Secos & Molhados com sua voz de contratenor e presença cênica transgressora, desafiando normas de gênero e consolidando uma das carreiras mais ricas da MPB.' }
       ],
       I: [
-        { name: 'Iris Mendes', avatar: '✨', description: 'Ativista intersex. Trabalha na visibilidade e direitos de pessoas intersex.' },
-        { name: 'Alexandre Costa', avatar: '🏥', description: 'Médico(a) que defende a não-patologização de pessoas intersex e direitos corporais.' },
-        { name: 'Valentina Silva', avatar: '💪', description: 'Coordenadora de grupos de apoio intersex. Promove aceitação e auto-afirmação.' },
-        { name: 'Marcus Alves', avatar: '📢', description: 'Ativista de visibilidade intersex em campanhas públicas e educação comunitária.' },
-        { name: 'Nicole Ramos', avatar: '🌟', description: 'Pesquisadora em direitos intersex e políticas de saúde inclusiva.' }
+          {
+              name: 'River Gallo',
+              avatar: '🎬',
+              image: 'Imagens/lgbtq/River Gallo.jpg',
+              description: 'Artista, cineasta, ator e modelo intersexo salvadorenho-americano. Criou o curta-metragem "Ponyboi" (2019), que aborda a vivência de uma pessoa intersexo, e tornou-se uma voz importante na luta por visibilidade, autonomia corporal e representatividade intersexo na indústria audiovisual.'
+          },
+          {
+              name: 'Carolina Iara',
+              avatar: '🏳️‍⚧️',
+              image: 'Imagens/lgbtq/Carolina Iara.jpg',
+              description: 'Ativista brasileira pelos direitos humanos e pelos direitos das pessoas intersexo, trans e travestis. Atua na defesa da diversidade corporal e de gênero, da cidadania e do combate à violência e à discriminação contra pessoas LGBTQIA+.'
+          },
+          {
+              name: 'Caster Semenya',
+              avatar: '🏃🏿‍♀️',
+              image: 'Imagens/lgbtq/Caster Semenya.jpg',
+              description: 'Atleta sul-africana e bicampeã olímpica dos 800 metros. Tornou-se uma figura internacional na discussão sobre as regras esportivas aplicadas a mulheres com variações naturais nas características sexuais, levantando debates sobre direitos humanos, discriminação e inclusão no esporte.'
+          },
+          {
+              name: 'Hanne Gaby Odiele',
+              avatar: '👗',
+              image: 'Imagens/lgbtq/Hanne Gaby Odiele.jpg',
+              description: 'Modelo belga de destaque internacional que tornou pública sua condição intersexo em 2017. Desde então, utiliza sua visibilidade para conscientizar sobre a diversidade das características sexuais e defender o direito de pessoas intersexo à autonomia corporal, especialmente contra intervenções médicas desnecessárias na infância.'
+          },
+          {
+              name: 'Karen Bachini',
+              avatar: '💄',
+              image: 'Imagens/lgbtq/Karen Bachini.jpg',
+              description: 'Criadora de conteúdo brasileira conhecida por seu trabalho com maquiagem, beleza e cosméticos. É uma figura conhecida na internet brasileira e já abordou questões relacionadas à diversidade corporal e sexualidade; sua inclusão como representante intersexo deve ser confirmada por uma declaração pública explícita sobre essa identidade.'
+          }
       ],
       A: [
           { name: 'Giovana Fagundes', avatar: '🎙️', image: 'Imagens/lgbtq/Giovana Fagundes.jpg', description: 'Humorista, atriz e comunicadora. Destaca-se no stand-up comedy e na criação de conteúdo digital, abordando com sarcasmo e inteligência temas como relacionamentos, sexualidade e bissexualidade.' },
@@ -4173,7 +4198,7 @@
     }
 
     function openPersonModal(person) {
-      personModalImage.src = person.image || '';
+      personModalImage.removeAttribute('src');
       personModalImage.alt = person.name;
       personModalTitle.textContent = person.name;
       personModalDescription.textContent = person.description;
@@ -4195,7 +4220,7 @@
       peopleGrid.innerHTML = people.map((person, personIndex) => `
         <article class="person-card active" data-sigla="${sigla}">
           <div class="person-avatar">
-            ${person.image ? `<img src="${person.image}" alt="${person.name}" loading="lazy">` : person.avatar}
+            ${person.avatar}
           </div>
           <h3 class="person-name">${person.name}</h3>
           <p class="person-description">${getShortDescription(person.description)}</p>
