@@ -4778,12 +4778,19 @@
     const modalDownloadPdfBtn = document.getElementById('modalDownloadPdfBtn');
     const pdfPreviewIframe = document.getElementById('pdfPreviewIframe');
 
+    function obterUrlPreviewPdf(caminho) {
+      if (caminho.includes('Floral%20Watercolor')) {
+        return `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(caminho)}`;
+      }
+      return caminho;
+    }
+
     function selecionarArquivoPdf(arquivo) {
       currentPdfName.innerHTML = `<i class="fa-regular fa-file-pdf"></i> ${arquivo.nome}`;
       modalDownloadPdfBtn.href = arquivo.caminho;
       modalDownloadPdfBtn.setAttribute('download', arquivo.nome);
 
-      pdfPreviewIframe.src = arquivo.caminho;
+      pdfPreviewIframe.src = obterUrlPreviewPdf(arquivo.caminho);
 
       // Destaca a aba ativa
       document.querySelectorAll('.material-file-tab').forEach(tab => {
