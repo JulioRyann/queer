@@ -1547,10 +1547,6 @@
       transform: translateY(84px);
     }
 
-    #compatiler .page-content {
-      transform: translateY(56px);
-    }
-
     .page-heading h2 {
       font-family: var(--font-title);
       color: #2d1652;
@@ -1568,126 +1564,6 @@
     .page-wave {
       opacity: 0.7;
       z-index: 0;
-    }
-
-    .compatiler-panel {
-      width: min(100%, 940px);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
-      gap: 20px;
-      text-align: left;
-    }
-
-    .compatiler-card {
-      padding: 22px;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid #ded4ee;
-      border-radius: 14px;
-      box-shadow: 0 8px 18px rgba(55, 27, 95, 0.08);
-    }
-
-    .compatiler-card h3 {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: #39205f;
-      font-family: var(--font-title);
-      margin-bottom: 8px;
-    }
-
-    .compatiler-card p {
-      color: #5b506c;
-      font-size: 0.88rem;
-      line-height: 1.45;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    .compatiler-dropzone {
-      border: 2px dashed #cbbbe5;
-      border-radius: 12px;
-      padding: 24px 16px;
-      text-align: center;
-      background: #faf8fd;
-      cursor: pointer;
-    }
-
-    .compatiler-dropzone.dragover {
-      border-color: #7c3aed;
-      background: #f0e8fb;
-    }
-
-    .compatiler-dropzone i {
-      display: block;
-      color: #68419a;
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    .compatiler-file-list {
-      display: grid;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .compatiler-file-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 10px;
-      border: 1px solid #e4dbf0;
-      border-radius: 9px;
-      color: #39205f;
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .compatiler-file-item i { color: #68419a; }
-
-    .compatiler-file-item span {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .compatiler-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .compatiler-status {
-      min-height: 22px;
-      margin-top: 10px;
-      color: #68419a;
-      font-size: 0.82rem;
-      font-weight: 800;
-    }
-
-    .compatiler-recent-list {
-      display: grid;
-      gap: 9px;
-    }
-
-    .compatiler-recent-empty {
-      padding: 20px 10px;
-      border: 1px dashed #d6c9e8;
-      border-radius: 10px;
-      color: #756887;
-      font-size: 0.84rem;
-      text-align: center;
-    }
-
-    .compatiler-preview {
-      width: 100%;
-      height: 150px;
-      margin-top: 12px;
-      border: 1px solid #e0d6ed;
-      border-radius: 10px;
-      background: #f6f2fa;
-      object-fit: contain;
     }
 
     .lgbt-focus-section {
@@ -2936,7 +2812,6 @@
       .person-card { min-height: 360px; }
       .material-grid { grid-template-columns: repeat(2, 1fr); }
       .team-grid { grid-template-columns: repeat(2, 1fr); }
-      .compatiler-panel { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
       
       .grid-janela-jogo {
@@ -3112,7 +2987,6 @@
       .person-avatar { width: 130px; height: 130px; font-size: 2.5rem; }
       .team-grid { grid-template-columns: 1fr; }
       .material-grid { grid-template-columns: 1fr; }
-      #compatiler .page-content { transform: translateY(34px); }
     }
   </style>
 </head>
@@ -3181,7 +3055,6 @@
         <li><a href="#pessoas-lgbtq">Pessoas</a></li>
         <li><a href="#jogo">Jogo</a></li>
         <li><a href="#quiz">Quiz</a></li>
-        <li><a href="#compatiler">Compatiler</a></li>
         <li><a href="#materiais">Materiais</a></li>
         <li><a href="#equipe">Equipe</a></li>
         <li><a href="#contato">Contato</a></li>
@@ -3196,7 +3069,6 @@
       <option value="#pessoas-lgbtq">Pessoas</option>
       <option value="#jogo">Jogo</option>
       <option value="#quiz">Quiz</option>
-      <option value="#compatiler">Compatiler</option>
       <option value="#materiais">Materiais</option>
       <option value="#equipe">Equipe</option>
       <option value="#contato">Contato</option>
@@ -3720,47 +3592,6 @@
         <path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path>
       </svg>
     </div>
-  </section>
-
-  <!-- === PÁGINA 06: COMPATILER === -->
-  <section class="content-page" id="compatiler">
-    <div class="wave-bottom wave-top page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
-    <div class="page-decorations" aria-hidden="true">
-      <i class="fa-solid fa-star star" style="top: 15%; left: 8%;"></i>
-      <i class="fa-solid fa-star star" style="top: 30%; left: 88%; animation-delay: 1s;"></i>
-      <i class="fa-solid fa-heart heart sm" style="top: 28%; left: 20%; animation-delay: 0.8s;"></i>
-      <i class="fa-solid fa-rainbow rainbow" style="top: 20%; left: 66%; animation-delay: 1.4s;"></i>
-    </div>
-    <div class="page-content">
-      <div class="page-heading">
-        <h2>Compatiler</h2>
-        <p>Envie arquivos para a pasta colaborativa do PSICOQUEER e consulte os cinco últimos envios desta página.</p>
-      </div>
-      <div class="compatiler-panel">
-        <div class="compatiler-card">
-          <h3><i class="fa-solid fa-cloud-arrow-up"></i> Enviar arquivo</h3>
-          <p>Selecione ou arraste um arquivo. O envio será encaminhado para a pasta compartilhada do Google Drive.</p>
-          <div class="compatiler-dropzone" id="compatilerDropzone" tabindex="0" role="button" aria-label="Selecionar arquivo para enviar">
-            <i class="fa-solid fa-folder-open"></i>
-            <strong>Arraste o arquivo aqui</strong>
-            <div>ou clique para selecionar</div>
-            <input id="compatilerFileInput" type="file" multiple hidden accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.txt,.xls,.xlsx">
-          </div>
-          <div class="compatiler-file-list" id="compatilerFileList"></div>
-          <div class="compatiler-actions">
-            <button class="small-action" id="compatilerSendButton" type="button"><i class="fa-solid fa-paper-plane"></i> Enviar arquivos</button>
-            <a class="small-action" href="https://drive.google.com/drive/folders/1BHFwq9vSGn0lP1H7hmFRiWqqU3X7gdHr?usp=drive_link" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google-drive"></i> Abrir pasta</a>
-          </div>
-          <p class="compatiler-status" id="compatilerStatus" aria-live="polite"></p>
-        </div>
-        <div class="compatiler-card">
-          <h3><i class="fa-regular fa-clock"></i> Últimos 5 arquivos</h3>
-          <p>Mostramos aqui os arquivos enviados por esta página neste navegador.</p>
-          <div class="compatiler-recent-list" id="compatilerRecentList"></div>
-        </div>
-      </div>
-    </div>
-    <div class="wave-bottom page-wave" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,142 C110,92 245,184 390,142 C535,100 665,102 820,148 C965,192 1090,82 1200,138 L1200,200 L0,200 Z" fill="#d62976" opacity="0.2"></path><path d="M0,158 C125,118 260,194 420,158 C580,122 725,120 875,160 C1020,198 1110,116 1200,152 L1200,200 L0,200 Z" fill="#8e44ad" opacity="0.22"></path><path d="M0,178 C150,146 315,198 500,176 C680,154 830,142 980,175 C1095,200 1150,148 1200,168 L1200,200 L0,200 Z" fill="#3b82f6" opacity="0.2"></path></svg></div>
   </section>
 
   <!-- === PÁGINA 06: MATERIAIS === -->
@@ -4922,10 +4753,15 @@
     const pdfPreviewIframe = document.getElementById('pdfPreviewIframe');
 
     function obterUrlPublicaPdf(caminho) {
-      if (!caminho.startsWith('PDF/')) return caminho;
-
-      const caminhoCodificado = caminho.split('/').map(encodeURIComponent).join('/');
+      const caminhoRepositorio = caminho.startsWith('PDF/')
+        ? caminho
+        : `PDF/${caminho}`;
+      const caminhoCodificado = caminhoRepositorio.split('/').map(encodeURIComponent).join('/');
       return `https://media.githubusercontent.com/media/JulioRyann/queer/main/${caminhoCodificado}`;
+    }
+
+    function obterUrlPreviewPdf(urlPublica) {
+      return `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(urlPublica)}`;
     }
 
     function selecionarArquivoPdf(arquivo) {
@@ -4934,8 +4770,7 @@
       modalDownloadPdfBtn.href = urlPublica;
       modalDownloadPdfBtn.setAttribute('download', arquivo.nome);
 
-      // Carrega o arquivo no iframe da área de pré-visualização
-      pdfPreviewIframe.src = urlPublica;
+      pdfPreviewIframe.src = obterUrlPreviewPdf(urlPublica);
 
       // Destaca a aba ativa
       document.querySelectorAll('.material-file-tab').forEach(tab => {
@@ -4989,134 +4824,6 @@
         fecharModalMateriais();
       }
     });
-
-    /* ========================================================
-       COMPATILER / ENVIO PARA A PASTA COLABORATIVA
-    ======================================================== */
-    const compatilerFolderId = '1BHFwq9vSGn0lP1H7hmFRiWqqU3X7gdHr';
-    const compatilerFolderUrl = 'https://drive.google.com/drive/folders/1BHFwq9vSGn0lP1H7hmFRiWqqU3X7gdHr?usp=drive_link';
-    const compatilerWebhookUrl = 'https://script.google.com/macros/s/AKfycbwdrq_XyIznDpORHSdEfQC9ZM4nkrisUVcmWMxFQ7dIDgBPxaCNK02plPY5CbNlzUoE_w/exec';
-    const compatilerDropzone = document.getElementById('compatilerDropzone');
-    const compatilerFileInput = document.getElementById('compatilerFileInput');
-    const compatilerFileList = document.getElementById('compatilerFileList');
-    const compatilerSendButton = document.getElementById('compatilerSendButton');
-    const compatilerStatus = document.getElementById('compatilerStatus');
-    const compatilerRecentList = document.getElementById('compatilerRecentList');
-    let compatilerFiles = [];
-    let compatilerRecentFiles = JSON.parse(localStorage.getItem('compatilerRecentFiles') || '[]');
-
-    function compatilerFormatBytes(bytes) {
-      if (bytes < 1024) return `${bytes} B`;
-      if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-      return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-    }
-
-    function compatilerReadBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
-
-    function compatilerRenderFiles() {
-      compatilerFileList.innerHTML = compatilerFiles.map((file) => `
-        <div class="compatiler-file-item">
-          <i class="fa-solid fa-file"></i>
-          <span>${file.name} · ${compatilerFormatBytes(file.size)}</span>
-        </div>
-      `).join('');
-    }
-
-    function compatilerAddFiles(fileList) {
-      const allowed = ['jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc', 'docx', 'txt', 'xls', 'xlsx'];
-      const maxBytes = 10 * 1024 * 1024;
-      [...fileList].forEach((file) => {
-        const extension = file.name.split('.').pop().toLowerCase();
-        if (!allowed.includes(extension) || file.size > maxBytes) return;
-        compatilerFiles.push(file);
-      });
-      compatilerRenderFiles();
-    }
-
-    function compatilerRenderRecent() {
-      if (!compatilerRecentFiles.length) {
-        compatilerRecentList.innerHTML = '<div class="compatiler-recent-empty">Nenhum arquivo enviado por esta página ainda.</div>';
-        return;
-      }
-
-      compatilerRecentList.innerHTML = compatilerRecentFiles.slice(0, 5).map((file) => `
-        <div class="compatiler-file-item">
-          <i class="fa-solid fa-file-arrow-up"></i>
-          <span title="${file.name}">${file.name} · ${file.size}</span>
-        </div>
-        ${file.previewUrl && /\.(jpg|jpeg|png|gif)$/i.test(file.name) ? `<a href="${file.previewUrl}" target="_blank" rel="noopener noreferrer"><img class="compatiler-preview" src="${file.previewUrl}" alt="Pré-visualização de ${file.name}"></a>` : ''}
-        ${file.previewUrl && /\.pdf$/i.test(file.name) ? `<iframe class="compatiler-preview" src="${file.previewUrl}" title="Pré-visualização de ${file.name}"></iframe>` : ''}
-      `).join('');
-    }
-
-    async function compatilerSendFiles() {
-      if (!compatilerFiles.length) {
-        compatilerStatus.textContent = 'Selecione pelo menos um arquivo.';
-        return;
-      }
-
-      compatilerSendButton.disabled = true;
-      compatilerStatus.textContent = 'Enviando para o Google Drive...';
-
-      try {
-        const uploaded = [];
-        for (const file of compatilerFiles) {
-          const response = await fetch(compatilerWebhookUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({
-              name: file.name,
-              base64: await compatilerReadBase64(file),
-              mimeType: file.type,
-              folderId: compatilerFolderId,
-              folderUrl: compatilerFolderUrl
-            })
-          });
-          const result = await response.json().catch(() => ({}));
-          uploaded.push({
-            name: file.name,
-            size: compatilerFormatBytes(file.size),
-            previewUrl: result.downloadUrl || ''
-          });
-        }
-
-        compatilerRecentFiles = [...uploaded, ...compatilerRecentFiles].slice(0, 5);
-        localStorage.setItem('compatilerRecentFiles', JSON.stringify(compatilerRecentFiles));
-        compatilerFiles = [];
-        compatilerRenderFiles();
-        compatilerRenderRecent();
-        compatilerStatus.textContent = 'Arquivo(s) enviado(s) para o Google Drive.';
-      } catch (error) {
-        compatilerStatus.textContent = 'Não foi possível concluir o envio. Use o botão Abrir pasta para enviar manualmente.';
-      } finally {
-        compatilerSendButton.disabled = false;
-      }
-    }
-
-    compatilerDropzone?.addEventListener('click', () => compatilerFileInput.click());
-    compatilerDropzone?.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') compatilerFileInput.click();
-    });
-    compatilerFileInput?.addEventListener('change', (event) => compatilerAddFiles(event.target.files));
-    compatilerSendButton?.addEventListener('click', compatilerSendFiles);
-    compatilerDropzone?.addEventListener('dragover', (event) => {
-      event.preventDefault();
-      compatilerDropzone.classList.add('dragover');
-    });
-    compatilerDropzone?.addEventListener('dragleave', () => compatilerDropzone.classList.remove('dragover'));
-    compatilerDropzone?.addEventListener('drop', (event) => {
-      event.preventDefault();
-      compatilerDropzone.classList.remove('dragover');
-      compatilerAddFiles(event.dataTransfer.files);
-    });
-    compatilerRenderRecent();
 
     createBoard();
   </script>
