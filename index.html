@@ -4716,7 +4716,7 @@
       'Cartilha': {
         pasta: 'PDF/Cartilha/',
         arquivos: [
-          { nome: 'Floral Watercolor Prayer Journal Book Cover.pdf', caminho: 'PDF/Cartilha/Floral Watercolor Prayer Journal Book Cover.pdf' },
+          { nome: 'Floral Watercolor Prayer Journal Book Cover.pdf', caminho: 'https://media.githubusercontent.com/media/JulioRyann/queer/main/PDF/Cartilha/Floral%20Watercolor%20Prayer%20Journal%20Book%20Cover.pdf' },
           { nome: 'Folder Novembro Azul ilustrado branco e azul.pdf', caminho: 'PDF/Cartilha/Folder Novembro Azul ilustrado branco e azul.pdf' }
         ]
       },
@@ -4752,13 +4752,21 @@
     const modalDownloadPdfBtn = document.getElementById('modalDownloadPdfBtn');
     const pdfPreviewIframe = document.getElementById('pdfPreviewIframe');
 
+    function obterUrlPublicaPdf(caminho) {
+      if (!caminho.startsWith('PDF/')) return caminho;
+
+      const caminhoCodificado = caminho.split('/').map(encodeURIComponent).join('/');
+      return `https://media.githubusercontent.com/media/JulioRyann/queer/main/${caminhoCodificado}`;
+    }
+
     function selecionarArquivoPdf(arquivo) {
+      const urlPublica = obterUrlPublicaPdf(arquivo.caminho);
       currentPdfName.innerHTML = `<i class="fa-regular fa-file-pdf"></i> ${arquivo.nome}`;
-      modalDownloadPdfBtn.href = arquivo.caminho;
+      modalDownloadPdfBtn.href = urlPublica;
       modalDownloadPdfBtn.setAttribute('download', arquivo.nome);
 
       // Carrega o arquivo no iframe da área de pré-visualização
-      pdfPreviewIframe.src = arquivo.caminho;
+      pdfPreviewIframe.src = urlPublica;
 
       // Destaca a aba ativa
       document.querySelectorAll('.material-file-tab').forEach(tab => {
