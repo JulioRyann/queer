@@ -4198,8 +4198,12 @@
     }
 
     function openPersonModal(person) {
-      personModalImage.removeAttribute('src');
       personModalImage.alt = person.name;
+      personModalImage.src = person.image || '';
+      personModalImage.onerror = () => {
+        personModalImage.removeAttribute('src');
+        personModalImage.alt = `Imagem de ${person.name} indisponível`;
+      };
       personModalTitle.textContent = person.name;
       personModalDescription.textContent = person.description;
       personModal.classList.add('active');
@@ -4765,7 +4769,10 @@
         pasta: 'PDF/Para Professores/',
         arquivos: [
           { nome: 'Capa de Livro Romance Floral Bege e Marrom.pdf', caminho: 'PDF/Para Professores/Capa de Livro Romance Floral Bege e Marrom.pdf' },
-          { nome: 'Floral Watercolor Prayer Journal Book Cover.pdf', caminho: 'https://media.githubusercontent.com/media/JulioRyann/queer/main/PDF/Cartilha/Floral%20Watercolor%20Prayer%20Journal%20Book%20Cover.pdf' }
+          { nome: 'Floral Watercolor Prayer Journal Book Cover.pdf', caminho: 'https://media.githubusercontent.com/media/JulioRyann/queer/main/PDF/Cartilha/Floral%20Watercolor%20Prayer%20Journal%20Book%20Cover.pdf' },
+          { nome: 'PSICOQUEER Atividades Reflexivas.pdf', caminho: 'PDF/Para Professores/PSICOQUEER_Atividades_Reflexivas.pdf' },
+          { nome: 'PSICOQUEER Artigos Educativos.pdf', caminho: 'PDF/Para Professores/PSICOQUEER_Artigos_Educativos.pdf' },
+          { nome: 'Relatorio PSICOQUEER formal.pdf', caminho: 'PDF/Para Professores/Relatorio_PSICOQUEER_formal.pdf' }
         ]
       }
     };
